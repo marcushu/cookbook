@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { IngredientSortPolicy, Recipe, UserState } from "../interfaces/types";
-import { addFavoriteRecipe, createNewUser, fetchUserInfo, addIngredient } from "./thunkFunctions";
+import { addFavoriteRecipe, createNewUser, fetchUserInfo, addIngredient, deleteIngredient } from "./thunkFunctions";
 
 
 const initialState: UserState = {
@@ -18,6 +18,7 @@ export const fetchUser = createAsyncThunk('user/fetchUser', fetchUserInfo);
 export const createUser = createAsyncThunk('user/createUser', createNewUser);
 export const addFavorite = createAsyncThunk('user/addFavorite', addFavoriteRecipe);
 export const addToShoppingList = createAsyncThunk('user/addToShoppingList', addIngredient);
+export const deleteFromShoppingList = createAsyncThunk('user/deleteFromShoppingList', deleteIngredient);
 
 
 export const userState = createSlice({
@@ -69,6 +70,13 @@ export const userState = createSlice({
       })
       .addCase(addToShoppingList.fulfilled, (state, action) => {
         state.shoppingList.push(action.payload);
+      })
+      .addCase(deleteFromShoppingList.fulfilled, (state, action) => {
+        const { ingredient } = action.payload.ingredient
+        
+        const cleanedShoppingList = state.shoppingList.filter( el => !(el.ingredient === ingredient && el.recipe === ''));
+        
+        state.shoppingList = cleanedShoppingList;
       })
   }
 });

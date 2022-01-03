@@ -122,3 +122,30 @@ export const addIngredient = async ( ingredientInfo: {ingredient: ShoppinglistIn
     return { ingredient: '', recipe: ''}
   }
 }
+
+
+/**
+ * Remove an ingredient from a users shopping list.
+ * @param toDelete what do delete { ingredeint..., userName } 
+ * @returns what was just deleted
+ */
+export const deleteIngredient = async ( toDelete: { ingredient: ShoppinglistIngredient, userName: string}) => {
+  const { userName, ingredient } = toDelete;
+
+  try {
+    const response = await fetch(`${dbApi}/user/shoppinglist`,
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userName, ingredient: ingredient.ingredient })
+      });
+
+    const resp = await response.json();
+    console.log(resp);
+    
+    return toDelete;
+  } catch (error) {
+    console.log(error);
+    return toDelete;
+  }
+}
