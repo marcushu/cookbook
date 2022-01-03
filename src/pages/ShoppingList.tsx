@@ -28,8 +28,8 @@ const ShoppingList: FunctionComponent = () => {
   return (
     <>
       <Header
-        leftButton={<FavoritesBtn />}
-        rightButton={<HomeBtn />} />
+        leftButton={<HomeBtn />}
+        rightButton={<FavoritesBtn />} />
 
         <form  onSubmit={ e => submitIngredient(e)}>
 
