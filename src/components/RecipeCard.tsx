@@ -1,5 +1,5 @@
-import { FunctionComponent, useState } from "react";
-import { addFavorite, selectUserName } from "../redux/userState";
+import { FunctionComponent, useEffect, useState } from "react";
+import { addFavorite, deleteFavorite, selectFavorites, selectUserName } from "../redux/userState";
 import { Recipe } from "../interfaces/types";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { Box, Button, Grid, IconButton, Paper, styled, Tooltip, Typography } from "@mui/material";
@@ -45,11 +45,42 @@ const TextGridItem = styled(Grid)({
 const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
   const { name, imageUrl, owner, description } = recipe;
   const userName = useAppSelector(selectUserName);
+  const favorites = useAppSelector(selectFavorites);
   const [showFullRecipe, setShowFullRecipe] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const dispatch = useAppDispatch();
-  
+
+  useEffect(() => {
+    if (userName) {
+      const isFound = favorites.find(faveRecipe =>
+        (faveRecipe.name === name && faveRecipe.owner === owner && faveRecipe.description === description));
+
+      setIsFavorite(!!isFound);
+    }
+  }, [description, favorites, name, owner, recipe, userName]);
+
   const addToFavorites = () => {
-    dispatch(addFavorite({recipe, userName}));
+    dispatch(addFavorite({ recipe, userName }));
+  }
+
+  const deleteFromFavorites = () => {
+    dispatch(deleteFavorite({recipe, userName}))
+  }
+
+  const buttons = () => {
+    if(userName) return isFavorite
+      ? (<Tooltip title='Remove from favorites' >
+        <IconButton onClick={deleteFromFavorites}>
+          <FavoriteIcon color='secondary' />
+        </IconButton>
+      </Tooltip>
+      )
+      : (<Tooltip title='Add to favorites' >
+        <IconButton onClick={addToFavorites}>
+          <FavoriteIcon color='primary' />
+        </IconButton>
+      </Tooltip>
+      );
   }
 
   return (
@@ -62,12 +93,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
           <Box component='div' pl={2}>
             <Typography pt={2} display='flex' justifyContent='space-between' variant='h4'>
               {name}
-              {userName &&
-                <Tooltip title='Add to favorites'>
-                  <IconButton onClick={addToFavorites}>
-                    <FavoriteIcon color='primary' />
-                  </IconButton>
-                </Tooltip>}
+              {buttons()}
             </Typography>
             <Typography variant='subtitle2'>{owner}</Typography>
             <Typography pt={2}>{description}</Typography>

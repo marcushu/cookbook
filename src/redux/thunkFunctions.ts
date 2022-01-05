@@ -98,6 +98,42 @@ export const addFavoriteRecipe = async (recipeToAdd: { recipe: Recipe, userName:
 
 
 /**
+ * Remove a recipe from the user's favorites
+ * @param recipeToDelete 
+ * @returns the deleted recipe, this will always be returned,
+ * irregardless of the success of the delete operation.   
+ */
+export const deleteFavoriteRecipe = async (recipeToDelete: { recipe: Recipe, userName: string}) => {
+  const { recipe, userName } = recipeToDelete;
+
+  try {
+    await fetch(`${dbApi}/user/favorite`,
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          { 
+            userName, 
+            recipe: {
+              name: recipe.name,
+              description: recipe.description
+            } 
+          })
+      });
+
+    // Modify response.json() to return { acknoledged: true/false } if
+    // a conditional response is needed.
+    //await response.json();
+
+    return recipe;
+  } catch (error) {
+    console.log(error);
+    return recipe;
+  }
+}
+
+
+/**
  * Add a new ingredient to the shopping list; independent of a recipe.
  * @param ingredient 
  * @param userName 

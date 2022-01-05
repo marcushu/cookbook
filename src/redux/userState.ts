@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { IngredientSortPolicy, Recipe, UserState } from "../interfaces/types";
-import { addFavoriteRecipe, createNewUser, fetchUserInfo, addIngredient, deleteIngredient } from "./thunkFunctions";
+import { addFavoriteRecipe, createNewUser, fetchUserInfo, addIngredient, deleteIngredient, deleteFavoriteRecipe } from "./thunkFunctions";
 
 
 const initialState: UserState = {
@@ -17,6 +17,7 @@ const initialState: UserState = {
 export const fetchUser = createAsyncThunk('user/fetchUser', fetchUserInfo);
 export const createUser = createAsyncThunk('user/createUser', createNewUser);
 export const addFavorite = createAsyncThunk('user/addFavorite', addFavoriteRecipe);
+export const deleteFavorite = createAsyncThunk('user/deleteFavorite', deleteFavoriteRecipe);
 export const addToShoppingList = createAsyncThunk('user/addToShoppingList', addIngredient);
 export const deleteFromShoppingList = createAsyncThunk('user/deleteFromShoppingList', deleteIngredient);
 
@@ -67,6 +68,16 @@ export const userState = createSlice({
 
         // add ingredients to shopping list.
         state.shoppingList = [...state.shoppingList, ...ingredientObjects];
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
+        const recipeToDelete = action.payload;
+
+        const cleanFavoritesList = state.favorites.filter( el => !(el.name === recipeToDelete.name && el.instructions  === recipeToDelete.instructions ));
+        const cleanedShoppingList = state.shoppingList.filter( ingredient => !(ingredient.recipe === recipeToDelete.name && recipeToDelete.ingredients.includes(ingredient.ingredient)))
+        
+        state.favorites = cleanFavoritesList;
+        state.shoppingList = cleanedShoppingList;
+
       })
       .addCase(addToShoppingList.fulfilled, (state, action) => {
         state.shoppingList.push(action.payload);
