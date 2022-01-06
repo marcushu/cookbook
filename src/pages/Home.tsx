@@ -1,25 +1,18 @@
 import { Box } from "@mui/material";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Header from "../components/Header";
 import HomeWelcome from "../components/HomeWelcome";
 import RecipeList from "../components/RecipeList";
+import { search, selectSearchResults } from "../redux/searchResultState";
 
 const Home: FunctionComponent = () => {
-  const [recipes, setRecipes] = useState([]);
-  const NUMRANDOMRECIPES = 4;
+  const recipes = useAppSelector(selectSearchResults);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const dbApi = process.env.REACT_APP_API_URL
-
-    const loadRecipes = async () => {
-      
-      const response = await fetch(`${dbApi}/recipes/${NUMRANDOMRECIPES}`);
-      const { randomRecipes } = await response.json() ;
-
-      setRecipes(randomRecipes);
-    }
-
-    loadRecipes();
+    dispatch(search());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
