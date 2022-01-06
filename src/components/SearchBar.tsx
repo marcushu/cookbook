@@ -1,38 +1,25 @@
 import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
-import React, { useState, ChangeEvent, LegacyRef } from "react";
+import React, { useState, LegacyRef } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch, 
+        selectFindVegan, selectFindVegetarian, setFindMealSettings } from "../redux/searchResultState";
 
 const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElement>) => {
-  const [formValues, setFormValues] = useState({
-    breakfast: true,
-    lunch: true,
-    dinner: true,
-    glutenFree: false,
-    vegan: false,
-    vegetarian: false,
-    name: " "
-  });
+  const [recipeToFind, setRecipeToFind] = useState("");
+  const findBreakfast = useAppSelector(selectFindBreakfast);
+  const findLunch = useAppSelector(selectFindLunch);
+  const findDinner = useAppSelector(selectFindDinner);
+  const findGF = useAppSelector(selectFindGF);
+  const findVegan = useAppSelector(selectFindVegan);
+  const findVegetarian = useAppSelector(selectFindVegetarian);
+  const dispatch = useAppDispatch();
 
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const search = () => {
-    alert('called');
+    alert(recipeToFind);
   }
 
-  const handleSwitch = (evt: ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = evt.target;
-
-    setFormValues({
-      ...formValues,
-      [name]: checked
-    });
-  }
-
-  const handleText = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    setFormValues({
-      ...formValues,
-      name: evt.target.value
-    })
-  }
 
   return (
     <Grid container py={2} sx={{backgroundColor: '#f7f7f7'}}>
@@ -43,7 +30,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             label="find something" 
             variant="standard"
             sx={{ borderRadius: '10px' }}
-            onChange={e => handleText(e as ChangeEvent<HTMLTextAreaElement>)} />
+            onChange={e => setRecipeToFind(e.target.value)} />
           <button
             style={{display: 'none'}}
             onClick={search}
@@ -60,8 +47,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             control={
               <Switch
                 name="breakfast"
-                checked={formValues.breakfast}
-                onChange={handleSwitch} />}
+                checked={findBreakfast}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'findBreakfast', trueFalse: !findBreakfast } 
+                ))} />}
             label="Breakfast"
             labelPlacement="top" />
           <FormControlLabel
@@ -70,8 +59,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             control={
               <Switch
                 name="lunch"
-                checked={formValues.lunch}
-                onChange={handleSwitch} />}
+                checked={findLunch}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'findLunch', trueFalse: !findLunch } 
+                ))} />}
             label="Lunch"
             labelPlacement="top" />
           <FormControlLabel
@@ -80,8 +71,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             control={
               <Switch
                 name="dinner"
-                checked={formValues.dinner}
-                onChange={handleSwitch} />}
+                checked={findDinner}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'findDinner', trueFalse: !findDinner } 
+                ))} />}
             label="Dinner"
             labelPlacement="top" />
         </FormGroup>
@@ -95,8 +88,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
               <Switch
                 name="glutenFree"
                 color='secondary'
-                checked={formValues.glutenFree}
-                onChange={handleSwitch} />
+                checked={findGF}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'GF', trueFalse: !findGF } 
+                ))} />
             }
             label="GF"
             labelPlacement="top" />
@@ -107,8 +102,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
               <Switch
                 name="vegetarian"
                 color='secondary'
-                checked={formValues.vegetarian}
-                onChange={handleSwitch} />
+                checked={findVegetarian}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'vegetarian', trueFalse: !findVegetarian } 
+                ))} />
             }
             label="Vegetarian"
             labelPlacement="top" />
@@ -119,8 +116,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
               <Switch
                 name="vegan"
                 color='secondary'
-                checked={formValues.vegan}
-                onChange={handleSwitch} />
+                checked={findVegan}
+                onChange={()=> dispatch(setFindMealSettings(
+                  { searchType: 'vegan', trueFalse: !findVegan } 
+                ))} />
             }
             label="Vegan"
             labelPlacement="top" />
