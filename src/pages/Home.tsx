@@ -6,14 +6,17 @@ import RecipeList from "../components/RecipeList";
 
 const Home: FunctionComponent = () => {
   const [recipes, setRecipes] = useState([]);
+  const NUMRANDOMRECIPES = 4;
 
   useEffect(() => {
-    const loadRecipes = async () => {
-      //TODO: this will eventually load a fixed number of random recipes
-      const response = await fetch('http://localhost:5000/');
-      const allRecipes = await response.json();
+    const dbApi = process.env.REACT_APP_API_URL
 
-      setRecipes(allRecipes);
+    const loadRecipes = async () => {
+      
+      const response = await fetch(`${dbApi}/recipes/${NUMRANDOMRECIPES}`);
+      const { randomRecipes } = await response.json() ;
+
+      setRecipes(randomRecipes);
     }
 
     loadRecipes();
