@@ -18,7 +18,7 @@ const MyPage: FunctionComponent = () => {
 
   useEffect(() => {
     if (!userName) setShowModal(true);
-  }, [navigate, userName]);
+  }, [userName]);
 
 
   const handleCloseModal = () => {
