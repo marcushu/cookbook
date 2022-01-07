@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import { Box, IconButton, styled, Typography } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
 
 interface ListIngredientsProps {
   listItems: ShoppinglistIngredient[]
@@ -10,6 +10,7 @@ interface ListIngredientsProps {
 
 const SmallRecipeName = styled(Typography)({
   paddingLeft: '15px',
+  paddingBottom: '5px',
   fontSize: '10px',
   color: '#BC4282',
   fontStyle: 'italic'
@@ -17,21 +18,21 @@ const SmallRecipeName = styled(Typography)({
 
 const ListIngredients: FunctionComponent<ListIngredientsProps> = ({ listItems, handleClick }) => {
   return (
-    <>
+    <Box sx={{ backgroundColor: 'white', width: '800px', padding: '15px' }}>
       {listItems.map(ingredient =>
         <Box key={ingredient.ingredient}>
           <Box component='span'>
-            <Typography color='text.primary' component='span'>{ingredient.ingredient}</Typography>
             {!ingredient.recipe &&
               <IconButton aria-label="delete"
                 onClick={() => handleClick(ingredient)}>
-                <DeleteIcon color='secondary' />
+                <CheckIcon color='success' />
               </IconButton>}
+            <Typography color='text.primary' component='span'>{ingredient.ingredient}</Typography>
           </Box>
           <SmallRecipeName>{ingredient.recipe}</SmallRecipeName>
         </Box>)
       }
-    </>
+    </Box>
   );
 }
 

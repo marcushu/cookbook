@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
+import { Box, IconButton, TextField } from "@mui/material";
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
@@ -14,13 +16,15 @@ const ShoppingList: FunctionComponent = () => {
 
   const submitIngredient = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-
+    
     dispatch(addToShoppingList(
       {
         userName,
         ingredient: { recipe: '', ingredient: evt.currentTarget.newIngredientTXT.value }
       }
     ));
+
+    evt.currentTarget.newIngredientTXT.value = "";
   }
 
   const handleDelete = (ingredient: ShoppinglistIngredient) => {
@@ -32,15 +36,24 @@ const ShoppingList: FunctionComponent = () => {
       <Header
         leftButton={<HomeBtn />}
         rightButton={<FavoritesBtn />} />
-
       <form onSubmit={e => submitIngredient(e)}>
-        Add ingredient:
-        <input type="text" name="newIngredientTXT" id="newIngredientTXT" />
-        <button type="submit">submit</button>
+        <Box display='flex'>
+          <TextField
+            variant='standard'
+            required={true}
+            placeholder="2 tbs. new ingredient"
+            label="New ingredient"
+            name="newIngredientTXT"
+            id="newIngredientTXT"
+            fullWidth={true} />
+          <IconButton aria-label="newitem"
+            type='submit'>
+            <PlaylistAddIcon fontSize="large" color='primary' />
+          </IconButton>
+        </Box>
       </form>
-
-      <ListIngredients 
-        handleClick={handleDelete} 
+      <ListIngredients
+        handleClick={handleDelete}
         listItems={listIngredients} />
     </>
   );

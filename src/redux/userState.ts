@@ -80,7 +80,7 @@ export const userState = createSlice({
 
       })
       .addCase(addToShoppingList.fulfilled, (state, action) => {
-        state.shoppingList.push(action.payload);
+        state.shoppingList.unshift(action.payload);
       })
       .addCase(deleteFromShoppingList.fulfilled, (state, action) => {
         const { ingredient } = action.payload.ingredient
