@@ -1,8 +1,9 @@
-import { Box, Grid, Switch, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../app/hooks';
+import SearchSwitch from '../buttons/SearchSwitch';
 import { selectUserName } from '../redux/userState';
 import SearchBar from './SearchBar';
 
@@ -31,7 +32,6 @@ const MyPageWelcome: FunctionComponent = () => {
   return (
     <MainContent container>
       <Grid item xs={12} md={4}>
-
       </Grid>
       <Grid item xs={12} md={8}>
         <Titles>Hello {userName}</Titles>
@@ -41,14 +41,8 @@ const MyPageWelcome: FunctionComponent = () => {
         <button onClick={() => navigate('/createrecipe')}>New Recipe</button>
       </Grid>
       <Grid item xs={12} display='flex' flexDirection='column' justifyContent='flex-end'>
-        <Box px={3} py={1} sx={{ borderRadius: '5px', backgroundColor: '#e3e3e3' }}>
-          <Typography component='span' variant='h6' color='textPrimary'> Search ...
-            My recipes and favorites
-            <Switch />
-            All recipes
-          </Typography>
-        </Box>
-        <SearchBar ref={searchBarRef}/>
+        <SearchSwitch />
+        <SearchBar ref={searchBarRef} />
       </Grid>
     </MainContent>
   );

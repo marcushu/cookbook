@@ -16,6 +16,7 @@ const initialState = {
   GF: false,
   vegan: false,
   vegetarian: false,
+  owner: ""
 }
 
 
@@ -47,6 +48,9 @@ export const searchResults = createSlice({
       const { searchType, trueFalse } = action.payload;
 
       Object.assign(state, { [searchType]: trueFalse });
+    },
+    setOwner: (state, action: PayloadAction<string>) => {
+      state.owner = action.payload;
     }
   },
   extraReducers: builder => {
@@ -58,10 +62,11 @@ export const searchResults = createSlice({
 });
 
 // set
-export const { setResultSetSize, setFindMealSettings } = searchResults.actions;
+export const { setResultSetSize, setFindMealSettings, setOwner } = searchResults.actions;
 
 // get
 export const selectSearchResults = (state: RootState) => state.searchResults.foundSet;
+export const selectOwner = (state: RootState) => state.searchResults.owner;
 export const selectFindBreakfast = (state: RootState) => state.searchResults.findBreakfast;
 export const selectFindDinner = (state: RootState) => state.searchResults.findDinner;
 export const selectFindLunch = (state: RootState) => state.searchResults.findLunch;
