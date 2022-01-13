@@ -23,10 +23,10 @@ const initialState = {
 export const search = createAsyncThunk('search/search', async (_, thunkAPI) => {
   const dbApi = process.env.REACT_APP_API_URL
   const state = thunkAPI.getState() as RootState;
-  const howMany = state.searchResults.numberOfResults
+  const { numberOfResults } = state.searchResults;
 
   try {
-    const response = await fetch(`${dbApi}/recipes/${howMany}`);
+    const response = await fetch(`${dbApi}/recipes/${numberOfResults}`);
     const { randomRecipes } = await response.json();
 
     return randomRecipes as Recipe[]
