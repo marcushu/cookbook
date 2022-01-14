@@ -9,6 +9,8 @@ import Header from "../components/Header";
 import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import FavoritesBtn from "../buttons/FavoritesBtn";
 
+const dbApi = process.env.REACT_APP_API_URL
+
 const CreateRecipeCard = styled(Typography)(({theme}) => ({
   backgroundColor: 'white',
   color: theme.palette.text.primary,
@@ -74,7 +76,7 @@ const CreateRecipe: FunctionComponent = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/recipe',
+      const response = await fetch(`${dbApi}/recipe`,
         {
           method: 'POST',
           headers: {
