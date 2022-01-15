@@ -29,8 +29,8 @@ const CreateRecipe: FunctionComponent = () => {
     ingredients: "",
     description: "",
     breakfast: false,
-    lunch: false,
-    dinner: false,
+    lunch: true,
+    dinner: true,
     glutenFree: false,
     vegan: false,
     vegetarian: false,
@@ -127,27 +127,27 @@ const CreateRecipe: FunctionComponent = () => {
               <Grid item xs={12}>
                 <FormControlLabel
                   value='breakfast' id='breakfast' name='breakfast'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.breakfast} onChange={handleCheckboxes} />}
                   label='breakfast' labelPlacement='end' />
                 <FormControlLabel
                   value='lunch' id='lunch' name='lunch'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.lunch} onChange={handleCheckboxes} />}
                   label='lunch' labelPlacement='end' />
                 <FormControlLabel
                   value='dinner' id='dinner' name='dinner'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.dinner} onChange={handleCheckboxes} />}
                   label='dinner' labelPlacement='end' />
                 <FormControlLabel
                   value='GF' id='GF' name='glutenFree'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.glutenFree} onChange={handleCheckboxes} />}
                   label='gluten free' labelPlacement='end' />
                 <FormControlLabel
                   value='vegan' id='vegan' name='vegan'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.vegan} onChange={handleCheckboxes} />}
                   label='vegan' labelPlacement='end' />
                 <FormControlLabel
                   value='vegetarian' id='vegetarian' name='vegetarian'
-                  control={<Checkbox onChange={handleCheckboxes} />}
+                  control={<Checkbox checked={formValues.vegetarian} onChange={handleCheckboxes} />}
                   label='vegetarian' labelPlacement='end' />
               </Grid>
               <Grid item xs={12}>
