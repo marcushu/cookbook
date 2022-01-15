@@ -19,6 +19,7 @@ const SignIn: FunctionComponent = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
+  const [newUsername, setNewUsername] = useState("");
 
   const login = async () => {
     await dispatch(fetchUser(username));
@@ -27,10 +28,11 @@ const SignIn: FunctionComponent = () => {
   }
 
   const signUp = async () => {
-    await dispatch(createUser(username));
+    await dispatch(createUser(newUsername));
 
     navigate("/mypage");
   }
+
 
   return (
     <>
@@ -65,8 +67,8 @@ const SignIn: FunctionComponent = () => {
               variant='outlined'
               fullWidth={true}
               helperText='User name must be unique'
-              value={username}
-              onChange={e => setUsername(e.target.value)} />
+              value={newUsername}
+              onChange={e => setNewUsername(e.target.value)} />
             <Typography color='primary' variant='h6' textAlign='center'>
               No Password!
             </Typography>
