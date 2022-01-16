@@ -3,7 +3,7 @@ import { RootState } from "../app/store";
 import { Recipe } from "../interfaces/types";
 
 interface SetSearchParam {
-  searchType: string 
+  searchType: string
   trueFalse: boolean
 }
 
@@ -23,10 +23,16 @@ const initialState = {
 export const search = createAsyncThunk('search/search', async (_, thunkAPI) => {
   const dbApi = process.env.REACT_APP_API_URL
   const state = thunkAPI.getState() as RootState;
-  const { numberOfResults } = state.searchResults;
+  const { numberOfResults, findBreakfast, findLunch, findDinner,
+    GF, vegan, vegetarian, owner } = state.searchResults;
+
+  //TODO: placeholder, replace
+  //TODO: remember to encodeURI(...) this string...empty spaces are likely.
+  const searchtearm = '';
 
   try {
-    const response = await fetch(`${dbApi}/recipes/${numberOfResults}`);
+    const response = await fetch(`${dbApi}/recipes?searchTearm=${searchtearm}&numberOfResults=${numberOfResults}&findBreakfast=${findBreakfast}&findLunch=${findLunch}&findDinner=${findDinner}&GF=${GF}&vegan=${vegan}&vegetarian=${vegetarian}&owner=${owner}`);
+
     const { randomRecipes } = await response.json();
 
     return randomRecipes as Recipe[]

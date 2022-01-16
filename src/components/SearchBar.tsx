@@ -1,7 +1,7 @@
 import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
 import React, { useState, LegacyRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch, 
+import { search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch, 
         selectFindVegan, selectFindVegetarian, setFindMealSettings } from "../redux/searchResultState";
 
 const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElement>) => {
@@ -16,8 +16,8 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
 
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const search = () => {
-    alert(recipeToFind);
+  const startSearch = () => {
+    dispatch(search())
   }
 
 
@@ -33,7 +33,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             onChange={e => setRecipeToFind(e.target.value)} />
           <button
             style={{display: 'none'}}
-            onClick={search}
+            onClick={startSearch}
             ref={buttonRef}>
           search
           </button>

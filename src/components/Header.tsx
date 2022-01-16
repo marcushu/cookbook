@@ -5,6 +5,7 @@ import React, { FunctionComponent } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { selectUserName, unsetUser } from "../redux/userState";
 import { useNavigate } from "react-router";
+import { setOwner } from '../redux/searchResultState';
 
 interface HeaderProps {
   leftButton?: React.ReactNode
@@ -18,6 +19,7 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
 
   const logout = () => {
     dispatch(unsetUser());
+    dispatch(setOwner("")); // clear out the user for search
     navigate('/');
   }
 
