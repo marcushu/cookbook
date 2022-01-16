@@ -20,18 +20,14 @@ const initialState = {
 }
 
 
-export const search = createAsyncThunk('search/search', async (_, thunkAPI) => {
+export const search = createAsyncThunk('search/search', async (searchTearm: string, thunkAPI) => {
   const dbApi = process.env.REACT_APP_API_URL
   const state = thunkAPI.getState() as RootState;
   const { numberOfResults, findBreakfast, findLunch, findDinner,
     GF, vegan, vegetarian, owner } = state.searchResults;
 
-  //TODO: placeholder, replace
-  //TODO: remember to encodeURI(...) this string...empty spaces are likely.
-  const searchtearm = '';
-
   try {
-    const response = await fetch(`${dbApi}/recipes?searchTearm=${searchtearm}&numberOfResults=${numberOfResults}&findBreakfast=${findBreakfast}&findLunch=${findLunch}&findDinner=${findDinner}&GF=${GF}&vegan=${vegan}&vegetarian=${vegetarian}&owner=${owner}`);
+    const response = await fetch(`${dbApi}/recipes?searchTearm=${searchTearm}&numberOfResults=${numberOfResults}&findBreakfast=${findBreakfast}&findLunch=${findLunch}&findDinner=${findDinner}&GF=${GF}&vegan=${vegan}&vegetarian=${vegetarian}&owner=${owner}`);
 
     const { randomRecipes } = await response.json();
 

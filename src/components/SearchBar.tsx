@@ -17,7 +17,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const startSearch = () => {
-    dispatch(search())
+    dispatch(search(recipeToFind))
   }
 
 

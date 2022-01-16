@@ -11,7 +11,7 @@ const Home: FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(search());
+    dispatch(search(""));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
