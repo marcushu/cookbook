@@ -100,5 +100,6 @@ export const selectUserName = (state: RootState) => state.user.userName;
 export const selectRecipes = (state: RootState) => state.user.recipes;
 export const selectFavorites = (state: RootState) => state.user.favorites;
 export const selectShoppingList = (state: RootState) => state.user.shoppingList;
+export const selectNumOfFavorites = (state: RootState) => state.user.favorites.length;
 
 export default userState.reducer;
