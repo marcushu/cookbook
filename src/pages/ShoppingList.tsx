@@ -34,8 +34,8 @@ const ShoppingList: FunctionComponent = () => {
   return (
     <>
       <Header
-        leftButton={<HomeBtn />}
-        rightButton={<FavoritesBtn />} />
+        leftButton={<FavoritesBtn />}
+        rightButton={<HomeBtn />} />
       <form onSubmit={e => submitIngredient(e)}>
         <Box display='flex'>
           <TextField
