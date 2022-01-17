@@ -26,12 +26,12 @@ const SearchSwitch: FunctionComponent = () => {
 
   return (
     <Box px={3} py={1} sx={{ borderRadius: '5px', backgroundColor: '#e3e3e3' }}>
-      <Typography component='span' variant='h6' color='textPrimary'> Search ...
-        My recipes and favorites
+      <Typography component='span' variant='h6' color='textPrimary'>
+        My recipes
         <Switch 
-          checked={!!owner.length}
+          checked={!owner.length}
           onChange={handleSwitch} />
-        All recipes
+        Search all recipes
       </Typography>
     </Box>
   );

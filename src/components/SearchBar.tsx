@@ -22,7 +22,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
 
 
   return (
-    <Grid container py={2} sx={{backgroundColor: '#f7f7f7'}}>
+    <Grid container py={2} sx={{backgroundColor: '#67686e'}}>
       <Grid item xs={12} sm={4}>
         <FormGroup row sx={{ justifyContent: 'center' }}>
           <TextField 

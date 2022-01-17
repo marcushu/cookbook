@@ -10,10 +10,7 @@ const MainContent = styled(Grid)({
   minHeight: '375px',
   maxWidth: '902px',
   marginBottom: '25px',
-  backgroundColor: 'white',
-  border: 'solid',
-  borderWidth: '1px',
-  borderColor: '#dbdbdb'
+  backgroundColor: 'white'
 });
 
 const Titles = styled(Typography)(({ theme }) => ({
