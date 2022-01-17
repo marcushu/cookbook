@@ -8,6 +8,8 @@ import SearchSwitch from '../buttons/SearchSwitch';
 import { selectUserName } from '../redux/userState';
 import SearchBar from './SearchBar';
 import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
+import { selectOwner, setOwner } from '../redux/searchResultState';
+import { useDispatch } from 'react-redux';
 
 const MainContent = styled(Grid)({
   minHeight: '375px',
@@ -24,10 +26,17 @@ const Titles = styled(Typography)(({ theme }) => ({
 
 const MyPageWelcome: FunctionComponent = () => {
   const searchBarRef = useRef<HTMLButtonElement>(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userName = useAppSelector(selectUserName);
+  const owner = useAppSelector(selectOwner);
 
   const callSearch = () => {
+    
+    if(owner.length) 
+      // clear out the 'owner' of this search to search all recipes
+      dispatch(setOwner(""));
+
     if (searchBarRef && searchBarRef.current)
       searchBarRef.current.click();
   }
