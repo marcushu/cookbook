@@ -13,6 +13,13 @@ const MainContent = styled(Grid)({
   backgroundColor: 'white'
 });
 
+const ImagePanel = styled(Grid)({
+  display: 'flex',
+  backgroundImage: `url(${splashImage})`,
+  opacity: '77%',
+  minHeight: '315px'
+});
+
 const Titles = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: 'bold',
@@ -38,14 +45,9 @@ const HomeWelcome: FunctionComponent = () => {
 
   return (
     <MainContent container>
-      <Grid
-        item
-        xs={12}
-        md={4}
-        display='flex'
-        style={{ backgroundImage: `url(${splashImage})`, opacity: '77%' }}>
-          <SearchButton searchFunction={callSearch} />
-      </Grid>
+      <ImagePanel item xs={12} md={4}>
+        <SearchButton searchFunction={callSearch} />
+      </ImagePanel>
       <Grid item xs={12} md={8} p={3}>
         <Titles>Just recipes</Titles>
         <Typography color='textPrimary'>Cooking sites are great, but they can be wordy.  No stories, or long descriptions here, just the ingredients, and what to do with them.</Typography>
