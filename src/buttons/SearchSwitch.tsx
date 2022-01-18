@@ -1,37 +1,44 @@
-import { Box, Switch, Typography } from "@mui/material";
+import { Box, Switch, Tooltip, Typography } from "@mui/material";
 import { FunctionComponent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { selectOwner, setOwner } from "../redux/searchResultState";
 import { selectUserName } from "../redux/userState";
+import FaceIcon from '@mui/icons-material/Face';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 /**
- * This component is used to toggle between universal search 
- * and owner-specific searches 
+ * Toggle between universal search 
+ * and this owner's recipes
  */
 const SearchSwitch: FunctionComponent = () => {
   const owner = useAppSelector(selectOwner);
-  const userName = useAppSelector(selectUserName);  
+  const userName = useAppSelector(selectUserName);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(setOwner(userName));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSwitch = () => {
     const switchTo = !!owner.length ? "" : userName;
-    
+
     dispatch(setOwner(switchTo));
   }
 
   return (
-    <Box px={3} py={1} sx={{ borderRadius: '5px', backgroundColor: '#e3e3e3' }}>
-      <Typography component='span' variant='h6' color='textPrimary'>
-        My recipes
-        <Switch 
+    <Box sx={{ borderRadius: '5px' }}>
+      <Typography sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}  >
+        <Tooltip title="My Recipes">
+          <FaceIcon color={owner.length ? 'primary' : 'info'} fontSize="large" />
+        </Tooltip>
+        <Switch
+          color="default"
           checked={!owner.length}
           onChange={handleSwitch} />
-        Search all recipes
+        <Tooltip title="Search all recipes">
+          <PeopleAltIcon color={!owner.length ? 'primary' : 'info'} fontSize="large" />
+        </Tooltip>
       </Typography>
     </Box>
   );
