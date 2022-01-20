@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { addFavorite, deleteFavorite, selectFavorites, selectUserName } from "../redux/userState";
 import { Recipe } from "../interfaces/types";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { Box, Button, Grid, IconButton, Paper, styled, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Collapse, Grid, IconButton, Paper, styled, Tooltip, Typography } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { grey } from "@mui/material/colors";
@@ -64,11 +64,11 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
   }
 
   const deleteFromFavorites = () => {
-    dispatch(deleteFavorite({recipe, userName}))
+    dispatch(deleteFavorite({ recipe, userName }))
   }
 
   const buttons = () => {
-    if(userName) return isFavorite
+    if (userName) return isFavorite
       ? (<Tooltip title='Remove from favorites' >
         <IconButton onClick={deleteFromFavorites}>
           <FavoriteIcon color='secondary' />
@@ -111,10 +111,11 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
             </Box>
           </RecipeFooter>
         </TextGridItem>
-        {showFullRecipe &&
+        <Collapse in={showFullRecipe}>
           <FullRecipe
             hideMe={() => setShowFullRecipe(!showFullRecipe)}
-            recipe={recipe} />}
+            recipe={recipe} />
+        </Collapse>
       </Grid>
     </RecipePaper >
   );
