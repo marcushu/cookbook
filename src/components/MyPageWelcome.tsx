@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Chip, Divider, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent, useRef } from "react";
 import { useAppSelector } from '../app/hooks';
@@ -26,9 +26,6 @@ const ImagePanel = styled(Grid)({
 });
 
 const MainPanel = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
   padding: '25px 25px 2px 25px'
 })
 
@@ -39,13 +36,12 @@ const Titles = styled(Typography)(({ theme }) => ({
   display: 'contents'
 }));
 
-const Recipecounter = styled('span')(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  fontStyle: 'italic',
-  fontSize: '20px',
-  padding: '5px',
-  verticalAlign: 'super'
-}));
+const TitleLine = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between'
+})
+
 
 const MyPageWelcome: FunctionComponent = () => {
   const searchBarRef = useRef<HTMLButtonElement>(null);
@@ -63,6 +59,7 @@ const MyPageWelcome: FunctionComponent = () => {
       searchBarRef.current.click();
   }
 
+
   return (
     <MainContent container>
       <ImagePanel item xs={12} md={4}>
@@ -70,24 +67,22 @@ const MyPageWelcome: FunctionComponent = () => {
       </ImagePanel>
       <MainPanel item xs={12} md={8}>
         <Box>
-          <Box>
+          <TitleLine>
             <Titles>
               Hello {userName}
             </Titles>
-            <Box component='span'>
-              <Recipecounter>
-                {recipeCount}
-              </Recipecounter>
-            </Box>
-            <Typography color='textPrimary' variant='subtitle2'>
-              Ingredients for recipes added to your favorites will be added to your shopping list
+            <SearchSwitch />
+          </TitleLine>
+          <Divider />
+          <Box>
+            <Typography variant='h6' py={1} color='textPrimary'>
+              You have <Chip label={recipeCount} /> recipes in your cookbook.
             </Typography>
           </Box>
         </Box>
         <Box>
           <CreateRecipeBtn />
         </Box>
-        <SearchSwitch />
       </MainPanel>
       <Grid item xs={12}>
         <SearchBar ref={searchBarRef} />

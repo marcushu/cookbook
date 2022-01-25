@@ -12,7 +12,8 @@ const CreateButton = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   width: 'fit-content',
-  padding: '10px',
+  padding: '25px 10px 25px 10px',
+  margin: '25px auto 10px auto',
   transition: 'transform 0.5s',
   ':hover': {
     cursor: 'pointer',
