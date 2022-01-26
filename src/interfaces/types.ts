@@ -29,5 +29,6 @@ export interface Recipe {
      * and need to be loaded separately. */
     recipes: Recipe[]
     favorites: Recipe[]
-    shoppingList: ShoppinglistIngredient[]
+    shoppingList: ShoppinglistIngredient[], 
+    isLoading: boolean
   }

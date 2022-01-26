@@ -9,7 +9,8 @@ const initialState: UserState = {
   orderIngredientsBy: 'recipe',
   recipes: [],
   favorites: [],
-  shoppingList: []
+  shoppingList: [],
+  isLoading: false
 }
 
 
@@ -41,6 +42,7 @@ export const userState = createSlice({
       .addCase(fetchUser.fulfilled, (state, action) => {
         const { userName, orderIngredientsBy, recipes, favorites, shoppingList} = action.payload;
         
+        state.isLoading = false;
         state.userName = userName;
         state.orderIngredientsBy = orderIngredientsBy;
         state.recipes = recipes;
@@ -53,21 +55,32 @@ export const userState = createSlice({
           state.shoppingList = [...state.shoppingList, ...ingredientObjects];
         });
       })
+      .addCase(fetchUser.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(createUser.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.userName = action.payload.userName;
         state.orderIngredientsBy = action.payload.orderIngredientsBy as IngredientSortPolicy
         state.recipes = action.payload.recipes;
         state.favorites = action.payload.favorites;
         state.shoppingList = action.payload.shoppingList;
       })
+      .addCase(createUser.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(addFavorite.fulfilled, (state, action) => {
         const newFavorite = action.payload!;
         const ingredientObjects = newFavorite.ingredients.map( item => ({ ingredient: item, recipe: newFavorite.name }));
         
+        state.isLoading = false;
         state.favorites.push(newFavorite)
 
         // add ingredients to shopping list.
         state.shoppingList = [...state.shoppingList, ...ingredientObjects];
+      })
+      .addCase(addFavorite.pending, state => {
+        state.isLoading = true;
       })
       .addCase(deleteFavorite.fulfilled, (state, action) => {
         const recipeToDelete = action.payload;
@@ -75,19 +88,31 @@ export const userState = createSlice({
         const cleanFavoritesList = state.favorites.filter( el => !(el.name === recipeToDelete.name && el.instructions  === recipeToDelete.instructions ));
         const cleanedShoppingList = state.shoppingList.filter( ingredient => !(ingredient.recipe === recipeToDelete.name && recipeToDelete.ingredients.includes(ingredient.ingredient)))
         
+        state.isLoading = false;
         state.favorites = cleanFavoritesList;
         state.shoppingList = cleanedShoppingList;
 
       })
+      .addCase(deleteFavorite.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(addToShoppingList.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.shoppingList.unshift(action.payload);
       })
+      .addCase(addToShoppingList.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(deleteFromShoppingList.fulfilled, (state, action) => {
+        state.isLoading = false
         const { ingredient } = action.payload.ingredient
         
         const cleanedShoppingList = state.shoppingList.filter( el => !(el.ingredient === ingredient && el.recipe === ''));
         
         state.shoppingList = cleanedShoppingList;
+      })
+      .addCase(deleteFromShoppingList.pending, state => {
+        state.isLoading = true;
       })
   }
 });

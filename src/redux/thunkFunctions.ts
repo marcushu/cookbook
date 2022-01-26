@@ -7,7 +7,8 @@ const nullUser = {
   orderIngredientsBy: 'recipe',
   recipes: [],
   favorites: [],
-  shoppingList: []
+  shoppingList: [],
+  isLoading: false
 } as UserState
 
 
