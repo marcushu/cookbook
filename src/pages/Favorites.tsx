@@ -1,4 +1,4 @@
-import { Divider, Grid, styled, Typography } from "@mui/material";
+import { Divider, styled, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 import { useAppSelector } from "../app/hooks";
 import HomeBtn from "../buttons/HomeBtn";
@@ -6,15 +6,9 @@ import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import Header from "../components/Header";
 import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
-import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
 import { Box } from "@mui/material/node_modules/@mui/system";
+import TitleImaage from "../components/TitleImage";
 
-const ImagePanel = styled(Grid)({
-  display: 'flex',
-  backgroundImage: `url(${splashImage})`,
-  opacity: '77%',
-  minHeight: '70px'
-});
 
 const TextBox = styled(Box)({
   backgroundColor: 'white',
@@ -33,8 +27,8 @@ const Favorites: FunctionComponent = () => {
   return (
     <>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
-      <ImagePanel />
-      <TextBox sx={{backgroundColor: 'white', padding: ''}}>
+      <TitleImaage />
+      <TextBox>
         <Typography color='textPrimary' variant='h4'>{greeting()} Favorites</Typography>
         <Divider />
         <br />

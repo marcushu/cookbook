@@ -6,21 +6,14 @@ import Header from "../components/Header";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
-import { Box, Grid, IconButton, styled, TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
+import TitleImaage from "../components/TitleImage";
 
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
   const listIngredients = useAppSelector(selectShoppingList);
   const dispatch = useAppDispatch();
-
-  const ImagePanel = styled(Grid)({
-    display: 'flex',
-    backgroundImage: `url(${splashImage})`,
-    opacity: '77%',
-    minHeight: '70px'
-  });
 
   const submitIngredient = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -44,7 +37,7 @@ const ShoppingList: FunctionComponent = () => {
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<HomeBtn />} />
-      <ImagePanel />
+      <TitleImaage />
       <Box sx={{backgroundColor: 'white'}}>
         <form onSubmit={e => submitIngredient(e)}>
           <Box display='flex' p={2}>
