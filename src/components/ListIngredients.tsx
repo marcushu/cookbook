@@ -11,7 +11,7 @@ interface ListIngredientsProps {
 const SmallRecipeName = styled(Typography)({
   paddingLeft: '15px',
   paddingBottom: '5px',
-  fontSize: '10px',
+  fontSize: '14px',
   color: '#BC4282',
   fontStyle: 'italic'
 });
@@ -27,7 +27,7 @@ const ListIngredients: FunctionComponent<ListIngredientsProps> = ({ listItems, h
                 onClick={() => handleClick(ingredient)}>
                 <CheckIcon color='success' />
               </IconButton>}
-            <Typography color='text.primary' component='span'>{ingredient.ingredient}</Typography>
+            <Typography color='text.primary' component='span' variant="h6">{ingredient.ingredient}</Typography>
           </Box>
           <SmallRecipeName>{ingredient.recipe}</SmallRecipeName>
         </Box>)

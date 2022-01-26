@@ -6,17 +6,25 @@ import Header from "../components/Header";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
-import { Box, IconButton, TextField } from "@mui/material";
-import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { Box, Grid, IconButton, styled, TextField } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
 
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
   const listIngredients = useAppSelector(selectShoppingList);
   const dispatch = useAppDispatch();
 
+  const ImagePanel = styled(Grid)({
+    display: 'flex',
+    backgroundImage: `url(${splashImage})`,
+    opacity: '77%',
+    minHeight: '70px'
+  });
+
   const submitIngredient = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    
+
     dispatch(addToShoppingList(
       {
         userName,
@@ -36,22 +44,26 @@ const ShoppingList: FunctionComponent = () => {
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<HomeBtn />} />
-      <form onSubmit={e => submitIngredient(e)}>
-        <Box display='flex'>
-          <TextField
-            variant='standard'
-            required={true}
-            placeholder="2 tbs. new ingredient"
-            label="New ingredient"
-            name="newIngredientTXT"
-            id="newIngredientTXT"
-            fullWidth={true} />
-          <IconButton aria-label="newitem"
-            type='submit'>
-            <PlaylistAddIcon fontSize="large" color='primary' />
-          </IconButton>
-        </Box>
-      </form>
+      <ImagePanel />
+      <Box sx={{backgroundColor: 'white'}}>
+        <form onSubmit={e => submitIngredient(e)}>
+          <Box display='flex' p={2}>
+            <TextField
+              sx={{color: 'white'}}
+              variant='standard'
+              required={true}
+              placeholder="2 tbs. new ingredient"
+              label="New ingredient"
+              name="newIngredientTXT"
+              id="newIngredientTXT"
+              fullWidth={true} />
+            <IconButton aria-label="newitem"
+              type='submit'>
+              <AddIcon fontSize="large" color="primary" />
+            </IconButton>
+          </Box>
+        </form>
+      </Box>
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />
