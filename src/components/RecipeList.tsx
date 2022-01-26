@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import RecipeCard from "./RecipeCard";
 import { Recipe } from "../interfaces/types";
+import { Box } from "@mui/material";
 
 interface RecipeListProps {
   recipes: Recipe[]
@@ -9,13 +10,13 @@ interface RecipeListProps {
 const RecipeList: FunctionComponent<RecipeListProps> = ({ recipes }) => {
   
   return (
-    <>
+    <Box pb={4}>
       {recipes?.map(recipe => 
          <div>
             <RecipeCard recipe={recipe} />
         </div>
       )}
-    </>
+    </Box>
   );
 }
 
