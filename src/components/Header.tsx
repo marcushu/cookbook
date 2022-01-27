@@ -12,20 +12,28 @@ interface HeaderProps {
   rightButton?: React.ReactNode
 }
 
-const HeaderContent = styled(Box)({
+const HeaderContent = styled(Box)(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
+  flexDirection: 'column',
   backgroundColor: '#3fa8b5',
   color: 'white',
-  padding: '24px 8px 24px 8px'
-});
+  padding: '24px 8px 24px 8px',
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
+}));
 
-const IconBox = styled(Box)({
+const IconBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   placeSelf: 'flex-begin',
-  paddingTop: '5px'
-})
+  paddingTop: '10px',
+  [theme.breakpoints.up('sm')]: {
+    paddingTop: '5px'
+  }
+}));
 
 const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => {
   const userName = useAppSelector(selectUserName);
