@@ -38,7 +38,7 @@ const ShoppingList: FunctionComponent = () => {
         leftButton={<FavoritesBtn />}
         rightButton={<HomeBtn />} />
       <TitleImaage />
-      <Box sx={{backgroundColor: 'white'}}>
+      <Box sx={{backgroundColor: 'white', width: '100%'}}>
         <form onSubmit={e => submitIngredient(e)}>
           <Box display='flex' p={2}>
             <TextField

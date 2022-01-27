@@ -16,11 +16,19 @@ const SmallRecipeName = styled(Typography)({
   fontStyle: 'italic'
 });
 
+const RecipeBox = styled(Box)(({ theme }) => ({
+  backgroundColor: 'white',
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    width: '902px'
+  }
+}));
+
 const ListIngredients: FunctionComponent<ListIngredientsProps> = ({ listItems, handleClick }) => {
   return (
-    <Box sx={{ backgroundColor: 'white', width: '800px', padding: '15px' }}>
+    <RecipeBox>
       {listItems.map(ingredient =>
-        <Box key={ingredient.ingredient}>
+        <Box px={2} key={ingredient.ingredient}>
           <Box component='span'>
             {!ingredient.recipe &&
               <IconButton aria-label="delete"
@@ -32,7 +40,7 @@ const ListIngredients: FunctionComponent<ListIngredientsProps> = ({ listItems, h
           <SmallRecipeName>{ingredient.recipe}</SmallRecipeName>
         </Box>)
       }
-    </Box>
+    </RecipeBox>
   );
 }
 
