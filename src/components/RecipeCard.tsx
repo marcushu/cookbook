@@ -40,7 +40,24 @@ const TextGridItem = styled(Grid)({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between'
-})
+});
+
+const RecipeName = styled(Typography)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  paddingTop: '16px',
+  [theme.breakpoints.up('sm')]: {
+    justifyContent: 'space-between'
+  }
+}));
+
+const TextBox = styled(Box)(({ theme }) => ({
+  textAlign: 'center',
+  [theme.breakpoints.up('sm')]: {
+    textAlign: 'left',
+  }
+}));
+
 
 const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
   const { name, imageUrl, owner, description } = recipe;
@@ -90,14 +107,16 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
           <img style={{ maxWidth: '100%' }} src={imageUrl} alt="food" />
         </ImageGridItem>
         <TextGridItem item xs={12} sm={8}>
-          <Box component='div' pl={2}>
-            <Typography pt={2} display='flex' justifyContent='space-between' variant='h4'>
+          <Box pl={2}>
+            <RecipeName variant="h4">
               {name}
               {buttons()}
-            </Typography>
-            <Typography variant='subtitle2'>{owner}</Typography>
-            <Typography pt={2}>{description}</Typography>
-            <MealtimeTags recipe={recipe} />
+            </RecipeName>
+            <TextBox>
+              <Typography variant='subtitle2'>{owner}</Typography>
+              <Typography pt={2}>{description}</Typography>
+              <MealtimeTags recipe={recipe} />
+            </TextBox>
           </Box>
           <RecipeFooter>
             <RestrictionTags recipe={recipe} />

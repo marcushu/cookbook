@@ -1,6 +1,6 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, styled, Tooltip, Typography } from "@mui/material";
 import React, { FunctionComponent } from "react";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { selectUserName, unsetUser } from "../redux/userState";
@@ -11,6 +11,21 @@ interface HeaderProps {
   leftButton?: React.ReactNode
   rightButton?: React.ReactNode
 }
+
+const HeaderContent = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  backgroundColor: '#3fa8b5',
+  color: 'white',
+  padding: '24px 8px 24px 8px'
+});
+
+const IconBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'flex-start',
+  placeSelf: 'flex-begin',
+  paddingTop: '5px'
+})
 
 const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => {
   const userName = useAppSelector(selectUserName);
@@ -24,16 +39,7 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
   }
 
   return (
-    <Box
-      display='flex'
-      justifyContent='space-between'
-      sx={{
-        backgroundColor: '#3fa8b5',
-        color: 'white',
-        flexDirection: ['column', 'row']
-      }}
-      py={3}
-      px={1}>
+    <HeaderContent>
       <Box sx={{ paddingBottom: ['10px', '0px'] }}>
         <Typography variant='h3'>
           Cookbook
@@ -42,10 +48,7 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
           recipes...no clutter
         </Typography>
       </Box>
-      <Box
-        display='flex'
-        alignItems='flex-start'
-        sx={{ placeSelf: 'flex-begin', paddingTop: '5px' }}>
+      <IconBox>
         {userName
           ?
           <>
@@ -64,8 +67,8 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
             </IconButton>
           </Tooltip>
         }
-      </Box>
-    </Box>
+      </IconBox>
+    </HeaderContent>
   );
 }
 

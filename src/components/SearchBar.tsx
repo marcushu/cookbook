@@ -1,4 +1,4 @@
-import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
+import { FormControlLabel, FormGroup, Grid, Switch, TextField, styled } from "@mui/material";
 import React, { useState, LegacyRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch, 
@@ -14,6 +14,12 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   const findVegetarian = useAppSelector(selectFindVegetarian);
   const dispatch = useAppDispatch();
 
+  const SwitchContainer = styled(Grid)({
+    backgroundColor: '#67686e',
+    padding: '5px 10px 5px 10px',
+    justifyContent: 'center'
+  });
+
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const startSearch = () => {
@@ -22,8 +28,8 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
 
 
   return (
-    <Grid container py={2} sx={{backgroundColor: '#67686e'}}>
-      <Grid item xs={12} sm={4}>
+    <SwitchContainer container>
+      <Grid>
         <FormGroup row sx={{ justifyContent: 'center' }}>
           <TextField 
             id="searchText" 
@@ -39,7 +45,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           </button>
         </FormGroup>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid>
         <FormGroup row sx={{ justifyContent: 'center' }}>
           <FormControlLabel
             value="Breakfast"
@@ -79,7 +85,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid>
         <FormGroup row sx={{ justifyContent: 'center' }}>
           <FormControlLabel
             value="glutenFree"
@@ -125,7 +131,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-    </Grid>
+      </SwitchContainer>
   );
 });
 
