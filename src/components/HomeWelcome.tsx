@@ -45,10 +45,10 @@ const HomeWelcome: FunctionComponent = () => {
 
   return (
     <MainContent container>
-      <ImagePanel item xs={12} md={4}>
+      <ImagePanel item xs={12} md={4} order={{ xs: 2, md: 1}}>
         <SearchButton searchFunction={callSearch} />
       </ImagePanel>
-      <Grid item xs={12} md={8} p={3}>
+      <Grid item xs={12} md={8} p={3} order={{ xs: 1, md: 2}}>
         <Titles>Just recipes</Titles>
         <Typography color='textPrimary'>Cooking sites are great, but they can be wordy.  No stories, or long descriptions here, just the ingredients, and what to do with them.</Typography>
         <TitleButton
@@ -59,7 +59,7 @@ const HomeWelcome: FunctionComponent = () => {
         <Titles>Browse</Titles>
         <Typography color='textPrimary'>search by name, meal time, or just hit the random button and see what turns up.</Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} order={{ xs: 3, md: 3}}>
         <SearchBar ref={searchBarRef} />
       </Grid>
     </MainContent>
