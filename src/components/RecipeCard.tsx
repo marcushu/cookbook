@@ -14,10 +14,13 @@ interface RecipeCardProps {
   recipe: Recipe
 }
 
-const RecipePaper = styled(Paper)({
+const RecipePaper = styled(Paper)(({ theme }) => ({
   margin: '8px auto 8px auto',
-  width: '900px'
-});
+  width: '300px',
+  [theme.breakpoints.up('sm')]: {
+    width: '900px'
+  }
+}));
 
 const RecipeFooter = styled('div')({
   borderTop: 'solid',

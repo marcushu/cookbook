@@ -1,8 +1,10 @@
-import { FormControlLabel, FormGroup, Grid, Switch, TextField, styled } from "@mui/material";
+import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
 import React, { useState, LegacyRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch, 
-        selectFindVegan, selectFindVegetarian, setFindMealSettings } from "../redux/searchResultState";
+import {
+  search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
+  selectFindVegan, selectFindVegetarian, setFindMealSettings
+} from "../redux/searchResultState";
 
 const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElement>) => {
   const [recipeToFind, setRecipeToFind] = useState("");
@@ -14,11 +16,6 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   const findVegetarian = useAppSelector(selectFindVegetarian);
   const dispatch = useAppDispatch();
 
-  const SwitchContainer = styled(Grid)({
-    backgroundColor: '#67686e',
-    padding: '5px 10px 5px 10px',
-    justifyContent: 'center'
-  });
 
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,110 +25,110 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
 
 
   return (
-    <SwitchContainer container>
-      <Grid>
-        <FormGroup row sx={{ justifyContent: 'center' }}>
-          <TextField 
-            id="searchText" 
-            label="find something" 
-            variant="standard"
-            sx={{ borderRadius: '10px' }}
-            onChange={e => setRecipeToFind(e.target.value)} />
-          <button
-            style={{display: 'none'}}
-            onClick={startSearch}
-            ref={buttonRef}>
-          search
-          </button>
-        </FormGroup>
+    <Grid container
+      sx={{backgroundColor: '#67686e', padding: '5px 10px 5px 10px', justifyContent: 'center'}} >
+      <Grid item px={1} pb={1} xs={12} sm={4}>
+        <TextField
+          focused
+          variant='standard'
+          fullWidth={true}
+          id="searchText"
+          label="find something"
+          color="primary"
+          value={recipeToFind}
+          onChange={e => setRecipeToFind(e.target.value)} />
+        <button
+          style={{ display: 'none' }}
+          onClick={startSearch}
+          ref={buttonRef} />
       </Grid>
-      <Grid>
-        <FormGroup row sx={{ justifyContent: 'center' }}>
+      <Grid item xs={12} sm={4}>
+        <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="Breakfast"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="breakfast"
                 checked={findBreakfast}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'findBreakfast', trueFalse: !findBreakfast } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'findBreakfast', trueFalse: !findBreakfast }
                 ))} />}
             label="Breakfast"
             labelPlacement="top" />
           <FormControlLabel
             value="Lunch"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="lunch"
                 checked={findLunch}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'findLunch', trueFalse: !findLunch } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'findLunch', trueFalse: !findLunch }
                 ))} />}
             label="Lunch"
             labelPlacement="top" />
           <FormControlLabel
             value="Dinner"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="dinner"
                 checked={findDinner}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'findDinner', trueFalse: !findDinner } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'findDinner', trueFalse: !findDinner }
                 ))} />}
             label="Dinner"
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-      <Grid>
-        <FormGroup row sx={{ justifyContent: 'center' }}>
+      <Grid item xs={12} sm={4}>
+        <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="glutenFree"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="glutenFree"
                 color='secondary'
                 checked={findGF}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'GF', trueFalse: !findGF } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'GF', trueFalse: !findGF }
                 ))} />
             }
             label="GF"
             labelPlacement="top" />
           <FormControlLabel
             value="Vegetarian"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="vegetarian"
                 color='secondary'
                 checked={findVegetarian}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'vegetarian', trueFalse: !findVegetarian } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'vegetarian', trueFalse: !findVegetarian }
                 ))} />
             }
             label="Vegetarian"
             labelPlacement="top" />
           <FormControlLabel
             value="Vegan"
-            sx={{ color: 'gray' }}
+            sx={{ color: 'white' }}
             control={
               <Switch
                 name="vegan"
                 color='secondary'
                 checked={findVegan}
-                onChange={()=> dispatch(setFindMealSettings(
-                  { searchType: 'vegan', trueFalse: !findVegan } 
+                onChange={() => dispatch(setFindMealSettings(
+                  { searchType: 'vegan', trueFalse: !findVegan }
                 ))} />
             }
             label="Vegan"
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-      </SwitchContainer>
+    </Grid>
   );
 });
 

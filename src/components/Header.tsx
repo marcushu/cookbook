@@ -27,11 +27,10 @@ const HeaderContent = styled(Box)(({ theme }) => ({
 
 const IconBox = styled(Box)(({ theme }) => ({
   display: 'flex',
-  alignItems: 'flex-start',
-  placeSelf: 'flex-begin',
+  justifyContent: 'center',
   paddingTop: '10px',
   [theme.breakpoints.up('sm')]: {
-    paddingTop: '5px'
+    paddingTop: '5px',
   }
 }));
 

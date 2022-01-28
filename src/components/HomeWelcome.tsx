@@ -10,7 +10,7 @@ const MainContent = styled(Grid)({
   minHeight: '375px',
   maxWidth: '902px',
   marginBottom: '25px',
-  backgroundColor: 'white'
+  backgroundColor: '#3fa8b538'
 });
 
 const ImagePanel = styled(Grid)({
@@ -60,7 +60,7 @@ const HomeWelcome: FunctionComponent = () => {
         <Typography color='textPrimary'>search by name, meal time, or just hit the random button and see what turns up.</Typography>
       </Grid>
       <Grid item xs={12} order={{ xs: 3, md: 3}}>
-        <SearchBar ref={searchBarRef} />
+        <SearchBar/>
       </Grid>
     </MainContent>
   );
