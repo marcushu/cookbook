@@ -11,7 +11,7 @@ import TitleImaage from "../components/TitleImage";
 
 
 const TextBox = styled(Box)({
-  backgroundColor: 'white',
+  backgroundColor: '#3fa8b538',
   padding: '15px 10px 40px 10px'
 });
 

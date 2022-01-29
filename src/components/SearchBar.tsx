@@ -35,6 +35,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           id="searchText"
           label="find something"
           color="primary"
+          inputProps={{ style: { color: 'white'}}}
           value={recipeToFind}
           onChange={e => setRecipeToFind(e.target.value)} />
         <button
