@@ -60,7 +60,7 @@ const HomeWelcome: FunctionComponent = () => {
         <Typography color='textPrimary'>search by name, meal time, or just hit the random button and see what turns up.</Typography>
       </Grid>
       <Grid item xs={12} order={{ xs: 3, md: 3}}>
-        <SearchBar/>
+        <SearchBar ref={searchBarRef}/>
       </Grid>
     </MainContent>
   );
