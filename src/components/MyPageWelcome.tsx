@@ -1,4 +1,4 @@
-import { Box, Chip, Divider, Grid, Typography } from '@mui/material';
+import { Box, Divider, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent, useRef } from "react";
 import { useAppSelector } from '../app/hooks';
@@ -62,10 +62,14 @@ const MyPageWelcome: FunctionComponent = () => {
 
   return (
     <MainContent container>
-      <ImagePanel item xs={12} md={4}>
+      <ImagePanel item xs={12} md={4} order={{ xs: 2, md: 1 }}>
         <SearchButton searchFunction={callSearch} />
       </ImagePanel>
-      <MainPanel item xs={12} md={8}>
+      <MainPanel
+        item xs={12}
+        md={8}
+        sx={{ backgroundColor: '#3fa8b538' }}
+        order={{ xs: 1, md: 2 }} >
         <Box>
           <TitleLine>
             <Titles>
@@ -76,7 +80,7 @@ const MyPageWelcome: FunctionComponent = () => {
           <Divider />
           <Box>
             <Typography variant='h6' py={1} color='textPrimary'>
-              You have <Chip label={recipeCount} /> recipes in your cookbook.
+              You have {recipeCount} recipes in your cookbook.
             </Typography>
           </Box>
         </Box>
@@ -84,7 +88,7 @@ const MyPageWelcome: FunctionComponent = () => {
           <CreateRecipeBtn />
         </Box>
       </MainPanel>
-      <Grid item xs={12}>
+      <Grid item xs={12} order={{ xs: 3, md: 3 }}>
         <SearchBar ref={searchBarRef} />
       </Grid>
     </MainContent>
