@@ -4,11 +4,10 @@ import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import { Box, styled, Typography } from "@mui/material";
 
 const CreateButton = styled(Box)({
-  color: 'grey',
-  borderStyle: 'solid',
+  color: 'white',
+  backgroundColor: '#67686ed6',
   borderRadius: '8px',
-  borderWidth: '1px',
-  borderColor: 'gray',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
   display: 'flex',
   alignItems: 'center',
   width: 'fit-content',
