@@ -1,12 +1,13 @@
-import { Box } from "@mui/material";
+import { Backdrop, Box, CircularProgress } from "@mui/material";
 import { FunctionComponent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Header from "../components/Header";
 import HomeWelcome from "../components/HomeWelcome";
 import RecipeList from "../components/RecipeList";
-import { search, selectSearchResults } from "../redux/searchResultState";
+import { search, selectLoading, selectSearchResults } from "../redux/searchResultState";
 
 const Home: FunctionComponent = () => {
+  const isLoading = useAppSelector(selectLoading);
   const recipes = useAppSelector(selectSearchResults);
   const dispatch = useAppDispatch();
 
@@ -22,6 +23,9 @@ const Home: FunctionComponent = () => {
       <HomeWelcome />
       <Box>
         <RecipeList recipes={recipes} />
+        <Backdrop open={isLoading}>
+          <CircularProgress />
+        </Backdrop>
       </Box>
     </>
   );

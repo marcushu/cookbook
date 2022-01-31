@@ -8,6 +8,7 @@ interface SetSearchParam {
 }
 
 const initialState = {
+  loading: false,
   foundSet: [] as Recipe[],
   numberOfResults: 4,
   findBreakfast: false,
@@ -58,7 +59,12 @@ export const searchResults = createSlice({
   extraReducers: builder => {
     builder
       .addCase(search.fulfilled, (state, action) => {
+        state.loading = false;
+
         state.foundSet = action.payload;
+      })
+      .addCase(search.pending, state => {
+        state.loading = true;
       })
   }
 });
@@ -67,6 +73,7 @@ export const searchResults = createSlice({
 export const { setResultSetSize, setFindMealSettings, setOwner } = searchResults.actions;
 
 // get
+export const selectLoading = (state: RootState) => state.searchResults.loading;
 export const selectSearchResults = (state: RootState) => state.searchResults.foundSet;
 export const selectOwner = (state: RootState) => state.searchResults.owner;
 export const selectFindBreakfast = (state: RootState) => state.searchResults.findBreakfast;
