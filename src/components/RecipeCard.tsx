@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { addFavorite, deleteFavorite, selectFavorites, selectUserName } from "../redux/userState";
 import { Recipe } from "../interfaces/types";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { Box, Button, Collapse, Grid, IconButton, Paper, styled, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Collapse, Grid, IconButton, Paper, Snackbar, styled, Tooltip, Typography } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { grey } from "@mui/material/colors";
@@ -68,6 +68,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
   const favorites = useAppSelector(selectFavorites);
   const [showFullRecipe, setShowFullRecipe] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -79,12 +80,18 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     }
   }, [description, favorites, name, owner, recipe, userName]);
 
-  const addToFavorites = () => {
-    dispatch(addFavorite({ recipe, userName }));
+  const addToFavorites = async () => {
+    await dispatch(addFavorite({ recipe, userName }));
+
+    setShowNotice(true);
   }
 
   const deleteFromFavorites = () => {
     dispatch(deleteFavorite({ recipe, userName }))
+  }
+
+  const closeNotice = () => {
+    setShowNotice(false);
   }
 
   const buttons = () => {
@@ -132,6 +139,10 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
                 </Button>}
             </Box>
           </RecipeFooter>
+          <Snackbar 
+            open={showNotice} 
+            onClose={closeNotice}
+            message="Saved to your favorites" />
         </TextGridItem>
         <Collapse in={showFullRecipe}>
           <FullRecipe
