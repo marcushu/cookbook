@@ -8,13 +8,14 @@ import { selectUserName, addRecipe } from "../redux/userState";
 import Header from "../components/Header";
 import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import FavoritesBtn from "../buttons/FavoritesBtn";
+import { showUploadWidget } from "../js/uploadWidget";
 
 const dbApi = process.env.REACT_APP_API_URL
 
-const CreateRecipeCard = styled(Typography)(({theme}) => ({
+const CreateRecipeCard = styled(Typography)(({ theme }) => ({
   backgroundColor: 'white',
   color: theme.palette.text.primary,
-  border: 'solid', 
+  border: 'solid',
   borderWidth: '1px',
   borderColor: '#dbdbdb',
   padding: '8px 8px 30px 8px'
@@ -24,6 +25,7 @@ const CreateRecipeCard = styled(Typography)(({theme}) => ({
 const CreateRecipe: FunctionComponent = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [foodImages, setFoodImages] = useState({ fullSize: "", foodThumbnail: "" });
   const userName = useAppSelector(selectUserName);
   const [formValues, setFormValues] = useState({
     ingredients: "",
@@ -50,6 +52,7 @@ const CreateRecipe: FunctionComponent = () => {
     })
   }
 
+
   const handleCheckboxes = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = evt.target;
 
@@ -59,8 +62,18 @@ const CreateRecipe: FunctionComponent = () => {
     })
   }
 
+
   const addImage = () => {
-    alert("add an image here");
+    showUploadWidget((err: any, result: any) => {
+      if (err) console.log(err);
+
+      if (result.event === 'success') {
+        setFoodImages({
+          fullSize: result.info.secure_url,
+          foodThumbnail: result.info.thumbnail_url
+        });
+      }
+    })
   }
 
 
@@ -72,7 +85,8 @@ const CreateRecipe: FunctionComponent = () => {
     let newRecipe = {
       ...formValues,
       owner: userName,
-      ingredients: ingredientsAr
+      ingredients: ingredientsAr,
+      imageUrl: foodImages.fullSize
     }
 
     try {
@@ -98,12 +112,13 @@ const CreateRecipe: FunctionComponent = () => {
     }
   }
 
+
   return (
     <>
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
-      <CreateRecipeCard sx={{width: ['100%', '1000px']}}>
+      <CreateRecipeCard sx={{ width: ['100%', '1000px'] }}>
         <Box sx={{ width: ['auto', 900] }} m='auto'>
           <Typography color='primary' variant='h4' py={2}>Create a new recipe</Typography>
           <form action="" onSubmit={handleSubmit}>
@@ -150,9 +165,17 @@ const CreateRecipe: FunctionComponent = () => {
                   control={<Checkbox checked={formValues.vegetarian} onChange={handleCheckboxes} />}
                   label='vegetarian' labelPlacement='end' />
               </Grid>
-              <Grid item xs={12}>
-                <Button variant='outlined' color='primary' onClick={addImage}
-                  startIcon={<InsertPhotoIcon />} size='large'>Add Image</Button>
+              <Grid item xs={12} display='flex'>
+                <Button 
+                  variant='outlined' 
+                  color='primary' 
+                  onClick={addImage}
+                  startIcon={<InsertPhotoIcon />} 
+                  size='large'>
+                    Add Image
+                </Button>
+                {!!foodImages.foodThumbnail.length &&
+                  <img src={foodImages.foodThumbnail} alt="food" style={{marginLeft: '10px', borderRadius: '5px'}} />}
               </Grid>
               <Grid item xs={12} sx={{ textAlign: 'center' }}>
                 <Button type='submit' value='Submit' variant='contained'>Submit!</Button> &nbsp;
