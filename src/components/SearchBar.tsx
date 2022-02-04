@@ -47,7 +47,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="Breakfast"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="breakfast"
@@ -59,7 +59,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
           <FormControlLabel
             value="Lunch"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="lunch"
@@ -71,7 +71,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
           <FormControlLabel
             value="Dinner"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="dinner"
@@ -87,7 +87,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="glutenFree"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="glutenFree"
@@ -101,7 +101,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
           <FormControlLabel
             value="Vegetarian"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="vegetarian"
@@ -115,7 +115,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
           <FormControlLabel
             value="Vegan"
-            sx={{ color: 'white' }}
+            sx={{ color: '#e5e5e5' }}
             control={
               <Switch
                 name="vegan"
