@@ -1,19 +1,25 @@
 import { Button, Grid, styled, TextField, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { FunctionComponent, useState } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { createUser, fetchUser } from "../redux/userState";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
+import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplash.jpg'
 
 const LoginContent = styled('div')({
-  backgroundColor: 'white',
-  border: 'solid', 
-  borderWidth: '1px',
-  borderColor: '#dbdbdb',
-  paddingTop: '8px', 
-  paddingBottom: '30px'
-})
+  backgroundImage: `url(${splashImage})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  paddingTop: '8px',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+});
+
+const LoginSignup = styled(Grid)({
+  display: 'flex',
+  flexDirection: 'column',
+  backgroundColor: '#ffffff9c',
+  padding: '12px'
+});
 
 const SignIn: FunctionComponent = () => {
   const dispatch = useAppDispatch();
@@ -37,9 +43,9 @@ const SignIn: FunctionComponent = () => {
   return (
     <>
       <Header />
-      <LoginContent sx={{width: ['100%', '900px']}}>
+      <LoginContent sx={{ width: ['100%', '902px'] }}>
         <Grid container sx={{ maxWidth: ['100%', '420px'] }} m='auto'>
-          <Grid item xs={12} mt={3} p={1} display='flex' flexDirection='column'>
+          <LoginSignup item xs={12} mt={3}>
             <Typography color='textPrimary' variant="h4">
               Log In
             </Typography>
@@ -51,12 +57,15 @@ const SignIn: FunctionComponent = () => {
               fullWidth={true}
               value={username}
               onChange={e => setUsername(e.target.value)} />
-            <Button variant='contained' color='primary' onClick={login} sx={{ alignSelf: 'center', width: '135px' }} >
+            <Button 
+              variant='contained' 
+              color='primary' 
+              onClick={login} 
+              sx={{ alignSelf: 'center', width: '135px' }} >
               Log in
             </Button>
-          </Grid>
-          <Grid item xs={12} mt={4} display='flex' flexDirection='column'
-            p={1} sx={{ backgroundColor: grey[100], borderRadius: '8px' }}>
+          </LoginSignup>
+          <LoginSignup item xs={12} mt={4}>
             <Typography color='textPrimary' variant="h4">
               Sign up
             </Typography>
@@ -75,10 +84,14 @@ const SignIn: FunctionComponent = () => {
             <Typography color='textPrimary'>
               No secrets here, so keep grandmas secret pecan pie recipe in the kitchen drawer.
             </Typography>
-            <Button variant='outlined' onClick={signUp} color='primary' sx={{ alignSelf: 'center', width: '135px', marginTop: '10px' }}>
+            <Button
+              variant='outlined'
+              onClick={signUp}
+              color='primary'
+              sx={{ alignSelf: 'center', width: '135px', marginTop: '10px' }}>
               sign up
             </Button>
-          </Grid>
+          </LoginSignup>
           <Grid py={2}>
             <Button color='secondary' onClick={() => navigate('/')}>&lt; Cancel</Button>
           </Grid>

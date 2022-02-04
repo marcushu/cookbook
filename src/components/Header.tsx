@@ -48,7 +48,7 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
   return (
     <HeaderContent>
       <Box sx={{ paddingBottom: ['10px', '0px'] }}>
-        <Typography variant='h3'>
+        <Typography variant='h3' sx={{fontWeight: '100'}}>
           Cookbook
         </Typography>
         <Typography variant='body2' pl={2} fontStyle='italic'>
