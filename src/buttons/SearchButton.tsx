@@ -7,16 +7,16 @@ interface SearchButtonProps {
 }
 
 const MySearchButton = styled(Box)({
-  backgroundColor: '#333741e6',
+  backgroundColor: '#67686e',
   color: '#e9e9e9e6',
   fontFamily: "'Quicksand', sans-serif",
-  fontWeight: '400',
+  fontWeight: 'bold',
   width: 'fit-content',
   height: 'fit-content',
   padding: '20px',
   borderRadius: '7px',
   textAlign: 'center',
-  margin: 'auto',
+  margin: '30px auto 0px auto',
   boxShadow: '0 0 20px rgba(0,0,0,0.8)',
   transition: 'transform 0.5s',
   ":hover": {
