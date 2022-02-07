@@ -1,11 +1,12 @@
-import { Box, Divider, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent, useRef } from "react";
 import { useAppSelector } from '../app/hooks';
 import SearchButton from '../buttons/SearchButton';
 import SearchSwitch from '../buttons/SearchSwitch';
 import SearchBar from './SearchBar';
-import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
+//import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
+import splashImage from '../images/foodBoard.png';
 import { selectNumOfRecipes, selectUserName } from '../redux/userState';
 import { selectOwner, setOwner } from '../redux/searchResultState';
 import { useDispatch } from 'react-redux';
@@ -16,23 +17,21 @@ const MainContent = styled(Grid)({
   maxWidth: '902px',
   marginBottom: '25px',
   backgroundColor: 'white',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 });
 
 const ImagePanel = styled(Grid)({
   display: 'flex',
   backgroundImage: `url(${splashImage})`,
-  opacity: '77%',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
   minHeight: '315px'
 });
-
-const MainPanel = styled(Grid)({
-  padding: '25px 25px 2px 25px'
-})
 
 const Titles = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: 'bold',
-  fontSize: theme.typography.h4.fontSize,
+  fontSize: theme.typography.h3.fontSize,
   display: 'contents'
 }));
 
@@ -62,33 +61,19 @@ const MyPageWelcome: FunctionComponent = () => {
 
   return (
     <MainContent container>
-      <ImagePanel item xs={12} md={4} order={{ xs: 2, md: 1 }}>
-        <SearchButton searchFunction={callSearch} />
-      </ImagePanel>
-      <MainPanel
-        item xs={12}
-        md={8}
-        sx={{ backgroundColor: '#3fa8b538' }}
-        order={{ xs: 1, md: 2 }} >
+      <ImagePanel item xs={12} sx={{display: 'flex', flexDirection: 'column', padding: '20px'}}> 
         <Box>
           <TitleLine>
             <Titles>
               Hello {userName}
-            </Titles>
+            </Titles> {recipeCount}
             <SearchSwitch />
           </TitleLine>
-          <Divider />
-          <Box>
-            <Typography variant='h6' py={1} color='textPrimary'>
-              You have {recipeCount} recipes in your cookbook.
-            </Typography>
-          </Box>
         </Box>
-        <Box>
-          <CreateRecipeBtn />
-        </Box>
-      </MainPanel>
-      <Grid item xs={12} order={{ xs: 3, md: 3 }}>
+        <CreateRecipeBtn />
+        <SearchButton searchFunction={callSearch} />
+      </ImagePanel>
+      <Grid item xs={12}>
         <SearchBar ref={searchBarRef} />
       </Grid>
     </MainContent>

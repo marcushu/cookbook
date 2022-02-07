@@ -7,7 +7,7 @@ interface SearchButtonProps {
 }
 
 const MySearchButton = styled(Box)({
-  backgroundColor: '#67686e',
+  backgroundColor: '#67686ede',
   color: '#e9e9e9e6',
   fontFamily: "'Quicksand', sans-serif",
   fontWeight: 'bold',

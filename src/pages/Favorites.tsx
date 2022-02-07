@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress, Divider, styled, Typography } from "@mui/material";
+import { Backdrop, CircularProgress, styled, Typography } from "@mui/material";
 import { FunctionComponent } from "react";
 import { useAppSelector } from "../app/hooks";
 import HomeBtn from "../buttons/HomeBtn";
@@ -7,13 +7,39 @@ import Header from "../components/Header";
 import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
 import { Box } from "@mui/material/node_modules/@mui/system";
-import TitleImaage from "../components/TitleImage";
 import { selectLoading } from "../redux/searchResultState";
+import foodImage from '../images/foodAtTop.png';
 
 
 const TextBox = styled(Box)({
-  backgroundColor: '#3fa8b538',
-  padding: '15px 10px 40px 10px'
+  backgroundImage: `url(${foodImage})`,
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  padding: '15px 10px 40px 10px',
+  marginBottom: '25px',
+  height: '256px',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+});
+
+const BigText = styled(Typography)(({ theme }) => ({
+  backgroundColor: '#ffffff73',
+  color: theme.palette.text.primary,
+  padding: '11px',
+  width: 'fit-content'
+}));
+
+const Counter = styled('span')({
+  fontSize: '20px',
+  verticalAlign: 'top'
+});
+
+const Subtitle = styled(Typography)({
+  paddingLeft: '10px',
+  fontStyle: 'italic',
+  color: '#383838'
 });
 
 const Favorites: FunctionComponent = () => {
@@ -22,24 +48,21 @@ const Favorites: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
   const isLoading = useAppSelector(selectLoading);
 
-  const greeting = () => (userName.endsWith('s') || userName.endsWith('S')) 
+  const greeting = () => (userName.endsWith('s') || userName.endsWith('S'))
     ? userName + "'"
     : userName + "'s"
 
   return (
     <>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
-      <TitleImaage />
       <TextBox>
-        <Typography color='textPrimary' variant='h4'>{greeting()} Favorites</Typography>
-        <Divider />
-        <br />
-        <Typography color='textPrimary' variant='h6'>
-          You currently have {numOfFavorites} recipes in you favorites.
-        </Typography>
-        <Typography color='textPrimary' variant='subtitle1' sx={{paddingLeft: '10px', fontStyle: 'italic' }}>
+        <BigText variant='h3'>{greeting()}
+          Favorites
+          <Counter>{numOfFavorites}</Counter>
+        </BigText>
+        <Subtitle variant='subtitle1'>
           Ingredients for these recipes are in your shopping list
-        </Typography>
+        </Subtitle>
       </TextBox>
       <RecipeList recipes={recipes} />
       <Backdrop open={isLoading}>
