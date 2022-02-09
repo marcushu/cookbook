@@ -8,39 +8,38 @@ import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
 import { Box } from "@mui/material/node_modules/@mui/system";
 import { selectLoading } from "../redux/searchResultState";
-import foodImage from '../images/foodAtTop.png';
+import foodImage from '../images/foodBoard.png';
 
 
 const TextBox = styled(Box)({
   backgroundImage: `url(${foodImage})`,
-  backgroundSize: 'contain',
+  backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   padding: '15px 10px 40px 10px',
   marginBottom: '25px',
-  height: '256px',
+  minHeight: '315px',
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 });
 
 const BigText = styled(Typography)(({ theme }) => ({
-  backgroundColor: '#ffffff73',
   color: theme.palette.text.primary,
-  padding: '11px',
-  width: 'fit-content'
+  textAlign: 'center',
+  fontSize: theme.typography.h3.fontSize,
 }));
 
-const Counter = styled('span')({
+const HighlightedText = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  borderRadius: '5px',
   fontSize: '20px',
-  verticalAlign: 'top'
-});
-
-const Subtitle = styled(Typography)({
-  paddingLeft: '10px',
-  fontStyle: 'italic',
-  color: '#383838'
-});
+  padding: '5px',
+  backgroundColor: '#ffffff7a',
+  width: 'max-content',
+  alignSelf: 'center',
+  marginTop: '30px'
+}));
 
 const Favorites: FunctionComponent = () => {
   const recipes = useAppSelector(selectFavorites);
@@ -56,13 +55,15 @@ const Favorites: FunctionComponent = () => {
     <>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
       <TextBox>
-        <BigText variant='h3'>{greeting()}
+        <BigText>{greeting()}
           Favorites
-          <Counter>{numOfFavorites}</Counter>
         </BigText>
-        <Subtitle variant='subtitle1'>
-          Ingredients for these recipes are in your shopping list
-        </Subtitle>
+        <Typography color='textPrimary' textAlign='center'>
+          You currently have {numOfFavorites} favorites.
+        </Typography>
+        <HighlightedText>
+          Ingredients for these recipes are in your shopping list. <span style={{fontSize: '20px'}}>&#128070;</span>
+        </HighlightedText>
       </TextBox>
       <RecipeList recipes={recipes} />
       <Backdrop open={isLoading}>
