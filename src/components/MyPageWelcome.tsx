@@ -1,18 +1,17 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent, useRef } from "react";
 import { useAppSelector } from '../app/hooks';
-import SearchButton from '../buttons/SearchButton';
 import SearchSwitch from '../buttons/SearchSwitch';
 import SearchBar from './SearchBar';
-//import splashImage from '../images/marvin-binnig-0zqT55YuPn8-unsplash.jpg';
 import splashImage from '../images/foodBoard.png';
 import { selectNumOfRecipes, selectUserName } from '../redux/userState';
 import { selectOwner, setOwner } from '../redux/searchResultState';
 import { useDispatch } from 'react-redux';
 import CreateRecipeBtn from '../buttons/CreateRecipeBtn';
+import SearchButtonSmall from '../buttons/SearchButtonSmall';
 
-const MainContent = styled(Grid)({
+const MainContent = styled(Box)({
   minHeight: '375px',
   maxWidth: '902px',
   marginBottom: '25px',
@@ -20,8 +19,7 @@ const MainContent = styled(Grid)({
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 });
 
-const ImagePanel = styled(Grid)({
-  display: 'flex',
+const ImagePanel = styled(Box)({
   backgroundImage: `url(${splashImage})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
@@ -30,16 +28,9 @@ const ImagePanel = styled(Grid)({
 
 const Titles = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
-  fontWeight: 'bold',
+  textAlign: 'center',
   fontSize: theme.typography.h3.fontSize,
-  display: 'contents'
 }));
-
-const TitleLine = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between'
-})
 
 
 const MyPageWelcome: FunctionComponent = () => {
@@ -60,22 +51,25 @@ const MyPageWelcome: FunctionComponent = () => {
 
 
   return (
-    <MainContent container>
-      <ImagePanel item xs={12} sx={{display: 'flex', flexDirection: 'column', padding: '20px'}}> 
-        <Box>
-          <TitleLine>
-            <Titles>
-              Hello {userName}
-            </Titles> {recipeCount}
-            <SearchSwitch />
-          </TitleLine>
+    <MainContent>
+      <ImagePanel sx={{ display: 'flex', flexDirection: 'column', padding: '20px' }}>
+        <Box display='flex' justifyContent='flex-end'>
+          <SearchSwitch />
         </Box>
+        <Titles>
+          Hello {userName}
+        </Titles>
+        <Typography color='textPrimary' textAlign='center' pb={4}>
+          You currently have {recipeCount} recipes.
+        </Typography>
         <CreateRecipeBtn />
-        <SearchButton searchFunction={callSearch} />
+        <Box alignSelf='start'>
+          <SearchButtonSmall searchFunction={callSearch} />
+        </Box>
       </ImagePanel>
-      <Grid item xs={12}>
+      <Box>
         <SearchBar ref={searchBarRef} />
-      </Grid>
+      </Box>
     </MainContent>
   );
 }
