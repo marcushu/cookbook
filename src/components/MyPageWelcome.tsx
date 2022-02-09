@@ -1,15 +1,12 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent } from "react";
 import { useAppSelector } from '../app/hooks';
 import SearchSwitch from '../buttons/SearchSwitch';
-import SearchBar from './SearchBar';
 import splashImage from '../images/foodBoard.png';
 import { selectNumOfRecipes, selectUserName } from '../redux/userState';
-import { selectOwner, setOwner } from '../redux/searchResultState';
-import { useDispatch } from 'react-redux';
 import CreateRecipeBtn from '../buttons/CreateRecipeBtn';
-import SearchButtonSmall from '../buttons/SearchButtonSmall';
+import SearchBarComplete from './SearchBarComplete';
 
 const MainContent = styled(Box)({
   minHeight: '375px',
@@ -34,21 +31,8 @@ const Titles = styled(Typography)(({ theme }) => ({
 
 
 const MyPageWelcome: FunctionComponent = () => {
-  const searchBarRef = useRef<HTMLButtonElement>(null);
-  const dispatch = useDispatch();
   const userName = useAppSelector(selectUserName);
-  const owner = useAppSelector(selectOwner);
   const recipeCount = useAppSelector(selectNumOfRecipes);
-
-  const callSearch = () => {
-    if (owner.length)
-      // clear out the 'owner' of this search to search all recipes
-      dispatch(setOwner(""));
-
-    if (searchBarRef && searchBarRef.current)
-      searchBarRef.current.click();
-  }
-
 
   return (
     <MainContent>
@@ -63,12 +47,9 @@ const MyPageWelcome: FunctionComponent = () => {
           You currently have {recipeCount} recipes.
         </Typography>
         <CreateRecipeBtn />
-        <Box alignSelf='start'>
-          <SearchButtonSmall searchFunction={callSearch} />
-        </Box>
       </ImagePanel>
       <Box>
-        <SearchBar ref={searchBarRef} />
+        <SearchBarComplete />
       </Box>
     </MainContent>
   );
