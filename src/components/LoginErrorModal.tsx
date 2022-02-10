@@ -20,7 +20,7 @@ const LoginErrorModal: FunctionComponent<LoginErrorModalProps> = ({ hideMe, show
     <Dialog open={showMe} sx={{ borderRadius: '8px', padding: '15px' }}>
       <DialogTitle sx={{ fontSize: '30px', display: 'flex' }} id="alert-dialog-title">
         <WarningAmberIcon fontSize='large' sx={{ alignSelf: 'center' }} /> &nbsp;
-        Not signed in
+        Unable to sign in.
       </DialogTitle>
       <DialogContent>
         <WarningDialogTitle>
@@ -33,7 +33,7 @@ const LoginErrorModal: FunctionComponent<LoginErrorModalProps> = ({ hideMe, show
           Sign up error:
         </WarningDialogTitle>
         <DialogContentText id="alert-dialog-description" pl='5px'>
-          Your username must be unique.
+          Your username must be unique and at least 7 characters.
         </DialogContentText>
       </DialogContent>
       <DialogActions>

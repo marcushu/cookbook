@@ -22,6 +22,7 @@ const LoginSignup = styled(Grid)({
 });
 
 const SignIn: FunctionComponent = () => {
+  const MINUSERNAMELENGTH = 7;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -34,7 +35,8 @@ const SignIn: FunctionComponent = () => {
   }
 
   const signUp = async () => {
-    await dispatch(createUser(newUsername));
+    if (newUsername.length >= MINUSERNAMELENGTH)
+      await dispatch(createUser(newUsername));
 
     navigate("/mypage");
   }
@@ -57,10 +59,10 @@ const SignIn: FunctionComponent = () => {
               fullWidth={true}
               value={username}
               onChange={e => setUsername(e.target.value)} />
-            <Button 
-              variant='contained' 
-              color='primary' 
-              onClick={login} 
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={login}
               sx={{ alignSelf: 'center', width: '135px' }} >
               Log in
             </Button>

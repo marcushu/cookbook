@@ -94,6 +94,8 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     setShowNotice(false);
   }
 
+  const censoredName = () => owner.substring(0, 3).padEnd(owner.length, '*');
+
   const buttons = () => {
     if (userName) return isFavorite
       ? (<Tooltip title='Remove from favorites' >
@@ -123,7 +125,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
               {buttons()}
             </RecipeName>
             <TextBox>
-              <Typography variant='subtitle2'>{owner}</Typography>
+              <Typography variant='subtitle2'>{censoredName()}</Typography>
               <Typography pt={2}>{description}</Typography>
               <MealtimeTags recipe={recipe} />
             </TextBox>
