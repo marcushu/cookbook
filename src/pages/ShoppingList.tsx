@@ -6,9 +6,28 @@ import Header from "../components/Header";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
-import { Box, IconButton, TextField } from "@mui/material";
+import { Box, IconButton, styled, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import TitleImaage from "../components/TitleImage";
+import foodImage from '../images/foodAtTop.png';
+
+const Topper = styled(Box)({
+  backgroundImage: `url(${foodImage})`,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '256px',
+  padding: '15px',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+});
+
+const FormElements = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '16px'
+});
+
 
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
@@ -36,27 +55,31 @@ const ShoppingList: FunctionComponent = () => {
     <>
       <Header
         leftButton={<FavoritesBtn />}
-        rightButton={<HomeBtn />} />
-      <TitleImaage />
-      <Box sx={{backgroundColor: 'white', width: '100%'}}>
-        <form onSubmit={e => submitIngredient(e)}>
-          <Box display='flex' p={2}>
-            <TextField
-              sx={{color: 'white'}}
-              variant='standard'
-              required={true}
-              placeholder="2 tbs. new ingredient"
-              label="New ingredient"
-              name="newIngredientTXT"
-              id="newIngredientTXT"
-              fullWidth={true} />
-            <IconButton aria-label="newitem"
-              type='submit'>
-              <AddIcon fontSize="large" color="primary" />
-            </IconButton>
-          </Box>
-        </form>
-      </Box>
+        rightButton={<HomeBtn />}
+      />
+      <Topper>
+        <Box sx={{ width: '90%' }}>
+          <form onSubmit={e => submitIngredient(e)}>
+            <FormElements>
+              <TextField
+                sx={{ backgroundColor: '#ffffff99', height: '53px', justifyContent: 'flex-end', fontSize: '44px' }}
+                variant='standard'
+                fullWidth={true}
+                required={true}
+                label='Add an ingredient'
+                focused={true}
+                name="newIngredientTXT"
+                id="newIngredientTXT" />
+              <Box sx={{ backgroundColor: '#ffffff99', marginLeft: '8px' }}>
+                <IconButton aria-label="newitem"
+                  type='submit' color='primary'>
+                  <AddIcon fontSize="large" />
+                </IconButton>
+              </Box>
+            </FormElements>
+          </form>
+        </Box>
+      </Topper>
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />

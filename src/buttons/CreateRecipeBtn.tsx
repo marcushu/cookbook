@@ -4,17 +4,20 @@ import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import { Box, styled } from "@mui/material";
 
 const CreateButton = styled(Box)({
-  backgroundColor: '#67686e',
-  color: '#e9e9e9e6',
-  borderRadius: '8px',
+  backgroundColor: '#dadada70',
+  color: '#404040d1',
+  border: 'solid',
+  borderColor: '#ffffff8a',
+  borderWidth: '1px',
   fontFamily: "'Quicksand', sans-serif",
   fontWeight: 'bold',
+  fontSize: '20px',
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
   display: 'flex',
   alignItems: 'center',
   width: 'fit-content',
   padding: '0px 40px 0px 40px',
-  margin: '5px auto 10px auto',
+  margin: '5px auto 20px auto',
   transition: 'transform 0.5s',
   ':hover': {
     cursor: 'pointer',
@@ -27,7 +30,7 @@ const CreateRecipeBtn: FunctionComponent = () => {
 
   return (
     <CreateButton component='span' onClick={() => navigate('/createrecipe')}>
-      <p>New Recipe</p> 
+      <p>Add a New Recipe</p> 
       <DinnerDiningIcon fontSize="large" sx={{transform: 'scale(1.2)', color: '#7aadb4', paddingLeft: '10px'}} />
     </CreateButton>
   );
