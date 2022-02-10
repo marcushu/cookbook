@@ -146,7 +146,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
             onClose={closeNotice}
             message="Saved to your favorites" />
         </TextGridItem>
-        <Collapse in={showFullRecipe}>
+        <Collapse in={showFullRecipe} sx={{width: '100%'}}>
           <FullRecipe
             hideMe={() => setShowFullRecipe(!showFullRecipe)}
             recipe={recipe} />
