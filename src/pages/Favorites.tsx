@@ -33,7 +33,7 @@ const BigText = styled(Typography)(({ theme }) => ({
 const HighlightedText = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   borderRadius: '5px',
-  fontSize: '20px',
+  fontSize: '16px',
   padding: '5px',
   backgroundColor: '#ffffff7a',
   width: 'max-content',
