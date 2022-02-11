@@ -20,6 +20,9 @@ const ImagePanel = styled(Box)({
   backgroundImage: `url(${splashImage})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
+  display: 'flex', 
+  flexDirection: 'column', 
+  padding: '20px',
   minHeight: '315px'
 });
 
@@ -36,7 +39,7 @@ const MyPageWelcome: FunctionComponent = () => {
 
   return (
     <MainContent>
-      <ImagePanel sx={{ display: 'flex', flexDirection: 'column', padding: '20px' }}>
+      <ImagePanel>
         <Box display='flex' justifyContent='flex-end'>
           <SearchSwitch />
         </Box>
