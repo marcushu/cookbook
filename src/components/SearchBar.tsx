@@ -1,10 +1,22 @@
-import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
+import { FormControlLabel, FormGroup, Grid, styled, Switch, TextField } from "@mui/material";
 import React, { useState, LegacyRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
   selectFindVegan, selectFindVegetarian, setFindMealSettings
 } from "../redux/searchResultState";
+
+
+const MainContainer = styled(Grid)(({theme}) => ({
+  backgroundColor: '#67686e',
+  padding: '5px 10px 5px 10px',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column-reverse',
+    padding: '20px 8px 20px 8px'
+  }
+}));
 
 const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElement>) => {
   const [recipeToFind, setRecipeToFind] = useState("");
@@ -25,8 +37,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
 
 
   return (
-    <Grid container
-      sx={{backgroundColor: '#67686e', padding: '5px 10px 5px 10px', justifyContent: 'center'}} >
+    <MainContainer container>
       <Grid item px={1} pb={1} xs={12} sm={4}>
         <TextField
           focused
@@ -34,7 +45,6 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           fullWidth={true}
           id="searchText"
           label="find something"
-          color="primary"
           inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px'}}}
           value={recipeToFind}
           onChange={e => setRecipeToFind(e.target.value)} />
@@ -43,7 +53,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           onClick={startSearch}
           ref={buttonRef} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={4} sx={{marginTop: ['20px', '0px'], marginBottom: ['20px', '0px']}}>
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="Breakfast"
@@ -129,7 +139,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-    </Grid>
+    </MainContainer>
   );
 });
 

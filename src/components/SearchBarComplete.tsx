@@ -1,4 +1,4 @@
-import { FormControlLabel, FormGroup, Grid, Switch, TextField } from "@mui/material";
+import { FormControlLabel, FormGroup, Grid, styled, Switch, TextField } from "@mui/material";
 import React, { useState, FunctionComponent } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import SearchButtonSmall from "../buttons/SearchButtonSmall";
@@ -6,6 +6,19 @@ import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
   selectFindVegan, selectFindVegetarian, setFindMealSettings, setOwner
 } from "../redux/searchResultState";
+
+
+const MainContainer = styled(Grid)(({theme}) => ({
+  backgroundColor: '#67686e',
+  padding: '5px 10px 5px 10px',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column-reverse',
+    padding: '20px 8px 20px 8px'
+  }
+}));
+
 
 const SearchBarComplete: FunctionComponent = () => {
   const [recipeToFind, setRecipeToFind] = useState("");
@@ -26,13 +39,13 @@ const SearchBarComplete: FunctionComponent = () => {
 
 
   return (
-    <Grid container
-      sx={{ backgroundColor: '#67686e', padding: '5px 10px 5px 10px', justifyContent: 'center' }} >
+    <MainContainer container>
       <Grid item px={1} pb={1} xs={12} sm={4} sx={{ display: 'flex', alignItems: 'flex-end' }}>
         <SearchButtonSmall searchFunction={startSearch} />
         <TextField
           focused
           variant='standard'
+          fullWidth={true}
           id="searchText"
           color="primary"
           inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px' } }}
@@ -42,7 +55,7 @@ const SearchBarComplete: FunctionComponent = () => {
           style={{ display: 'none' }}
           onClick={startSearch} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={4} sx={{marginTop: ['20px', '0px'], marginBottom: ['20px', '0px']}}>
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="Breakfast"
@@ -82,7 +95,7 @@ const SearchBarComplete: FunctionComponent = () => {
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={4} sx={{marginTop: ['20px', '0px'], marginBottom: ['20px', '0px']}}>
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="glutenFree"
@@ -128,7 +141,7 @@ const SearchBarComplete: FunctionComponent = () => {
             labelPlacement="top" />
         </FormGroup>
       </Grid>
-    </Grid>
+    </MainContainer>
   );
 };
 
