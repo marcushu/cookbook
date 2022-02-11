@@ -10,11 +10,18 @@ import { Box } from "@mui/material/node_modules/@mui/system";
 import { selectLoading } from "../redux/searchResultState";
 import foodImage from '../images/foodBoard.png';
 
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
 
 const TextBox = styled(Box)({
   backgroundImage: `url(${foodImage})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
+  width: '100%',
+  maxWidth: '880px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -52,7 +59,7 @@ const Favorites: FunctionComponent = () => {
     : userName + "'s"
 
   return (
-    <>
+    <BoxMain>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
       <TextBox>
         <BigText>{greeting()}
@@ -69,7 +76,7 @@ const Favorites: FunctionComponent = () => {
       <Backdrop open={isLoading}>
         <CircularProgress />
       </Backdrop>
-    </>
+    </BoxMain>
   );
 }
 

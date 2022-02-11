@@ -13,6 +13,8 @@ interface HeaderProps {
 }
 
 const HeaderContent = styled(Box)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '886px',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',

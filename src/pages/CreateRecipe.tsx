@@ -12,6 +12,12 @@ import { showUploadWidget } from "../js/uploadWidget";
 
 const dbApi = process.env.REACT_APP_API_URL
 
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
+
 const CreateRecipeCard = styled(Typography)(({ theme }) => ({
   backgroundColor: 'white',
   color: theme.palette.text.primary,
@@ -114,12 +120,12 @@ const CreateRecipe: FunctionComponent = () => {
 
 
   return (
-    <>
+    <BoxMain>
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
-      <CreateRecipeCard sx={{ width: ['100%', '1000px'] }}>
-        <Box sx={{ width: ['auto', 900] }} m='auto'>
+      <CreateRecipeCard sx={{ width: ['100%', '875px'] }}>
+        <Box sx={{ width: ['auto', 850] }} m='auto'>
           <Typography color='primary' variant='h4' py={2}>Create a new recipe</Typography>
           <form action="" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -185,7 +191,7 @@ const CreateRecipe: FunctionComponent = () => {
           </form>
         </Box>
       </CreateRecipeCard>
-    </>
+    </BoxMain>
   );
 }
 

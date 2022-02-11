@@ -1,10 +1,16 @@
-import { Button, Grid, styled, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, styled, TextField, Typography } from "@mui/material";
 import { FunctionComponent, useState } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { createUser, fetchUser } from "../redux/userState";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
 import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplash.jpg'
+
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
 
 const LoginContent = styled('div')({
   backgroundImage: `url(${splashImage})`,
@@ -43,7 +49,7 @@ const SignIn: FunctionComponent = () => {
 
 
   return (
-    <>
+    <BoxMain>
       <Header />
       <LoginContent sx={{ width: ['100%', '902px'] }}>
         <Grid container sx={{ maxWidth: ['100%', '420px'] }} m='auto'>
@@ -99,7 +105,7 @@ const SignIn: FunctionComponent = () => {
           </Grid>
         </Grid >
       </LoginContent>
-    </>
+    </BoxMain>
   );
 }
 

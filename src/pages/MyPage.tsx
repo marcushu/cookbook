@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress } from "@mui/material";
+import { Backdrop, Box, CircularProgress, styled } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "../app/hooks";
@@ -12,6 +12,11 @@ import { Recipe } from "../interfaces/types";
 import { selectLoading, selectOwner, selectSearchResults } from "../redux/searchResultState";
 import { selectRecipes, selectUserName } from "../redux/userState";
 
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
 
 const MyPage: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
@@ -43,7 +48,7 @@ const MyPage: FunctionComponent = () => {
 
 
   return (
-    <>
+    <BoxMain>
       <Header 
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
@@ -53,7 +58,7 @@ const MyPage: FunctionComponent = () => {
         <CircularProgress />
       </Backdrop>
       <LoginErrorModal hideMe={handleCloseModal} showMe={showModal} />
-    </>
+    </BoxMain>
   );
 }
 

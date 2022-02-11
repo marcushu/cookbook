@@ -10,8 +10,17 @@ import { Box, IconButton, styled, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import foodImage from '../images/foodAtTop.png';
 
+
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
+
 const Topper = styled(Box)({
   backgroundImage: `url(${foodImage})`,
+  width: '100%',
+  maxWidth: '873px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
@@ -52,7 +61,7 @@ const ShoppingList: FunctionComponent = () => {
   }
 
   return (
-    <>
+    <BoxMain>
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<HomeBtn />}
@@ -83,7 +92,7 @@ const ShoppingList: FunctionComponent = () => {
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />
-    </>
+    </BoxMain>
   );
 }
 

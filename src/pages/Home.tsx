@@ -1,10 +1,16 @@
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Backdrop, Box, CircularProgress, styled } from "@mui/material";
 import { FunctionComponent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Header from "../components/Header";
 import HomeWelcome from "../components/HomeWelcome";
 import RecipeList from "../components/RecipeList";
 import { search, selectLoading, selectSearchResults } from "../redux/searchResultState";
+
+const BoxMain = styled(Box)({
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center'
+});
 
 const Home: FunctionComponent = () => {
   const isLoading = useAppSelector(selectLoading);
@@ -18,7 +24,7 @@ const Home: FunctionComponent = () => {
 
 
   return (
-    <>
+    <BoxMain>
       <Header />
       <HomeWelcome />
       <Box>
@@ -27,7 +33,7 @@ const Home: FunctionComponent = () => {
           <CircularProgress />
         </Backdrop>
       </Box>
-    </>
+    </BoxMain>
   );
 }
 
