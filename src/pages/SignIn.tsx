@@ -66,6 +66,7 @@ const SignIn: FunctionComponent = () => {
               value={username}
               onChange={e => setUsername(e.target.value)} />
             <Button
+              id="signinbtn"
               variant='contained'
               color='primary'
               onClick={login}
