@@ -52,7 +52,7 @@ const MyPage: FunctionComponent = () => {
       <Header 
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
-      <MyPageWelcome />
+      <MyPageWelcome recipeCount={myRecipes.length} userName={userName} />
       <RecipeList recipes={recipes} />
       <Backdrop open={isLoading}>
         <CircularProgress />

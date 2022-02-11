@@ -1,12 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent } from "react";
-import { useAppSelector } from '../app/hooks';
 import SearchSwitch from '../buttons/SearchSwitch';
 import splashImage from '../images/foodBoard.png';
-import { selectNumOfRecipes, selectUserName } from '../redux/userState';
 import CreateRecipeBtn from '../buttons/CreateRecipeBtn';
 import SearchBarComplete from './SearchBarComplete';
+
+interface MyPageWelcomProps {
+  userName: String
+  recipeCount: Number
+}
 
 const MainContent = styled(Box)({
   minHeight: '375px',
@@ -21,8 +24,8 @@ const ImagePanel = styled(Box)({
   backgroundImage: `url(${splashImage})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
-  display: 'flex', 
-  flexDirection: 'column', 
+  display: 'flex',
+  flexDirection: 'column',
   minHeight: '315px',
   width: '100%'
 });
@@ -34,10 +37,7 @@ const Titles = styled(Typography)(({ theme }) => ({
 }));
 
 
-const MyPageWelcome: FunctionComponent = () => {
-  const userName = useAppSelector(selectUserName);
-  const recipeCount = useAppSelector(selectNumOfRecipes);
-
+const MyPageWelcome: FunctionComponent<MyPageWelcomProps> = ({ userName, recipeCount }) => {
   return (
     <MainContent>
       <ImagePanel>
