@@ -95,6 +95,7 @@ const SignIn: FunctionComponent = () => {
             </Typography>
             <Button
               variant='outlined'
+              id="signupbtn"
               onClick={signUp}
               color='primary'
               sx={{ alignSelf: 'center', width: '135px', marginTop: '10px' }}>
