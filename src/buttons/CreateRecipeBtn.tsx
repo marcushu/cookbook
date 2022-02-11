@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import { Box, styled } from "@mui/material";
 
-const CreateButton = styled(Box)({
-  backgroundColor: '#dadada70',
-  color: '#404040d1',
+const CreateButton = styled(Box)(({ theme }) => ({
+  backgroundColor: '#dadadabc',
+  color: '#404040e0',
   border: 'solid',
   borderColor: '#ffffff8a',
   borderWidth: '1px',
@@ -17,13 +17,16 @@ const CreateButton = styled(Box)({
   alignItems: 'center',
   width: 'fit-content',
   padding: '0px 40px 0px 40px',
-  margin: '5px auto 20px auto',
+  margin: '5px auto 125px auto',
   transition: 'transform 0.5s',
   ':hover': {
     cursor: 'pointer',
     transform: 'scale(1.04)'
+  },
+  [theme.breakpoints.down('sm')]: {
+    backgroundColor: '#ffffffe0'
   }
-})
+}));
 
 const CreateRecipeBtn: FunctionComponent = () => {
   const navigate = useNavigate();

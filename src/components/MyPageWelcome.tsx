@@ -41,7 +41,7 @@ const MyPageWelcome: FunctionComponent = () => {
   return (
     <MainContent>
       <ImagePanel>
-        <Box display='flex' justifyContent='flex-end'>
+        <Box display='flex' justifyContent='flex-end' p={2}>
           <SearchSwitch />
         </Box>
         <Titles>

@@ -27,7 +27,7 @@ const SearchSwitch: FunctionComponent = () => {
   }
 
   return (
-    <Box sx={{ borderRadius: '5px' }}>
+    <Box>
       <Typography sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}  >
         <Tooltip title="My Recipes">
           <FaceIcon color={owner.length ? 'primary' : 'info'} fontSize="large" />
