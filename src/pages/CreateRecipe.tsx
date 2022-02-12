@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import FavoritesBtn from "../buttons/FavoritesBtn";
 import { showUploadWidget } from "../js/uploadWidget";
+import bgImage from '../images/clean.jpg'
 
 const dbApi = process.env.REACT_APP_API_URL
 
@@ -21,10 +22,11 @@ const BoxMain = styled(Box)({
 const CreateRecipeCard = styled(Typography)(({ theme }) => ({
   backgroundColor: 'white',
   color: theme.palette.text.primary,
-  border: 'solid',
-  borderWidth: '1px',
-  borderColor: '#dbdbdb',
-  padding: '8px 8px 30px 8px'
+  padding: '8px 8px 30px 8px',
+  backgroundImage: `url(${bgImage})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
 }));
 
 
@@ -131,19 +133,23 @@ const CreateRecipe: FunctionComponent = () => {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
                 <TextField id="name" label="Recipe Name" name='name'
-                  required={true} fullWidth onChange={handleInputChange} />
+                  required={true} fullWidth onChange={handleInputChange}
+                  sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
               <Grid item xs={12} sm={8}>
                 <TextField id='description' label='short description'
-                  name='description' fullWidth onChange={handleInputChange} />
+                  name='description' fullWidth onChange={handleInputChange}
+                  sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField id='ingredients' label='ingredients' name='ingredients' required={true}
-                  helperText='one ingredient per line' fullWidth multiline={true} rows='10' onChange={handleInputChange} />
+                  helperText='one ingredient per line' fullWidth multiline={true} rows='10' onChange={handleInputChange}
+                  sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
               <Grid item xs={12} sm={8}>
                 <TextField id='instructions' label='instructions' name='instructions'
-                  required={true} fullWidth rows='10' multiline={true} onChange={handleInputChange} />
+                  required={true} fullWidth rows='10' multiline={true} onChange={handleInputChange}
+                  sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -173,7 +179,7 @@ const CreateRecipe: FunctionComponent = () => {
               </Grid>
               <Grid item xs={12} display='flex'>
                 <Button 
-                  variant='outlined' 
+                  variant='contained' 
                   color='primary' 
                   onClick={addImage}
                   startIcon={<InsertPhotoIcon />} 
