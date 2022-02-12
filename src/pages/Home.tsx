@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import HomeWelcome from "../components/HomeWelcome";
 import RecipeList from "../components/RecipeList";
 import { search, selectLoading, selectSearchResults } from "../redux/searchResultState";
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 const BoxMain = styled(Box)({
   display: 'flex',
@@ -26,7 +26,7 @@ const Home: FunctionComponent = () => {
   const searchAgain = () => {
     dispatch(search());
 
-    window.scrollTo({ top: 600, behavior: 'smooth' })
+    window.scrollTo({ top: 650, behavior: 'smooth' })
   }
 
 
@@ -36,9 +36,9 @@ const Home: FunctionComponent = () => {
       <HomeWelcome />
       <Box pb={3}>
         <RecipeList recipes={recipes} />
-        <Box sx={{ textAlign: 'end' }}>
+        <Box sx={{ textAlign: 'center' }}>
           <Button onClick={searchAgain}>
-            <ArrowUpwardIcon fontSize="large" />
+            <ReplayIcon fontSize="large" />
           </Button>
         </Box>
         <Backdrop open={isLoading}>
