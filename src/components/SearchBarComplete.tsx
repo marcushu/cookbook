@@ -51,9 +51,6 @@ const SearchBarComplete: FunctionComponent = () => {
           inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px' } }}
           value={recipeToFind}
           onChange={e => setRecipeToFind(e.target.value)} />
-        <button
-          style={{ display: 'none' }}
-          onClick={startSearch} />
       </Grid>
       <Grid item xs={12} sm={4} sx={{marginTop: ['20px', '0px'], marginBottom: ['20px', '0px']}}>
         <FormGroup row sx={{ justifyContent: 'space-around' }}>

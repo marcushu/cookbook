@@ -49,7 +49,7 @@ const HomeWelcome: FunctionComponent = () => {
   const navigate = useNavigate();
 
   const callSearch = () => {
-    if (searchBarRef && searchBarRef.current)
+    if (searchBarRef?.current)
       searchBarRef.current.click();
   }
 
