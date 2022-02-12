@@ -86,20 +86,12 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     setShowNotice(true);
   }
 
-  const deleteFromFavorites = () => {
-    dispatch(deleteFavorite({ recipe, userName }))
-  }
-
-  const closeNotice = () => {
-    setShowNotice(false);
-  }
-
   const censoredName = () => owner.substring(0, 3).padEnd(owner.length, '*');
 
   const buttons = () => {
     if (userName) return isFavorite
       ? (<Tooltip title='Remove from favorites' >
-        <IconButton onClick={deleteFromFavorites}>
+        <IconButton onClick={() => dispatch(deleteFavorite({ recipe, userName }))}>
           <FavoriteIcon color='secondary' />
         </IconButton>
       </Tooltip>
@@ -143,7 +135,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
           </RecipeFooter>
           <Snackbar 
             open={showNotice} 
-            onClose={closeNotice}
+            onClose={() => setShowNotice(false)}
             message="Saved to your favorites" />
         </TextGridItem>
         <Collapse in={showFullRecipe} sx={{width: '100%'}}>
