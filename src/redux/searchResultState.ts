@@ -17,18 +17,19 @@ const initialState = {
   GF: false,
   vegan: false,
   vegetarian: false,
+  searchFor: '',
   owner: ""
 }
 
 
-export const search = createAsyncThunk('search/search', async (searchTearm: string, thunkAPI) => {
+export const search = createAsyncThunk('search/search', async ( _, thunkAPI) => {
   const dbApi = process.env.REACT_APP_API_URL
   const state = thunkAPI.getState() as RootState;
   const { numberOfResults, findBreakfast, findLunch, findDinner,
     GF, vegan, vegetarian, owner } = state.searchResults;
 
   try {
-    const response = await fetch(`${dbApi}/recipes?searchTearm=${searchTearm}&numberOfResults=${numberOfResults}&findBreakfast=${findBreakfast}&findLunch=${findLunch}&findDinner=${findDinner}&GF=${GF}&vegan=${vegan}&vegetarian=${vegetarian}&owner=${owner}`);
+    const response = await fetch(`${dbApi}/recipes?searchTearm=${state.searchResults.searchFor}&numberOfResults=${numberOfResults}&findBreakfast=${findBreakfast}&findLunch=${findLunch}&findDinner=${findDinner}&GF=${GF}&vegan=${vegan}&vegetarian=${vegetarian}&owner=${owner}`);
 
     const { randomRecipes } = await response.json();
 
@@ -54,6 +55,9 @@ export const searchResults = createSlice({
     },
     setOwner: (state, action: PayloadAction<string>) => {
       state.owner = action.payload;
+    },
+    setSearchTearm: (state, action: PayloadAction<string>) => {
+      state.searchFor = action.payload;
     }
   },
   extraReducers: builder => {
@@ -70,7 +74,7 @@ export const searchResults = createSlice({
 });
 
 // set
-export const { setResultSetSize, setFindMealSettings, setOwner } = searchResults.actions;
+export const { setResultSetSize, setFindMealSettings, setOwner, setSearchTearm } = searchResults.actions;
 
 // get
 export const selectLoading = (state: RootState) => state.searchResults.loading;

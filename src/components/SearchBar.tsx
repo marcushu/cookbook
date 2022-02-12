@@ -3,7 +3,7 @@ import React, { useState, LegacyRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
-  selectFindVegan, selectFindVegetarian, setFindMealSettings
+  selectFindVegan, selectFindVegetarian, setFindMealSettings, setSearchTearm
 } from "../redux/searchResultState";
 
 
@@ -32,7 +32,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   // This will be called from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const startSearch = () => {
-    dispatch(search(recipeToFind))
+    // set this in state to allow consistent search from elsewhere
+    dispatch(setSearchTearm(recipeToFind));
+
+    dispatch(search())
   }
 
 

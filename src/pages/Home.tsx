@@ -19,9 +19,15 @@ const Home: FunctionComponent = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(search(""));
+    dispatch(search());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const searchAgain = () => {
+    dispatch(search());
+
+    window.scrollTo({ top: 600, behavior: 'smooth' })
+  }
 
 
   return (
@@ -31,7 +37,7 @@ const Home: FunctionComponent = () => {
       <Box pb={3}>
         <RecipeList recipes={recipes} />
         <Box sx={{ textAlign: 'end' }}>
-          <Button onClick={() => window.scrollTo({ top: 100, behavior: 'smooth' })}>
+          <Button onClick={searchAgain}>
             <ArrowUpwardIcon fontSize="large" />
           </Button>
         </Box>

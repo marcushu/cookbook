@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import SearchButtonSmall from "../buttons/SearchButtonSmall";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
-  selectFindVegan, selectFindVegetarian, setFindMealSettings, setOwner
+  selectFindVegan, selectFindVegetarian, setFindMealSettings, setOwner, setSearchTearm
 } from "../redux/searchResultState";
 
 
@@ -33,8 +33,9 @@ const SearchBarComplete: FunctionComponent = () => {
   const startSearch = () => {
     // clear out the owner for a universal search
     dispatch(setOwner(""));
-    
-    dispatch(search(recipeToFind))
+    dispatch(setSearchTearm(recipeToFind));
+
+    dispatch(search());
   }
 
 
