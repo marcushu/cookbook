@@ -47,7 +47,7 @@ const CreateRecipe: FunctionComponent = () => {
     name: "",
     instructions: "",
     // TODO: replace with generic looking placeholder
-    imageUrl: "https://www.lecremedelacrumb.com/wp-content/uploads/2020/10/apple-cinnamon-french-toast-9sm-5-400x600.jpg"
+    imageUrl: ""
   });
 
 

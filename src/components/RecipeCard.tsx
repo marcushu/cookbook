@@ -9,6 +9,7 @@ import { grey } from "@mui/material/colors";
 import FullRecipe from "./FullRecipe";
 import RestrictionTags from "./RestrictionTags";
 import MealtimeTags from "./MealtimeTags";
+import defaultImage from '../images/defaultFoodImg.png';
 
 interface RecipeCardProps {
   recipe: Recipe
@@ -108,7 +109,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     <RecipePaper variant='outlined'>
       <Grid container>
         <ImageGridItem item xs={12} sm={4} >
-          <img style={{ maxWidth: '100%' }} src={imageUrl} alt="food" />
+          <img style={{ maxWidth: '100%' }} src={imageUrl.length ? imageUrl : defaultImage} alt="food" />
         </ImageGridItem>
         <TextGridItem item xs={12} sm={8}>
           <Box pl={2}>
