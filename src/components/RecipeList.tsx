@@ -10,7 +10,7 @@ interface RecipeListProps {
 const RecipeList: FunctionComponent<RecipeListProps> = ({ recipes }) => {
   
   return (
-    <Box pb={4}>
+    <Box pb={1}>
       {recipes?.map(recipe => 
          <div>
             <RecipeCard recipe={recipe} />
