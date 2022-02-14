@@ -31,7 +31,10 @@ export const userState = createSlice({
       state.orderIngredientsBy = action.payload
     },
     unsetUser: state => {
-      state.userName = ''
+      state.userName = '';
+      state.favorites.length = 0;
+      state.recipes.length = 0;
+      state.shoppingList.length = 0;
     },
     addRecipe: (state, action: PayloadAction<Recipe>) => {
       state.recipes.push(action.payload)
