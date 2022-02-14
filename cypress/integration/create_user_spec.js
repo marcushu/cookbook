@@ -23,5 +23,16 @@ describe('create user', () => {
         cy.get('button[id="signinbtn"]').click();
 
         cy.contains('Login error');
+
+        cy.get('button[id="closemodal"]').click();
+    });
+
+    it("checks new username restrictions when creating a user", () => {
+        // 1) check: minimun length of new username 
+        cy.get('input[placeholder="New user name"]').type('ab');
+
+        cy.get('button[id="signinbtn"]').click();
+
+        cy.contains('Login error');
     });
 })

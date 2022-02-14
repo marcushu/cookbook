@@ -37,7 +37,7 @@ const LoginErrorModal: FunctionComponent<LoginErrorModalProps> = ({ hideMe, show
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={hideMe} color='secondary' autoFocus>
+        <Button onClick={hideMe} color='secondary' autoFocus id="closemodal">
           Back to login
         </Button>
       </DialogActions>
