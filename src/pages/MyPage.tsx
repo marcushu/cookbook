@@ -63,11 +63,12 @@ const MyPage: FunctionComponent = () => {
         rightButton={<ShoppingListBtn />} />
       <MyPageWelcome recipeCount={myRecipes.length} userName={userName} />
       <RecipeList recipes={recipes} />
-      <Box sx={{ textAlign: 'center' }}>
-        <Button onClick={searchAgain}>
-          <ReplayIcon fontSize="large" />
-        </Button>
-      </Box>
+      {!recipeOwner &&
+        <Box sx={{ textAlign: 'center' }}>
+          <Button onClick={searchAgain}>
+            <ReplayIcon fontSize="large" />
+          </Button>
+        </Box>}
       <Backdrop open={isLoading}>
         <CircularProgress />
       </Backdrop>
