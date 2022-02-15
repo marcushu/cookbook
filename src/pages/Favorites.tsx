@@ -56,7 +56,7 @@ const Favorites: FunctionComponent = () => {
 
   const greeting = () => (userName.endsWith('s') || userName.endsWith('S'))
     ? userName + "'"
-    : userName + "'s"
+    : userName + "'s "
 
   return (
     <BoxMain>
