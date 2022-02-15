@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 import { Recipe } from "../interfaces/types";
 
+const NUMBEROFRESULTS = 10; // better set by client?
+
 interface SetSearchParam {
   searchType: string
   trueFalse: boolean
@@ -10,7 +12,7 @@ interface SetSearchParam {
 const initialState = {
   loading: false,
   foundSet: [] as Recipe[],
-  numberOfResults: 4,
+  numberOfResults: NUMBEROFRESULTS,
   findBreakfast: false,
   findLunch: true,
   findDinner: true,
@@ -36,6 +38,7 @@ export const search = createAsyncThunk('search/search', async ( _, thunkAPI) => 
     return randomRecipes as Recipe[]
   } catch (error) {
     console.log(error);
+
     return []
   }
 });
@@ -73,10 +76,9 @@ export const searchResults = createSlice({
   }
 });
 
-// set
+
 export const { setResultSetSize, setFindMealSettings, setOwner, setSearchTearm } = searchResults.actions;
 
-// get
 export const selectLoading = (state: RootState) => state.searchResults.loading;
 export const selectSearchResults = (state: RootState) => state.searchResults.foundSet;
 export const selectOwner = (state: RootState) => state.searchResults.owner;
