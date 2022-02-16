@@ -1,19 +1,19 @@
 import { FunctionComponent } from "react";
-import { addToShoppingList, deleteFromShoppingList, selectShoppingList, selectUserName } from "../redux/userState";
+import { addToShoppingList, deleteFromShoppingList, selectShoppingList, selectUserLoading, selectUserName } from "../redux/userState";
 import FavoritesBtn from "../buttons/FavoritesBtn";
 import HomeBtn from "../buttons/HomeBtn";
 import Header from "../components/Header";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
-import { Box, IconButton, styled, TextField } from "@mui/material";
+import { Backdrop, Box, CircularProgress, IconButton, styled, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import foodImage from '../images/foodAtTop.png';
 
 
 const BoxMain = styled(Box)({
-  display: 'flex', 
-  flexDirection: 'column', 
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center'
 });
 
@@ -41,6 +41,7 @@ const FormElements = styled(Box)({
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
   const listIngredients = useAppSelector(selectShoppingList);
+  const isLoading = useAppSelector(selectUserLoading);
   const dispatch = useAppDispatch();
 
   const submitIngredient = (evt: React.FormEvent<HTMLFormElement>) => {
@@ -92,6 +93,10 @@ const ShoppingList: FunctionComponent = () => {
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />
+      <Backdrop open={isLoading}>
+        <CircularProgress />
+      </Backdrop>
+
     </BoxMain>
   );
 }
