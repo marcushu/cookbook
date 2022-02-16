@@ -1,3 +1,5 @@
+const ggleApiKey = process.env.REACT_APP_GOOGLE_API_KEY
+
 const showUploadWidget = (uploadCallback) => {
     // eslint-disable-next-line no-undef
     cloudinary.openUploadWidget({
@@ -11,20 +13,20 @@ const showUploadWidget = (uploadCallback) => {
             "dropbox",
             "instagram"
         ],
-        googleApiKey: "932336236187626",
+        googleApiKey: ggleApiKey,
         multiple: false,
         defaultSource: "local",
         showInsecurePreview: true,
-        cropping: true,
+        cropping: false,
         styles: {
             palette: {
-                window: "#FFFFFF",
+                window: "#3fa8b5",
                 windowBorder: "#90A0B3",
-                tabIcon: "#0078FF",
-                menuIcons: "#5A616A",
+                tabIcon: "white",
+                menuIcons: "white",
                 textDark: "#000000",
                 textLight: "#FFFFFF",
-                link: "#0078FF",
+                link: "#f50057",
                 action: "#FF620C",
                 inactiveTabIcon: "#0E2F5A",
                 error: "#F44235",
