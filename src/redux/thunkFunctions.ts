@@ -151,9 +151,9 @@ export const addIngredient = async ( ingredientInfo: {ingredient: ShoppinglistIn
         body: JSON.stringify({ userName, ingredient })
       });
 
-    const { acknowledged } = await response.json();
+    await response.json();
 
-    return acknowledged ? ingredient : { recipe: '', ingredient: '' }
+    return ingredient;
   } catch (error) {
     console.log(error);
     return { ingredient: '', recipe: ''}
