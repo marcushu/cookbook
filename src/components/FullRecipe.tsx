@@ -15,7 +15,7 @@ const FullRecipe: FunctionComponent<FullRecipeProps> = ({ hideMe, recipe }) => {
     <Grid container py={2}>
       <Grid item xs={12} sm={4} pl={2} pb={2}>
         {ingredients.map(ingredient => 
-          <Typography variant='body2' component='div'>
+          <Typography variant='body2' component='div' key={ingredient + recipe.name}>
             <li>
               {ingredient}
             </li>

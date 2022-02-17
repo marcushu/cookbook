@@ -12,7 +12,7 @@ const RecipeList: FunctionComponent<RecipeListProps> = ({ recipes }) => {
   return (
     <Box pb={1}>
       {recipes?.map(recipe => 
-         <div>
+         <div key={recipe.name + recipe.owner}>
             <RecipeCard recipe={recipe} />
         </div>
       )}
