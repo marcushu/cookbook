@@ -83,7 +83,7 @@ const SignIn: FunctionComponent = () => {
               placeholder='New user name'
               variant='outlined'
               fullWidth={true}
-              helperText='User name must be unique'
+              helperText='At least 7 characters'
               value={newUsername}
               onChange={e => setNewUsername(e.target.value)} />
             <Typography color='primary' variant='h6' textAlign='center'>
