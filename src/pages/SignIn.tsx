@@ -66,6 +66,7 @@ const SignIn: FunctionComponent = () => {
               value={username}
               onChange={e => setUsername(e.target.value)} />
             <Button
+              id="signinbtn"
               variant='contained'
               color='primary'
               onClick={login}
@@ -94,6 +95,7 @@ const SignIn: FunctionComponent = () => {
             </Typography>
             <Button
               variant='outlined'
+              id="signupbtn"
               onClick={signUp}
               color='primary'
               sx={{ alignSelf: 'center', width: '135px', marginTop: '10px' }}>
