@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, CircularProgress, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "../app/hooks";
@@ -13,6 +13,7 @@ import { Recipe } from "../interfaces/types";
 import { search, selectLoading, selectOwner, selectSearchResults } from "../redux/searchResultState";
 import { selectRecipes, selectUserName } from "../redux/userState";
 import { useDispatch } from "react-redux";
+import RecipeCardLoading from "../components/RecipiCardLoading";
 
 const BoxMain = styled(Box)({
   display: 'flex',
@@ -62,16 +63,15 @@ const MyPage: FunctionComponent = () => {
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
       <MyPageWelcome recipeCount={myRecipes.length} userName={userName} />
-      <RecipeList recipes={recipes} />
+      {isLoading
+        ? <RecipeCardLoading />
+        : <RecipeList recipes={recipes} />}
       {!recipeOwner &&
         <Box sx={{ textAlign: 'center' }}>
           <Button onClick={searchAgain}>
             <ReplayIcon fontSize="large" />
           </Button>
         </Box>}
-      <Backdrop open={isLoading}>
-        <CircularProgress />
-      </Backdrop>
       <LoginErrorModal hideMe={handleCloseModal} showMe={showModal} />
     </BoxMain>
   );

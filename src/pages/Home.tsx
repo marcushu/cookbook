@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, CircularProgress, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import { FunctionComponent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import Header from "../components/Header";
@@ -6,6 +6,7 @@ import HomeWelcome from "../components/HomeWelcome";
 import RecipeList from "../components/RecipeList";
 import { search, selectLoading, selectSearchResults } from "../redux/searchResultState";
 import ReplayIcon from '@mui/icons-material/Replay';
+import RecipeCardLoading from "../components/RecipiCardLoading";
 
 const BoxMain = styled(Box)({
   display: 'flex',
@@ -24,9 +25,12 @@ const Home: FunctionComponent = () => {
   }, []);
 
   const searchAgain = () => {
-    dispatch(search());
+    window.scrollTo({ top: 850, behavior: 'smooth' });
 
-    window.scrollTo({ top: 650, behavior: 'smooth' })
+    // wait untill scrolling has stopped, then call dispatch to reload
+    setTimeout(() => {
+      dispatch(search());
+    }, 500);
   }
 
 
@@ -35,15 +39,14 @@ const Home: FunctionComponent = () => {
       <Header />
       <HomeWelcome />
       <Box pb={3}>
-        <RecipeList recipes={recipes} />
+        {isLoading
+          ? <RecipeCardLoading />
+          : <RecipeList recipes={recipes} />}
         <Box sx={{ textAlign: 'center' }}>
           <Button onClick={searchAgain}>
             <ReplayIcon fontSize="large" />
           </Button>
         </Box>
-        <Backdrop open={isLoading}>
-          <CircularProgress />
-        </Backdrop>
       </Box>
     </BoxMain>
   );
