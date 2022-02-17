@@ -177,8 +177,7 @@ export const deleteIngredient = async ( toDelete: { ingredient: ShoppinglistIngr
         body: JSON.stringify({ userName, ingredient: ingredient.ingredient })
       });
 
-    const resp = await response.json();
-    console.log(resp);
+    await response.json();
     
     return toDelete;
   } catch (error) {
