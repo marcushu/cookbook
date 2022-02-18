@@ -35,6 +35,10 @@ const BigText = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   textAlign: 'center',
   fontSize: theme.typography.h3.fontSize,
+  backgroundColor: 'revert',
+  [theme.breakpoints.down('sm')]: {
+    backgroundColor: 'white'
+  }
 }));
 
 const HighlightedText = styled(Typography)(({ theme }) => ({
@@ -45,7 +49,11 @@ const HighlightedText = styled(Typography)(({ theme }) => ({
   backgroundColor: '#ffffff7a',
   width: 'max-content',
   alignSelf: 'center',
-  marginTop: '30px'
+  marginTop: '30px',
+  display: 'revert',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
+  }
 }));
 
 const Favorites: FunctionComponent = () => {
@@ -65,7 +73,8 @@ const Favorites: FunctionComponent = () => {
         <BigText>
           {greeting()}
         </BigText>
-        <Typography color='textPrimary' textAlign='center'>
+        <Typography color='textPrimary' textAlign='center' pb={1}
+          sx={{ backgroundColor: ['white', 'revert']}}>
           You currently have {numOfFavorites} favorites.
         </Typography>
         <HighlightedText>
