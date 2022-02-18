@@ -51,9 +51,12 @@ const MyPage: FunctionComponent = () => {
   }
 
   const searchAgain = () => {
-    dispatch(search());
+    window.scrollTo({ top: 500, behavior: 'smooth' });
 
-    window.scrollTo({ top: 500, behavior: 'smooth' })
+    // wait untill scrolling has stopped, then call dispatch to reload
+    setTimeout(() => {
+      dispatch(search());
+    }, 500);
   }
 
 
