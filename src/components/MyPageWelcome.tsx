@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FunctionComponent } from "react";
 import SearchSwitch from '../buttons/SearchSwitch';
-import splashImage from '../images/foodBoard.png';
+import splashImage from '../images/foodBoardS.jpg';
 import CreateRecipeBtn from '../buttons/CreateRecipeBtn';
 import SearchBarComplete from './SearchBarComplete';
 

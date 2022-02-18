@@ -9,7 +9,7 @@ import Header from "../components/Header";
 import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import FavoritesBtn from "../buttons/FavoritesBtn";
 import { showUploadWidget } from "../js/uploadWidget";
-import bgImage from '../images/clean.jpg'
+import bgImage from '../images/cleanS.jpg'
 
 const dbApi = process.env.REACT_APP_API_URL
 

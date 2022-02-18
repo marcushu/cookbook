@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { FunctionComponent, useRef } from "react";
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplash.jpg'
+import backgroundImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplashS.jpg'
 import SearchButton from '../buttons/SearchButton';
 
 const MainContent = styled(Grid)({

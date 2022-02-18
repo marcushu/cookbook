@@ -8,7 +8,7 @@ import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
 import { Backdrop, Box, CircularProgress, IconButton, styled, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import foodImage from '../images/foodAtTop.png';
+import foodImage from '../images/foodAtTopS.jpg';
 
 
 const BoxMain = styled(Box)({

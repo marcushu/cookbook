@@ -8,7 +8,7 @@ import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
 import { Box } from "@mui/material/node_modules/@mui/system";
 import { selectLoading } from "../redux/searchResultState";
-import foodImage from '../images/foodBoard.png';
+import foodImage from '../images/foodBoardS.jpg';
 
 const BoxMain = styled(Box)({
   display: 'flex',
@@ -37,7 +37,7 @@ const BigText = styled(Typography)(({ theme }) => ({
   fontSize: theme.typography.h3.fontSize,
   backgroundColor: 'revert',
   [theme.breakpoints.down('sm')]: {
-    backgroundColor: 'white'
+    backgroundColor: '#ffffffd1'
   }
 }));
 
@@ -74,11 +74,14 @@ const Favorites: FunctionComponent = () => {
           {greeting()}
         </BigText>
         <Typography color='textPrimary' textAlign='center' pb={1}
-          sx={{ backgroundColor: ['white', 'revert']}}>
+          sx={{ backgroundColor: ['#ffffffd1', 'revert']}}>
           You currently have {numOfFavorites} favorites.
         </Typography>
         <HighlightedText>
-          Ingredients for these recipes are in your shopping list. <span style={{ fontSize: '20px' }}>&#128070;</span>
+          Ingredients for these recipes are in your shopping list. 
+          <span style={{ fontSize: '20px' }}>
+            &#128070;
+          </span>
         </HighlightedText>
       </TextBox>
       <RecipeList recipes={recipes} />

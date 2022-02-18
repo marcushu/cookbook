@@ -4,7 +4,7 @@ import { useAppDispatch } from "../app/hooks";
 import { createUser, fetchUser } from "../redux/userState";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
-import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplash.jpg'
+import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplashS.jpg'
 
 const BoxMain = styled(Box)({
   display: 'flex', 
