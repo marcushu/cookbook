@@ -105,8 +105,7 @@ const SearchBarComplete: FunctionComponent = () => {
                 checked={findGF}
                 onChange={() => dispatch(setFindMealSettings(
                   { searchType: 'GF', trueFalse: !findGF }
-                ))} />
-            }
+                ))} />}
             label="GF"
             labelPlacement="top" />
           <FormControlLabel
@@ -119,8 +118,7 @@ const SearchBarComplete: FunctionComponent = () => {
                 checked={findVegetarian}
                 onChange={() => dispatch(setFindMealSettings(
                   { searchType: 'vegetarian', trueFalse: !findVegetarian }
-                ))} />
-            }
+                ))} />}
             label="Vegetarian"
             labelPlacement="top" />
           <FormControlLabel
@@ -133,8 +131,7 @@ const SearchBarComplete: FunctionComponent = () => {
                 checked={findVegan}
                 onChange={() => dispatch(setFindMealSettings(
                   { searchType: 'vegan', trueFalse: !findVegan }
-                ))} />
-            }
+                ))} />}
             label="Vegan"
             labelPlacement="top" />
         </FormGroup>

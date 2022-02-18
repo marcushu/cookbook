@@ -57,15 +57,20 @@ const HomeWelcome: FunctionComponent = () => {
     <MainContent container>
       <TextContent item xs={12}>
         <TextBox>
-          <Titles>Just recipes</Titles>
+          <Titles>
+            Just recipes
+          </Titles>
           <Typography color='textPrimary' variant='h5'>Cooking sites are great, but they can be wordy.  No stories, or long
-            descriptions here, just the ingredients, and what to do with them.</Typography>
+            descriptions here, just the ingredients, and what to do with them.
+          </Typography>
         </TextBox>
         <TextBox>
           <TitleButton
             onClick={() => navigate('/signin')}>Log in
           </TitleButton>
-          <Typography color='textPrimary' variant='h5'>Log in to add your own recipes, collect favorites, and create shopping lists.</Typography>
+          <Typography color='textPrimary' variant='h5'>
+            Log in to add your own recipes, collect favorites, and create shopping lists.
+          </Typography>
         </TextBox>
         <SearchButton searchFunction={callSearch} />
       </TextContent>

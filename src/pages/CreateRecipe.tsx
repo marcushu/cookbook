@@ -111,6 +111,7 @@ const CreateRecipe: FunctionComponent = () => {
 
       if (acknowledged) {
         dispatch(addRecipe(newRecipe));
+        
         navigate('/mypage')
       } else {
         alert("something went wrong...")

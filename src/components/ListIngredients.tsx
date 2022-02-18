@@ -35,11 +35,14 @@ const ListIngredients: FunctionComponent<ListIngredientsProps> = ({ listItems, h
                 onClick={() => handleClick(ingredient)}>
                 <CheckIcon color='success' />
               </IconButton>}
-            <Typography color='text.primary' component='span' variant="h6">{ingredient.ingredient}</Typography>
+            <Typography color='text.primary' component='span' variant="h6">
+              {ingredient.ingredient}
+            </Typography>
           </Box>
-          <SmallRecipeName>{ingredient.recipe}</SmallRecipeName>
-        </Box>)
-      }
+          <SmallRecipeName>
+            {ingredient.recipe}
+          </SmallRecipeName>
+        </Box>)}
     </RecipeBox>
   );
 }

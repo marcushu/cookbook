@@ -95,14 +95,12 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
         <IconButton onClick={() => dispatch(deleteFavorite({ recipe, userName }))}>
           <FavoriteIcon color='secondary' />
         </IconButton>
-      </Tooltip>
-      )
+      </Tooltip>)
       : (<Tooltip title='Add to favorites' >
         <IconButton onClick={addToFavorites}>
           <FavoriteIcon color='primary' />
         </IconButton>
-      </Tooltip>
-      );
+      </Tooltip>);
   }
 
   return (
@@ -134,12 +132,12 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
                 </Button>}
             </Box>
           </RecipeFooter>
-          <Snackbar 
-            open={showNotice} 
+          <Snackbar
+            open={showNotice}
             onClose={() => setShowNotice(false)}
             message="Saved to your favorites" />
         </TextGridItem>
-        <Collapse in={showFullRecipe} sx={{width: '100%'}}>
+        <Collapse in={showFullRecipe} sx={{ width: '100%' }}>
           <FullRecipe
             hideMe={() => setShowFullRecipe(!showFullRecipe)}
             recipe={recipe} />

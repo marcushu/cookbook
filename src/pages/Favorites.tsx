@@ -11,8 +11,8 @@ import { selectLoading } from "../redux/searchResultState";
 import foodImage from '../images/foodBoard.png';
 
 const BoxMain = styled(Box)({
-  display: 'flex', 
-  flexDirection: 'column', 
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center'
 });
 
@@ -54,22 +54,22 @@ const Favorites: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
   const isLoading = useAppSelector(selectLoading);
 
-  const greeting = () => (userName.endsWith('s') || userName.endsWith('S'))
-    ? userName + "'"
-    : userName + "'s "
+  const greeting = () => (userName.toUpperCase().endsWith('S'))
+    ? userName + "' Favorites"
+    : userName + "'s Favorites"
 
   return (
     <BoxMain>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
       <TextBox>
-        <BigText>{greeting()}
-          Favorites
+        <BigText>
+          {greeting()}
         </BigText>
         <Typography color='textPrimary' textAlign='center'>
           You currently have {numOfFavorites} favorites.
         </Typography>
         <HighlightedText>
-          Ingredients for these recipes are in your shopping list. <span style={{fontSize: '20px'}}>&#128070;</span>
+          Ingredients for these recipes are in your shopping list. <span style={{ fontSize: '20px' }}>&#128070;</span>
         </HighlightedText>
       </TextBox>
       <RecipeList recipes={recipes} />

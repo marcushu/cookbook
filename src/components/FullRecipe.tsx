@@ -14,7 +14,7 @@ const FullRecipe: FunctionComponent<FullRecipeProps> = ({ hideMe, recipe }) => {
   return (
     <Grid container py={2}>
       <Grid item xs={12} sm={4} pl={2} pb={2}>
-        {ingredients.map(ingredient => 
+        {ingredients.map(ingredient =>
           <Typography variant='body2' component='div' key={ingredient + recipe.name}>
             <li>
               {ingredient}
@@ -23,9 +23,10 @@ const FullRecipe: FunctionComponent<FullRecipeProps> = ({ hideMe, recipe }) => {
       </Grid>
       <Grid item xs={12} sm={8} display='flex' flexDirection='column' justifyContent='space-between'>
         <Box pl={3} pr={3}>
-          {instructions.split('\n').map((sentence, index) => <Typography sx={{fontStyle: 'italic'}} key={index}>
-            ~  {sentence} <br /> <br />
-          </Typography>)}
+          {instructions.split('\n').map((sentence, index) =>
+            <Typography sx={{ fontStyle: 'italic' }} key={index}>
+              ~  {sentence} <br /> <br />
+            </Typography>)}
         </Box>
         <Box alignSelf='end'>
           <Button onClick={hideMe} startIcon={<ExpandLessIcon fontSize='large' />} >

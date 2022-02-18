@@ -37,6 +37,13 @@ const FormElements = styled(Box)({
   padding: '16px'
 });
 
+const IngredientTxtField = styled(TextField)({
+  backgroundColor: '#ffffff99', 
+  height: '53px', 
+  justifyContent: 'flex-end', 
+  fontSize: '44px'
+});
+
 
 const ShoppingList: FunctionComponent = () => {
   const userName = useAppSelector(selectUserName);
@@ -71,8 +78,7 @@ const ShoppingList: FunctionComponent = () => {
         <Box sx={{ width: '90%' }}>
           <form onSubmit={e => submitIngredient(e)}>
             <FormElements>
-              <TextField
-                sx={{ backgroundColor: '#ffffff99', height: '53px', justifyContent: 'flex-end', fontSize: '44px' }}
+              <IngredientTxtField
                 variant='standard'
                 fullWidth={true}
                 required={true}

@@ -7,7 +7,7 @@ import {
 } from "../redux/searchResultState";
 
 
-const MainContainer = styled(Grid)(({theme}) => ({
+const MainContainer = styled(Grid)(({ theme }) => ({
   backgroundColor: '#67686e',
   padding: '5px 10px 5px 10px',
   justifyContent: 'center',
@@ -48,7 +48,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           fullWidth={true}
           id="searchText"
           label="find something"
-          inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px'}}}
+          inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px' } }}
           value={recipeToFind}
           onChange={e => setRecipeToFind(e.target.value)} />
         <button
@@ -56,7 +56,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
           onClick={startSearch}
           ref={buttonRef} />
       </Grid>
-      <Grid item xs={12} sm={4} sx={{marginTop: ['20px', '0px'], marginBottom: ['20px', '0px']}}>
+      <Grid item xs={12} sm={4} sx={{ marginTop: ['20px', '0px'], marginBottom: ['20px', '0px'] }}>
         <FormGroup row sx={{ justifyContent: 'space-around' }}>
           <FormControlLabel
             value="Breakfast"
@@ -122,8 +122,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
                 checked={findVegetarian}
                 onChange={() => dispatch(setFindMealSettings(
                   { searchType: 'vegetarian', trueFalse: !findVegetarian }
-                ))} />
-            }
+                ))} />}
             label="Vegetarian"
             labelPlacement="top" />
           <FormControlLabel
@@ -136,8 +135,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
                 checked={findVegan}
                 onChange={() => dispatch(setFindMealSettings(
                   { searchType: 'vegan', trueFalse: !findVegan }
-                ))} />
-            }
+                ))} />}
             label="Vegan"
             labelPlacement="top" />
         </FormGroup>
