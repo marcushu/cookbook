@@ -50,7 +50,7 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
   return (
     <HeaderContent>
       <Box sx={{ paddingBottom: ['10px', '0px'] }}>
-        <Typography variant='h3' sx={{fontWeight: '100'}}>
+        <Typography variant='h3' sx={{ fontWeight: '100' }}>
           Cookbook
         </Typography>
         <Typography variant='body2' pl={2} fontStyle='italic'>
@@ -71,8 +71,10 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
           </>
           :
           <Tooltip title='Log in'>
-            <IconButton onClick={() => navigate('/signin')}>
-              <AccountCircleIcon fontSize='large' sx={{ color: 'white', paddingTop: '5px' }} />
+            <IconButton onClick={() => navigate('/signin')} >
+              <AccountCircleIcon
+                fontSize='large'
+                sx={{ color: 'white', paddingTop: '5px', display: ['none', 'revert'] }} />
             </IconButton>
           </Tooltip>
         }
