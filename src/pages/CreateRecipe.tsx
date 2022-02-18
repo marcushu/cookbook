@@ -127,27 +127,29 @@ const CreateRecipe: FunctionComponent = () => {
       <Header
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
-      <CreateRecipeCard sx={{ width: ['100%', '875px'] }}>
-        <Box sx={{ width: ['auto', 850] }} m='auto'>
-          <Typography color='primary' variant='h4' py={2}>Create a new recipe</Typography>
+      <CreateRecipeCard sx={{ width: ['100%', '100%', '875px'] }}>
+        <Box sx={{ width: ['95%', '95%', '850px'] }} m='auto'>
+          <Typography color='primary' variant='h4' py={2}>
+            Create a new recipe
+          </Typography>
           <form action="" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} md={4}>
                 <TextField id="name" label="Recipe Name" name='name'
                   required={true} fullWidth onChange={handleInputChange}
                   sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
-              <Grid item xs={12} sm={8}>
+              <Grid item xs={12} md={8}>
                 <TextField id='description' label='short description'
                   name='description' fullWidth onChange={handleInputChange}
                   sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} md={4}>
                 <TextField id='ingredients' label='ingredients' name='ingredients' required={true}
                   helperText='one ingredient per line' fullWidth multiline={true} rows='10' onChange={handleInputChange}
                   sx={{backgroundColor: '#ffffff61'}} />
               </Grid>
-              <Grid item xs={12} sm={8}>
+              <Grid item xs={12} md={8}>
                 <TextField id='instructions' label='instructions' name='instructions'
                   required={true} fullWidth rows='10' multiline={true} onChange={handleInputChange}
                   sx={{backgroundColor: '#ffffff61'}} />
@@ -178,7 +180,8 @@ const CreateRecipe: FunctionComponent = () => {
                   control={<Checkbox checked={formValues.vegetarian} onChange={handleCheckboxes} />}
                   label='vegetarian' labelPlacement='end' />
               </Grid>
-              <Grid item xs={12} display='flex'>
+              <Grid item xs={12} display='flex'
+                sx={{ justifyContent: ['center', 'flex-start']}}>
                 <Button 
                   variant='contained' 
                   color='primary' 
