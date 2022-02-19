@@ -37,7 +37,10 @@ const ImageGridItem = styled(Grid)({
   width: '300px',
   height: '300px',
   overflow: 'hidden',
-  textAlign: 'center'
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  backgroundColor: '#beb9b9'
 });
 
 const TextGridItem = styled(Grid)({
@@ -107,7 +110,9 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     <RecipePaper variant='outlined'>
       <Grid container>
         <ImageGridItem item xs={12} sm={4} >
-          <img style={{ maxWidth: '100%' }} src={imageUrl.length ? imageUrl : defaultImage} alt="food" />
+          <img style={{ maxWidth: '100%' }}
+            src={imageUrl.length ? imageUrl : defaultImage}
+            alt="food" />
         </ImageGridItem>
         <TextGridItem item xs={12} sm={8}>
           <Box pl={2}>
