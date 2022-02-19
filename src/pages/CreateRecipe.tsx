@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid, TextField, Typography } from "@mui/material";
+import { Backdrop, Box, Button, Checkbox, CircularProgress, FormControlLabel, Grid, TextField, Typography } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import React, { FunctionComponent, useState } from "react";
@@ -14,8 +14,8 @@ import bgImage from '../images/cleanS.jpg'
 const dbApi = process.env.REACT_APP_API_URL
 
 const BoxMain = styled(Box)({
-  display: 'flex', 
-  flexDirection: 'column', 
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center'
 });
 
@@ -34,6 +34,7 @@ const CreateRecipe: FunctionComponent = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [foodImages, setFoodImages] = useState({ fullSize: "", foodThumbnail: "" });
+  const [loadingRecipe, setLoadingRecipe] = useState(false);
   const userName = useAppSelector(selectUserName);
   const [formValues, setFormValues] = useState({
     ingredients: "",
@@ -98,6 +99,8 @@ const CreateRecipe: FunctionComponent = () => {
     }
 
     try {
+      setLoadingRecipe(true);
+
       const response = await fetch(`${dbApi}/recipe`,
         {
           method: 'POST',
@@ -111,13 +114,15 @@ const CreateRecipe: FunctionComponent = () => {
 
       if (acknowledged) {
         dispatch(addRecipe(newRecipe));
-        
+
         navigate('/mypage')
       } else {
         alert("something went wrong...")
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingRecipe(false);
     }
   }
 
@@ -137,22 +142,22 @@ const CreateRecipe: FunctionComponent = () => {
               <Grid item xs={12} md={4}>
                 <TextField id="name" label="Recipe Name" name='name'
                   required={true} fullWidth onChange={handleInputChange}
-                  sx={{backgroundColor: '#ffffff61'}} />
+                  sx={{ backgroundColor: '#ffffff61' }} />
               </Grid>
               <Grid item xs={12} md={8}>
                 <TextField id='description' label='short description'
                   name='description' fullWidth onChange={handleInputChange}
-                  sx={{backgroundColor: '#ffffff61'}} />
+                  sx={{ backgroundColor: '#ffffff61' }} />
               </Grid>
               <Grid item xs={12} md={4}>
                 <TextField id='ingredients' label='ingredients' name='ingredients' required={true}
                   helperText='one ingredient per line' fullWidth multiline={true} rows='10' onChange={handleInputChange}
-                  sx={{backgroundColor: '#ffffff61'}} />
+                  sx={{ backgroundColor: '#ffffff61' }} />
               </Grid>
               <Grid item xs={12} md={8}>
                 <TextField id='instructions' label='instructions' name='instructions'
                   required={true} fullWidth rows='10' multiline={true} onChange={handleInputChange}
-                  sx={{backgroundColor: '#ffffff61'}} />
+                  sx={{ backgroundColor: '#ffffff61' }} />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
@@ -181,17 +186,17 @@ const CreateRecipe: FunctionComponent = () => {
                   label='vegetarian' labelPlacement='end' />
               </Grid>
               <Grid item xs={12} display='flex'
-                sx={{ justifyContent: ['center', 'flex-start']}}>
-                <Button 
-                  variant='contained' 
-                  color='primary' 
+                sx={{ justifyContent: ['center', 'flex-start'] }}>
+                <Button
+                  variant='contained'
+                  color='primary'
                   onClick={addImage}
-                  startIcon={<InsertPhotoIcon />} 
+                  startIcon={<InsertPhotoIcon />}
                   size='large'>
-                    Add Image
+                  Add Image
                 </Button>
                 {!!foodImages.foodThumbnail.length &&
-                  <img src={foodImages.foodThumbnail} alt="food" style={{marginLeft: '10px', borderRadius: '5px'}} />}
+                  <img src={foodImages.foodThumbnail} alt="food" style={{ marginLeft: '10px', borderRadius: '5px' }} />}
               </Grid>
               <Grid item xs={12} sx={{ textAlign: 'center' }}>
                 <Button type='submit' value='Submit' variant='contained'>Submit!</Button> &nbsp;
@@ -201,6 +206,9 @@ const CreateRecipe: FunctionComponent = () => {
           </form>
         </Box>
       </CreateRecipeCard>
+      <Backdrop open={loadingRecipe}>
+        <CircularProgress />
+      </Backdrop>
     </BoxMain>
   );
 }
