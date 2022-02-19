@@ -37,9 +37,9 @@ const RecipeCardLoading: FunctionComponent = () => {
             animation="wave"
             sx={{ bgcolor: 'grey.300' }} />
           <Skeleton variant="rectangular"
-            height={50} width={300}
+            height={50}
             animation="wave"
-            sx={{ marginTop: '15px', bgcolor: 'grey.300' }} />
+            sx={{ marginTop: '15px', bgcolor: 'grey.300', width: ['200px', '300px'] }} />
         </Grid>
       </Grid>
     </RecipePaper >
