@@ -1,7 +1,7 @@
-import { Box, Button, Grid, styled, TextField, Typography } from "@mui/material";
+import { Backdrop, Box, Button, CircularProgress, Grid, styled, TextField, Typography } from "@mui/material";
 import { FunctionComponent, useState } from "react";
-import { useAppDispatch } from "../app/hooks";
-import { createUser, fetchUser } from "../redux/userState";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { createUser, fetchUser, selectUserLoading } from "../redux/userState";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
 import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplashS.jpg'
@@ -31,6 +31,7 @@ const SignIn: FunctionComponent = () => {
   const MINUSERNAMELENGTH = 7;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const isLoading = useAppSelector(selectUserLoading);
   const [username, setUsername] = useState("");
   const [newUsername, setNewUsername] = useState("");
 
@@ -107,6 +108,9 @@ const SignIn: FunctionComponent = () => {
           </Grid>
         </Grid >
       </LoginContent>
+      <Backdrop open={isLoading}>
+        <CircularProgress />
+      </Backdrop>
     </BoxMain>
   );
 }
