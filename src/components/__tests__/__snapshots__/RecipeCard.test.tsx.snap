@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeCard renders 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-17ll33i-MuiPaper-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 css-nlax5s-MuiGrid-root"
+      >
+        <img
+          alt="food"
+          src="http://mock.url"
+          style="max-width: 100%;"
+        />
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 css-gp88pu-MuiGrid-root"
+      >
+        <div
+          class="MuiBox-root css-n085mf"
+        >
+          <h4
+            class="MuiTypography-root MuiTypography-h4 css-owqfbr-MuiTypography-root"
+          >
+            mock name
+          </h4>
+          <div
+            class="MuiBox-root css-a8cz4w"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+            >
+              moc*******
+            </h6>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-1hd3sn1-MuiTypography-root"
+            >
+              mock description
+            </p>
+            <div
+              class="MuiBox-root css-1sf3xto"
+            >
+              <div
+                class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1s371d4-MuiChip-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-icon MuiChip-iconMedium MuiChip-iconColorDefault css-i4bv87-MuiSvgIcon-root"
+                  data-testid="CheckIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+                  />
+                </svg>
+                <span
+                  class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                >
+                  Dinner
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-1r0oefp"
+        >
+          <div
+            class="MuiBox-root css-1jpm9pd"
+          >
+            <div
+              class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorSecondary MuiChip-filledSecondary css-afkqfg-MuiChip-root"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelSmall css-wjsjww-MuiChip-label"
+              >
+                GF
+              </span>
+            </div>
+            <div
+              class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorSecondary MuiChip-filledSecondary css-afkqfg-MuiChip-root"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelSmall css-wjsjww-MuiChip-label"
+              >
+                vegan
+              </span>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-0"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+                  data-testid="ExpandMoreIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                  />
+                </svg>
+              </span>
+              more
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-11uq76c-MuiCollapse-root"
+        style="min-height: 0px;"
+      >
+        <div
+          class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+        >
+          <div
+            class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container css-1nb6n7u-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 css-1usvq7t-MuiGrid-root"
+              >
+                <div
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  <li>
+                    ing1
+                  </li>
+                </div>
+                <div
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  <li>
+                    ing2
+                  </li>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 css-g08sh6-MuiGrid-root"
+              >
+                <div
+                  class="MuiBox-root css-t0051x"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-p3gdy2-MuiTypography-root"
+                  >
+                    ~  these are the mock instructions 
+                    <br />
+                     
+                    <br />
+                  </p>
+                </div>
+                <div
+                  class="MuiBox-root css-1fuqp3k"
+                >
+                  <button
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge css-tzssek-MuiSvgIcon-root"
+                        data-testid="ExpandLessIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m12 8-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+                        />
+                      </svg>
+                    </span>
+                    less
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
