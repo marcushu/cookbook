@@ -31,7 +31,18 @@ const TextBox = styled(Box)({
 const Titles = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontWeight: 'bold',
-  fontSize: theme.typography.h3.fontSize
+  fontSize: theme.typography.h3.fontSize,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.typography.h4.fontSize,
+  }
+}));
+
+const BodyText = styled(Typography)(({theme}) => ({
+  color: theme.palette.text.primary,
+  fontSize: theme.typography.h5.fontSize,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: theme.typography.body1.fontSize,
+  }
 }));
 
 const TitleButton = styled(Titles)({
@@ -60,17 +71,17 @@ const HomeWelcome: FunctionComponent = () => {
           <Titles>
             Just recipes
           </Titles>
-          <Typography color='textPrimary' variant='h5'>Cooking sites are great, but they can be wordy.  No stories, or long
+          <BodyText>Cooking sites are great, but they can be wordy.  No stories, or long
             descriptions here, just the ingredients, and what to do with them.
-          </Typography>
+          </BodyText>
         </TextBox>
         <TextBox>
           <TitleButton
             onClick={() => navigate('/signin')}>Log in
           </TitleButton>
-          <Typography color='textPrimary' variant='h5'>
+          <BodyText>
             Log in to add your own recipes, collect favorites, and create shopping lists.
-          </Typography>
+          </BodyText>
         </TextBox>
         <SearchButton searchFunction={callSearch} />
       </TextContent>

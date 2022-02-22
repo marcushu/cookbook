@@ -16,14 +16,13 @@ const HeaderContent = styled(Box)(({ theme }) => ({
   width: '100%',
   maxWidth: '886px',
   display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
+  justifyContent: 'space-between',
+  flexDirection: 'row',
   backgroundColor: '#3fa8b5',
   color: 'white',
   padding: '24px 8px 24px 8px',
-  [theme.breakpoints.up('sm')]: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
   }
 }));
 
