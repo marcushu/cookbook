@@ -12,6 +12,15 @@ const BoxMain = styled(Box)({
   alignItems: 'center'
 });
 
+const HeaderBox = styled(Box)(({theme}) => ({
+  display: 'unset',
+  maxWidth: '886px',
+  width: '100%',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
+  }
+}));
+
 const LoginContent = styled('div')({
   backgroundImage: `url(${splashImage})`,
   backgroundRepeat: 'no-repeat',
@@ -51,7 +60,9 @@ const SignIn: FunctionComponent = () => {
 
   return (
     <BoxMain>
-      <Header />
+      <HeaderBox>
+        <Header />
+      </HeaderBox>
       <LoginContent sx={{ width: ['100%', '902px'] }}>
         <Grid container sx={{ maxWidth: ['100%', '420px'] }} m='auto'>
           <LoginSignup item xs={12} mt={3}>

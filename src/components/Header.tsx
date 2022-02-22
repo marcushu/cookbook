@@ -22,7 +22,16 @@ const HeaderContent = styled(Box)(({ theme }) => ({
   color: 'white',
   padding: '24px 8px 24px 8px',
   [theme.breakpoints.down('sm')]: {
-    display: 'none'
+    flexDirection: 'column',
+    justifyContent: 'center'
+  }
+}));
+
+const HeaderTitle = styled(Box)(({ theme }) => ({
+  paddingBottom: '10px',
+  display: 'unset',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
   }
 }));
 
@@ -48,14 +57,14 @@ const Header: FunctionComponent<HeaderProps> = ({ leftButton, rightButton }) => 
 
   return (
     <HeaderContent>
-      <Box sx={{ paddingBottom: ['10px', '0px'] }}>
+      <HeaderTitle>
         <Typography variant='h3' sx={{ fontWeight: '100' }}>
           Cookbook
         </Typography>
         <Typography variant='body2' pl={2} fontStyle='italic'>
           recipes...no clutter
         </Typography>
-      </Box>
+      </HeaderTitle>
       <IconBox>
         {userName
           ?

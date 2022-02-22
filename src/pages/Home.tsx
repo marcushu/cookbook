@@ -14,6 +14,15 @@ const BoxMain = styled(Box)({
   alignItems: 'center'
 });
 
+const HeaderBox = styled(Box)(({theme}) => ({
+  display: 'unset',
+  maxWidth: '886px',
+  width: '100%',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none'
+  }
+}));
+
 const Home: FunctionComponent = () => {
   const isLoading = useAppSelector(selectLoading);
   const recipes = useAppSelector(selectSearchResults);
@@ -36,7 +45,9 @@ const Home: FunctionComponent = () => {
 
   return (
     <BoxMain>
-      <Header />
+      <HeaderBox>
+        <Header />
+      </HeaderBox>
       <HomeWelcome />
       <Box pb={3}>
         {isLoading
