@@ -30,5 +30,5 @@ export interface Recipe {
     recipes: Recipe[]
     favorites: Recipe[]
     shoppingList: ShoppinglistIngredient[], 
-    isLoading: boolean
+    isLoading?: boolean
   }

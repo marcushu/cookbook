@@ -99,7 +99,7 @@ const ShoppingList: FunctionComponent = () => {
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />
-      <Backdrop open={isLoading}>
+      <Backdrop open={isLoading!}>
         <CircularProgress />
       </Backdrop>
 

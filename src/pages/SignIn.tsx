@@ -119,7 +119,7 @@ const SignIn: FunctionComponent = () => {
           </Grid>
         </Grid >
       </LoginContent>
-      <Backdrop open={isLoading}>
+      <Backdrop open={isLoading!}>
         <CircularProgress />
       </Backdrop>
     </BoxMain>
