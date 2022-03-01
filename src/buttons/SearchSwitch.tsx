@@ -1,7 +1,7 @@
 import { Box, Switch, Tooltip, Typography } from "@mui/material";
 import { FunctionComponent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { selectOwner, setOwner } from "../redux/searchResultState";
+import { search, selectOwner, setOwner } from "../redux/searchResultState";
 import { selectUserName } from "../redux/userState";
 import FaceIcon from '@mui/icons-material/Face';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
@@ -24,6 +24,7 @@ const SearchSwitch: FunctionComponent = () => {
     const switchTo = !!owner.length ? "" : userName;
 
     dispatch(setOwner(switchTo));
+    dispatch(search());
   }
 
   return (
