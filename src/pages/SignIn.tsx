@@ -76,6 +76,7 @@ const SignIn: FunctionComponent = () => {
               variant='outlined'
               fullWidth={true}
               value={username}
+              autoFocus={true}
               onChange={e => setUsername(e.target.value)} />
             <Button
               id="signinbtn"
