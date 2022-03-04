@@ -3,56 +3,67 @@ import { Box, Grid, Typography } from "@mui/material";
 import { FunctionComponent, useRef } from "react";
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
-import backgroundImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplashS.jpg'
 import SearchButton from '../buttons/SearchButton';
+import bgImageLg from '../images/leftBG.png';
+import topImgSm from '../images/topImage.png';
 
 const MainContent = styled(Grid)({
-  minHeight: '375px',
-  maxWidth: '902px',
-  marginBottom: '25px',
-  backgroundColor: '#3fa8b538',
-  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+  backgroundColor: '#5b5b5b',
+  minHeight: '407px',
+  maxWidth: '902px'
 });
 
-const TextContent = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textAlign: 'center',
-  backgroundImage: `url(${backgroundImage})`,
-  backgroundSize: 'cover',
-  padding: '50px 30px'
-})
+const LeftPanel = styled(Grid)(({ theme }) => ({
+  backgroundImage: `url(${bgImageLg})`, 
+  backgroundRepeat: 'no-repeat', 
+  backgroundSize: 'contain',
+  [theme.breakpoints.down('sm')]: {
+    backgroundImage: `url(${topImgSm})`,
+    backgoundSize: 'cover'
+  }
+}));
 
-const TextBox = styled(Box)({
-  maxWidth: '500px'
-});
+const TextBox = styled(Box)(({ theme }) => ({
+  maxWidth: '410px', 
+  margin: 'auto', 
+  paddingTop: '20px', 
+  textAlign: 'left',
+  [theme.breakpoints.down('sm')]: {
+    textAlign: 'center',
+    padding: '20px 20px 40px 20px'
+  }
+}));
 
 const Titles = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  fontWeight: 'bold',
-  fontSize: theme.typography.h3.fontSize,
+  color: '#B3F7FF',
+  fontFamily: "'Playfair Display', serif",
+  fontStyle: 'italic',
+  fontSize: '50px',
+  marginBottom: '20px',
+  marginTop: '10px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: theme.typography.h4.fontSize,
+    fontSize: '48px',
   }
 }));
 
-const BodyText = styled(Typography)(({theme}) => ({
-  color: theme.palette.text.primary,
-  fontSize: theme.typography.h5.fontSize,
-  [theme.breakpoints.down('sm')]: {
-    fontSize: theme.typography.body1.fontSize,
-  }
-}));
+const BodyText = styled(Typography)({
+  color: 'white',
+  fontSize: '18px',
+  fontWeight: '300',
+});
 
-const TitleButton = styled(Titles)({
+const TitleButton = styled(Titles)(({ theme }) => ({
   textDecoration: 'underline',
+  fontSize: '40px',
   transition: 'transform 0.5s',
   ":hover": {
     cursor: 'pointer',
-    transform: 'scale(1.04)'
+    transform: 'scale(1.02)'
+  },
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '36px',
   }
-});
+}));
 
 
 const HomeWelcome: FunctionComponent = () => {
@@ -65,31 +76,44 @@ const HomeWelcome: FunctionComponent = () => {
   }
 
   return (
-    <MainContent container>
-      <TextContent item xs={12}>
-        <TextBox>
-          <Titles>
-            Just recipes
-          </Titles>
-          <BodyText>Cooking sites are great, but they can be wordy.  No stories, or long
-            descriptions here, just the ingredients, and what to do with them.
-          </BodyText>
-        </TextBox>
-        <TextBox>
-          <TitleButton
-            onClick={() => navigate('/signin')}>Log in
-          </TitleButton>
-          <BodyText>
-            Log in to add your own recipes, collect favorites, and create shopping lists.
-          </BodyText>
-        </TextBox>
-        <SearchButton searchFunction={callSearch} />
-      </TextContent>
-      <Grid item xs={12}>
-        <SearchBar ref={searchBarRef} />
+    <>
+      <MainContent container>
+        <LeftPanel item xs={12} sm={5}>
+          <Box sx={{textAlign: 'end', margin: ['128px 25px 0px','85px 25px']}}>
+            <Typography sx={{fontSize: '22px', color: '#3FA8B5'}}>
+              FIND RECIPES
+            </Typography>
+            <SearchButton searchFunction={callSearch} />
+            <Typography sx={{fontStyle: 'italic', fontSize: '16px', color: '#b3b3b3'}}>
+              Browse, or enter <br/> a search tearm <br /> below
+            </Typography>
+          </Box>
+        </LeftPanel>
+        <Grid item xs={12} sm={7} sx={{ backgroundColor: '#5B5B5B' }}>
+          <TextBox>
+            <Titles>
+              Just recipes
+            </Titles>
+            <BodyText>
+              Cooking sites are great, but they can be wordy. No stories, or long descriptions here, just the ingredients, and what to do with them.
+            </BodyText>
+            <TitleButton onClick={() => navigate('/signin')}>
+              Login
+            </TitleButton>
+            <BodyText>
+              Log in to add your own recipes, collect favorites, and create shopping lists.
+            </BodyText>
+          </TextBox>
+        </Grid>
+      </MainContent>
+      <Grid container sx={{ maxWidth: '902px', marginBottom: '20px' }}>
+        <Grid item xs={12}>
+          <SearchBar ref={searchBarRef} />
+        </Grid>
       </Grid>
-    </MainContent>
-  );
+
+    </>
+  )
 }
 
 export default HomeWelcome;

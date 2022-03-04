@@ -9,7 +9,7 @@ import Header from "../components/Header";
 import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import FavoritesBtn from "../buttons/FavoritesBtn";
 import { showUploadWidget } from "../js/uploadWidget";
-import bgImage from '../images/cleanS.jpg'
+import Topper from "../components/Topper";
 
 const dbApi = process.env.REACT_APP_API_URL
 
@@ -22,11 +22,7 @@ const BoxMain = styled(Box)({
 const CreateRecipeCard = styled(Typography)(({ theme }) => ({
   backgroundColor: 'white',
   color: theme.palette.text.primary,
-  padding: '8px 8px 30px 8px',
-  backgroundImage: `url(${bgImage})`,
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+  padding: '0px 8px 30px 8px',
 }));
 
 
@@ -131,9 +127,11 @@ const CreateRecipe: FunctionComponent = () => {
     <BoxMain>
       <Header
         leftButton={<FavoritesBtn />}
-        rightButton={<ShoppingListBtn />} />
-      <CreateRecipeCard sx={{ width: ['100%', '100%', '875px'] }}>
-        <Box sx={{ width: ['95%', '95%', '850px'] }} m='auto'>
+        rightButton={<ShoppingListBtn />} 
+      />
+      <Topper />
+      <CreateRecipeCard sx={{ width: ['100%', '100%', '886px'] }}>
+        <Box sx={{ width: ['95%', '95%', '870px'] }} m='auto'>
           <Typography color='primary' variant='h4' py={2}>
             Create a new recipe
           </Typography>

@@ -8,7 +8,9 @@ import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
 import { Box } from "@mui/material/node_modules/@mui/system";
 import { selectLoading } from "../redux/searchResultState";
-import foodImage from '../images/foodBoardS.jpg';
+import splashImage from '../images/curveWimage.png';
+import splashImgSm from '../images/phoneBG.png';
+import RecipeCount from "../components/RecipeCount";
 
 const BoxMain = styled(Box)({
   display: 'flex',
@@ -16,45 +18,58 @@ const BoxMain = styled(Box)({
   alignItems: 'center'
 });
 
-const TextBox = styled(Box)({
-  backgroundImage: `url(${foodImage})`,
+const ImagePanel = styled(Box)(({ theme }) => ({
+  backgroundImage: `url(${splashImage})`,
   backgroundSize: 'cover',
+  maxWidth: '902px',
   backgroundRepeat: 'no-repeat',
   width: '100%',
-  maxWidth: '880px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  padding: '15px 10px 40px 10px',
-  marginBottom: '25px',
   minHeight: '315px',
-  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+  marginBottom: '20px',
+  [theme.breakpoints.down('sm')]: {
+    backgroundImage: `url(${splashImgSm})`,
+    backgroundSize: 'cover',
+    backgroundPositionY: 'bottom',
+    minHeight: '600px',
+  }
+}));
+
+const Username = styled(Box)({
+  textAlign: 'end',
+  color: '#B2F7FF',
+  fontFamily: "'Playfair Display', serif",
+  fontStyle: 'italic',
+  fontWeight: '600',
+  fontSize: '48px',
+  margin: '30px 45px 0px 0px',
 });
 
-const BigText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  textAlign: 'center',
-  fontSize: theme.typography.h3.fontSize,
-  backgroundColor: 'revert',
+const Titles = styled(Typography)({
+  fontFamily: '"Roboto", sand-serif',
+  color: 'white',
+  fontWeight: '100',
+  fontSize: '64px',
+  textAlign: 'end',
+  marginRight: '45px',
+  position: 'relative',
+  top: '-20px'
+});
+
+const HighlightedText = styled(Typography)(({ theme }) => ({
+  color: '#CDCBCB',
+  fontStyle: 'italic',
+  fontSize: '16px',
+  alignSelf: 'end',
+  padding: '15px 20px 55px 5px',
   [theme.breakpoints.down('sm')]: {
-    backgroundColor: '#ffffffd1'
+    alignSelf: 'center',
+    padding: '25px 20px 55px 25px',
+    textAlign: 'center',
   }
 }));
 
-const HighlightedText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  borderRadius: '5px',
-  fontSize: '16px',
-  padding: '5px',
-  backgroundColor: '#ffffff7a',
-  width: 'max-content',
-  alignSelf: 'center',
-  marginTop: '30px',
-  display: 'revert',
-  [theme.breakpoints.down('sm')]: {
-    display: 'none'
-  }
-}));
 
 const Favorites: FunctionComponent = () => {
   const recipes = useAppSelector(selectFavorites);
@@ -63,27 +78,26 @@ const Favorites: FunctionComponent = () => {
   const isLoading = useAppSelector(selectLoading);
 
   const greeting = () => (userName.toUpperCase().endsWith('S'))
-    ? userName + "' Favorites"
-    : userName + "'s Favorites"
+    ? userName + "' "
+    : userName + "'s "
 
   return (
     <BoxMain>
       <Header leftButton={<HomeBtn />} rightButton={<ShoppingListBtn />} />
-      <TextBox>
-        <BigText>
+      <ImagePanel>
+        <Username>
           {greeting()}
-        </BigText>
-        <Typography color='textPrimary' textAlign='center' pb={1}
-          sx={{ backgroundColor: ['#ffffffd1', 'revert']}}>
-          You currently have {numOfFavorites} favorites.
-        </Typography>
+        </Username>
+        <Titles>
+          Favorites
+        </Titles>
+        <Box sx={{ alignSelf: ['center', 'end'] }} mt={2}>
+          <RecipeCount numRecipes={numOfFavorites} recipeOrFave={"favorites"} />
+        </Box>
         <HighlightedText>
-          Ingredients for these recipes are in your shopping list. 
-          <span style={{ fontSize: '20px' }}>
-            &#128070;
-          </span>
+          Ingredients for these recipes are in your shopping list.
         </HighlightedText>
-      </TextBox>
+      </ImagePanel>
       <RecipeList recipes={recipes} />
       <Backdrop open={isLoading}>
         <CircularProgress />

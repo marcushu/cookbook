@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { createUser, fetchUser, selectUserLoading } from "../redux/userState";
 import { useNavigate } from "react-router";
 import Header from "../components/Header";
-import splashImage from '../images/lukas-blazek-f-TWhXOrLiU-unsplashS.jpg'
+import Topper from "../components/Topper";
 
 const BoxMain = styled(Box)({
   display: 'flex', 
@@ -21,18 +21,27 @@ const HeaderBox = styled(Box)(({theme}) => ({
   }
 }));
 
-const LoginContent = styled('div')({
-  backgroundImage: `url(${splashImage})`,
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  paddingTop: '8px',
-  boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-});
+const Forms = styled(Grid)(({ theme }) => ({
+  maxWidth: '420px',
+  padding: '0px',
+  margin: 'auto',
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '100%',
+    padding: '0px 20px 0px 20px'
+  }
+}));
+
+const LoginContent = styled('div')(({ theme }) => ({
+  backgroundColor: 'white',
+  width: '902px',
+  [theme.breakpoints.down('sm')]: {
+    width: '100%'
+  }
+}));
 
 const LoginSignup = styled(Grid)({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: '#ffffff9c',
   padding: '12px'
 });
 
@@ -63,8 +72,9 @@ const SignIn: FunctionComponent = () => {
       <HeaderBox>
         <Header />
       </HeaderBox>
-      <LoginContent sx={{ width: ['100%', '902px'] }}>
-        <Grid container sx={{ maxWidth: ['100%', '420px'] }} m='auto'>
+      <Topper />
+      <LoginContent>
+        <Forms container>
           <LoginSignup item xs={12} mt={3}>
             <Typography color='textPrimary' variant="h4">
               Log In
@@ -118,7 +128,7 @@ const SignIn: FunctionComponent = () => {
           <Grid py={2}>
             <Button color='secondary' onClick={() => navigate('/')}>&lt; Cancel</Button>
           </Grid>
-        </Grid >
+        </Forms >
       </LoginContent>
       <Backdrop open={isLoading!}>
         <CircularProgress />

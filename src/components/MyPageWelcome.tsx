@@ -36,15 +36,6 @@ const ImagePanel = styled(Box)(({ theme }) => ({
   }
 }));
 
-const CountBox = styled(Box)(({ theme }) => ({
-  alignSelf: 'end',
-  paddingRight: '15px',
-  [theme.breakpoints.down('sm')]: {
-    alignSelf: 'unset',
-    paddingRight: '0px'
-  }
-}));
-
 const Username = styled(Box)({
   textAlign: 'end',
   color: '#B2F7FF',
@@ -77,9 +68,11 @@ const MyPageWelcome: FunctionComponent<MyPageWelcomProps> = ({ userName, recipeC
         <Username>
           {userName}
         </Username>
-        <CountBox>
-          <RecipeCount numRecipes={recipeCount} />
-        </CountBox>
+        <Box sx={{ alignSelf: ['center', 'end'], }} mt={3}>
+          <RecipeCount 
+            numRecipes={recipeCount} 
+            recipeOrFave={"recipes"} />
+        </Box>
         <Box py={4} display='flex' justifyContent='flex-end'>
           <CreateRecipeBtn />
         </Box>

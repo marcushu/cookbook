@@ -23,7 +23,8 @@ const HeaderContent = styled(Box)(({ theme }) => ({
   padding: '24px 8px 24px 8px',
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: '20px 0px 20px 0px'
   }
 }));
 

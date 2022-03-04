@@ -8,7 +8,7 @@ import { ShoppinglistIngredient } from "../interfaces/types";
 import ListIngredients from "../components/ListIngredients";
 import { Backdrop, Box, CircularProgress, IconButton, styled, TextField } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import foodImage from '../images/foodAtTopS.jpg';
+import Topper from "../components/Topper";
 
 
 const BoxMain = styled(Box)({
@@ -17,30 +17,25 @@ const BoxMain = styled(Box)({
   alignItems: 'center'
 });
 
-const Topper = styled(Box)({
-  backgroundImage: `url(${foodImage})`,
+const TopPanel = styled(Box)(({ theme }) => ({
+  backgroundColor: '#ffffff',
   width: '100%',
   maxWidth: '873px',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'center',
-  height: '256px',
-  padding: '15px',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-});
+  alignItems: 'flex-start',
+  height: '90px',
+  padding: '0px 15px 15px 15px',
+  [theme.breakpoints.down('sm')]: {
+    padding: '0px'
+  }
+}));
 
-const FormElements = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-  padding: '16px'
-});
 
 const IngredientTxtField = styled(TextField)({
-  backgroundColor: '#ffffff99', 
-  height: '53px', 
-  justifyContent: 'flex-end', 
+  height: '53px',
+  justifyContent: 'flex-end',
   fontSize: '44px'
 });
 
@@ -72,12 +67,12 @@ const ShoppingList: FunctionComponent = () => {
     <BoxMain>
       <Header
         leftButton={<FavoritesBtn />}
-        rightButton={<HomeBtn />}
-      />
-      <Topper>
+        rightButton={<HomeBtn />} />
+      <Topper />
+      <TopPanel>
         <Box sx={{ width: '90%' }}>
           <form onSubmit={e => submitIngredient(e)}>
-            <FormElements>
+            <Box p={2} display='flex' alignItems='center'>
               <IngredientTxtField
                 variant='standard'
                 fullWidth={true}
@@ -86,16 +81,18 @@ const ShoppingList: FunctionComponent = () => {
                 focused={true}
                 name="newIngredientTXT"
                 id="newIngredientTXT" />
-              <Box sx={{ backgroundColor: '#ffffff99', marginLeft: '8px' }}>
-                <IconButton aria-label="newitem"
-                  type='submit' color='primary'>
+              <Box ml={1}>
+                <IconButton 
+                  aria-label="newitem"
+                  type='submit' 
+                  color='primary'>
                   <AddIcon fontSize="large" />
                 </IconButton>
               </Box>
-            </FormElements>
+            </Box>
           </form>
         </Box>
-      </Topper>
+      </TopPanel>
       <ListIngredients
         handleClick={handleDelete}
         listItems={listIngredients} />
