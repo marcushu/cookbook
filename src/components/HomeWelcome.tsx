@@ -71,8 +71,6 @@ const HomeWelcome: FunctionComponent = () => {
   const navigate = useNavigate();
 
   const callSearch = () => {
-    window.scrollTo({ top: 625, behavior: 'smooth' });
-
     if (searchBarRef?.current)
       searchBarRef.current.click();
   }
