@@ -9,7 +9,10 @@ interface RecipeCountProps {
 
 const UserInfo = styled(Box)(({ theme }) => ({
   backgroundColor: 'gray',
-  width: '480px'
+  width: '480px',
+  [theme.breakpoints.down('sm')]: {
+    width: '100%'
+  }
 }));
 
 const UserInfoText = styled(Typography)(({ theme }) => ({

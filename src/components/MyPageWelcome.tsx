@@ -57,6 +57,16 @@ const Titles = styled(Box)({
   margin: '40px 45px 0px 0px'
 });
 
+const CountInfo = styled(Box)(({ theme }) => ({
+  alignSelf: 'end',
+  width: 'unset',
+  marginTop: '24px',
+  [theme.breakpoints.down('sm')]: {
+    alignSelf: 'center',
+    width: '100%'
+  }
+}));
+
 
 const MyPageWelcome: FunctionComponent<MyPageWelcomProps> = ({ userName, recipeCount }) => {
   return (
@@ -68,11 +78,11 @@ const MyPageWelcome: FunctionComponent<MyPageWelcomProps> = ({ userName, recipeC
         <Username>
           {userName}
         </Username>
-        <Box sx={{ alignSelf: ['center', 'end'], }} mt={3}>
+        <CountInfo>
           <RecipeCount 
             numRecipes={recipeCount} 
             recipeOrFave={"recipes"} />
-        </Box>
+        </CountInfo>
         <Box py={4} display='flex' justifyContent='flex-end'>
           <CreateRecipeBtn />
         </Box>

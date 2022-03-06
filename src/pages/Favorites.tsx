@@ -70,6 +70,15 @@ const HighlightedText = styled(Typography)(({ theme }) => ({
   }
 }));
 
+const CountInfo = styled(Box)(({ theme }) => ({
+  alignSelf: 'end',
+  width: 'unset',
+  marginTop: '24px',
+  [theme.breakpoints.down('sm')]: {
+    alignSelf: 'center',
+    width: '100%'
+  }
+}));
 
 const Favorites: FunctionComponent = () => {
   const recipes = useAppSelector(selectFavorites);
@@ -91,9 +100,11 @@ const Favorites: FunctionComponent = () => {
         <Titles>
           Favorites
         </Titles>
-        <Box sx={{ alignSelf: ['center', 'end'] }} mt={2}>
-          <RecipeCount numRecipes={numOfFavorites} recipeOrFave={"favorites"} />
-        </Box>
+        <CountInfo>
+          <RecipeCount 
+            numRecipes={numOfFavorites} 
+            recipeOrFave={"favorites"} />
+        </CountInfo>
         <HighlightedText>
           Ingredients for these recipes are in your shopping list.
         </HighlightedText>
