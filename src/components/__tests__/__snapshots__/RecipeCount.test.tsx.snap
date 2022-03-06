@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeCount renders 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root css-hnu12d"
+  >
+    <p
+      class="MuiTypography-root MuiTypography-body1 css-174tge4-MuiTypography-root"
+    >
+      You currently have
+      <span
+        class="css-vjgswn"
+      >
+        5
+      </span>
+      Recipes.
+    </p>
+  </div>
+</DocumentFragment>
+`;
