@@ -20,7 +20,7 @@ const MySearchButton = styled(Box)({
 
 const SearchButton: FunctionComponent<SearchButtonProps> = ({ searchFunction }) => {
   return (
-    <MySearchButton onClick={searchFunction}>
+    <MySearchButton onClick={searchFunction} data-testId="searchbtn">
       <TouchAppIcon sx={{ transform: 'scale(1.6)', color: '#EAEAEA' }} /> 
     </MySearchButton>
   );
