@@ -21,7 +21,7 @@ const SearchButton = styled(Box)({
 
 const SearchButtonSmall: FunctionComponent<SearchButtonSmallProps> = ({ searchFunction }) => {
   return ( 
-    <SearchButton onClick={searchFunction}>
+    <SearchButton onClick={searchFunction} data-testid='searchbuttonsmall'>
       <SearchIcon sx={{ transform: 'scale(1.5)', color: '#7aadb4'}} />
     </SearchButton>
      );
