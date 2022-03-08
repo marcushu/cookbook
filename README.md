@@ -13,6 +13,7 @@ Add your own recipes, create shopping lists, collect favorites, browse/search re
 - [ ] cache search results
 - [ ] handle redux error states
 - [ ] what about desert?
+- [ ] more testing❗️
 
 ## Possible features
 
