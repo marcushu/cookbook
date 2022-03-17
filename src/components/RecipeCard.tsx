@@ -16,10 +16,10 @@ interface RecipeCardProps {
 }
 
 const RecipePaper = styled(Paper)(({ theme }) => ({
-  margin: '8px auto 8px auto',
-  width: '300px',
+  margin: '8px auto 40px auto',
   [theme.breakpoints.up('sm')]: {
-    width: '900px'
+    width: '900px',
+    margin: '8px auto 8px auto',
   }
 }));
 
@@ -110,7 +110,7 @@ const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
     <RecipePaper variant='outlined'>
       <Grid container>
         <ImageGridItem item xs={12} sm={4} >
-          <img style={{ maxWidth: '100%' }}
+          <img style={{ width: '100%' }}
             src={imageUrl.length ? imageUrl : defaultImage}
             alt="food" />
         </ImageGridItem>
