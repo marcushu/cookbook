@@ -1,5 +1,5 @@
-import { Backdrop, Box, Button, CircularProgress, Grid, styled, TextField, Typography } from "@mui/material";
-import { FunctionComponent, useState } from "react";
+import { Backdrop, Box, Button, Checkbox, CircularProgress, FormControlLabel, FormGroup, Grid, styled, TextField, Typography } from "@mui/material";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { createUser, fetchUser, selectUserLoading } from "../redux/userState";
 import { useNavigate } from "react-router";
@@ -7,12 +7,12 @@ import Header from "../components/Header";
 import Topper from "../components/Topper";
 
 const BoxMain = styled(Box)({
-  display: 'flex', 
-  flexDirection: 'column', 
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center'
 });
 
-const HeaderBox = styled(Box)(({theme}) => ({
+const HeaderBox = styled(Box)(({ theme }) => ({
   display: 'unset',
   maxWidth: '886px',
   width: '100%',
@@ -52,8 +52,19 @@ const SignIn: FunctionComponent = () => {
   const isLoading = useAppSelector(selectUserLoading);
   const [username, setUsername] = useState("");
   const [newUsername, setNewUsername] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('loginName');
+
+    storedUser &&
+      setUsername(storedUser);
+  }, []);
 
   const login = async () => {
+    rememberMe &&
+      localStorage.setItem('loginName', username);
+
     await dispatch(fetchUser(username));
 
     navigate("/mypage");
@@ -88,12 +99,20 @@ const SignIn: FunctionComponent = () => {
               value={username}
               autoFocus={true}
               onChange={e => setUsername(e.target.value)} />
+            <FormGroup>
+              <FormControlLabel control={
+                <Checkbox
+                  onChange={() => setRememberMe(!rememberMe)}
+                  checked={rememberMe} />}
+                label='Remember me'
+                sx={{ color: 'gray' }} />
+            </FormGroup>
             <Button
               id="signinbtn"
               variant='contained'
               color='primary'
               onClick={login}
-              sx={{ alignSelf: 'center', width: '135px' }} >
+              sx={{ alignSelf: 'center', width: '135px', marginTop: '10px' }} >
               Log in
             </Button>
           </LoginSignup>
