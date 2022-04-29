@@ -57,8 +57,11 @@ const SignIn: FunctionComponent = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem('loginName');
 
-    storedUser &&
+    if(storedUser) {
       setUsername(storedUser);
+      setRememberMe(true);
+    }
+      
   }, []);
 
   const login = async () => {
