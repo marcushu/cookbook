@@ -1,5 +1,5 @@
 import { FormControlLabel, FormGroup, Grid, styled, Switch, TextField } from "@mui/material";
-import React, { useState, LegacyRef } from "react";
+import React, { useState, LegacyRef, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
@@ -27,6 +27,7 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   const findVegan = useAppSelector(selectFindVegan);
   const findVegetarian = useAppSelector(selectFindVegetarian);
   const dispatch = useAppDispatch();
+  const searchbarRef = useRef<HTMLDivElement>(null)
 
 
   // This will be called from parent.
@@ -35,12 +36,15 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
     // set this in state to allow consistent search from elsewhere
     dispatch(setSearchTearm(recipeToFind));
 
-    dispatch(search())
+    dispatch(search()).then(() => {
+      if (searchbarRef.current)
+        searchbarRef.current.scrollIntoView({ behavior: "smooth" });
+    });
   }
 
 
   return (
-    <MainContainer container>
+    <MainContainer container ref={searchbarRef}>
       <Grid item px={1} pb={1} xs={12} sm={4}>
         <TextField
           focused
