@@ -36,10 +36,10 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
     // set this in state to allow consistent search from elsewhere
     dispatch(setSearchTearm(recipeToFind));
 
-    dispatch(search()).then(() => {
-      if (searchbarRef.current)
-        searchbarRef.current.scrollIntoView({ behavior: "smooth" });
-    });
+    dispatch(search());
+
+    if (searchbarRef.current)
+      searchbarRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
 
