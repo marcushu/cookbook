@@ -35,9 +35,12 @@ const Home: FunctionComponent = () => {
   }, []);
 
   const searchAgain = () => {
-    dispatch(search()).then(() => {
-      pageRef?.current?.scrollIntoView();
-    });
+    pageRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // allow time to scroll into position before displaying new recipes
+    setTimeout(() => {
+      dispatch(search());
+    }, 700);
   }
 
 
@@ -49,7 +52,11 @@ const Home: FunctionComponent = () => {
       <HomeWelcome />
       <Box pb={3} ref={pageRef} >
         {isLoading
-          ? <RecipeCardLoading />
+          ? <>
+            <RecipeCardLoading />
+            <RecipeCardLoading />
+            <RecipeCardLoading />
+          </>
           : <RecipeList recipes={recipes} />}
         <Box sx={{ textAlign: 'center' }}>
           <Button onClick={searchAgain}>

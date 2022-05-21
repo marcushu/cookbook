@@ -1,5 +1,5 @@
 import { Box, Button, styled } from "@mui/material";
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAppSelector } from "../app/hooks";
 import FavoritesBtn from "../buttons/FavoritesBtn";
@@ -32,6 +32,7 @@ const MyPage: FunctionComponent = () => {
   // this component will either show this users recipes, or search recipes based on the following variable
   const recipeOwner = useAppSelector(selectOwner);
   const dispatch = useDispatch();
+  const pageRef = useRef<HTMLDivElement>(null)
 
 
   useEffect(() => {
@@ -51,12 +52,12 @@ const MyPage: FunctionComponent = () => {
   }
 
   const searchAgain = () => {
-    window.scrollTo({ top: 500, behavior: 'smooth' });
+    pageRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    // wait untill scrolling has stopped, then call dispatch to reload
+    // allow time to scroll into position before displaying new recipes
     setTimeout(() => {
       dispatch(search());
-    }, 500);
+    }, 700);
   }
 
 
@@ -66,9 +67,15 @@ const MyPage: FunctionComponent = () => {
         leftButton={<FavoritesBtn />}
         rightButton={<ShoppingListBtn />} />
       <MyPageWelcome recipeCount={myRecipes.length} userName={userName} />
-      {isLoading
-        ? <RecipeCardLoading />
-        : <RecipeList recipes={recipes} />}
+      <Box ref={pageRef}>
+        {isLoading
+          ? <>
+            <RecipeCardLoading />
+            <RecipeCardLoading />
+            <RecipeCardLoading />
+          </>
+          : <RecipeList recipes={recipes} />}
+      </Box>
       {!recipeOwner &&
         <Box sx={{ textAlign: 'center' }}>
           <Button onClick={searchAgain}>
