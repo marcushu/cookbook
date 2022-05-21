@@ -36,8 +36,7 @@ const Home: FunctionComponent = () => {
 
   const searchAgain = () => {
     dispatch(search()).then(() => {
-      if (pageRef.current)
-        pageRef.current.scrollIntoView();
+      pageRef?.current?.scrollIntoView();
     });
   }
 
