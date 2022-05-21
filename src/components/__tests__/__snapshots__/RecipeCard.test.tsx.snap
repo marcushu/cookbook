@@ -3,7 +3,7 @@
 exports[`RecipeCard renders 1`] = `
 <DocumentFragment>
   <div
-    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-17ll33i-MuiPaper-root"
+    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded css-1u15cpw-MuiPaper-root"
   >
     <div
       class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
@@ -14,7 +14,7 @@ exports[`RecipeCard renders 1`] = `
         <img
           alt="food"
           src="http://mock.url"
-          style="max-width: 100%;"
+          style="width: 100%;"
         />
       </div>
       <div
