@@ -31,10 +31,7 @@ export const userState = createSlice({
       state.orderIngredientsBy = action.payload
     },
     unsetUser: state => {
-      state.userName = '';
-      state.favorites.length = 0;
-      state.recipes.length = 0;
-      state.shoppingList.length = 0;
+      return initialState;
     },
     addRecipe: (state, action: PayloadAction<Recipe>) => {
       state.recipes.push(action.payload)
@@ -43,31 +40,30 @@ export const userState = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
-        const { userName, orderIngredientsBy, recipes, favorites, shoppingList} = action.payload;
-        
-        state.isLoading = false;
-        state.userName = userName;
-        state.orderIngredientsBy = orderIngredientsBy;
-        state.recipes = recipes;
-        state.favorites = favorites;
-        state.shoppingList = shoppingList;
+        let newState = {...action.payload};
+
+        newState.isLoading = false;
+
         // add ingredients to shopping list
-        favorites.forEach(recipe => {
+        action.payload.favorites.forEach(recipe => {
           const ingredientObjects = recipe.ingredients.map( item => ({ ingredient: item, recipe: recipe.name }));
           
-          state.shoppingList = [...state.shoppingList, ...ingredientObjects];
+          newState.shoppingList = [...newState.shoppingList, ...ingredientObjects];
         });
+
+        //TODO: save to session storage;
+        return newState;
       })
       .addCase(fetchUser.pending, state => {
         state.isLoading = true;
       })
-      .addCase(createUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.userName = action.payload.userName;
-        state.orderIngredientsBy = action.payload.orderIngredientsBy as IngredientSortPolicy
-        state.recipes = action.payload.recipes;
-        state.favorites = action.payload.favorites;
-        state.shoppingList = action.payload.shoppingList;
+      .addCase(createUser.fulfilled, (state, action) => {  //TODO: TEST this
+        let newState = { ...action.payload };
+
+        newState.isLoading = false;
+        newState.orderIngredientsBy = action.payload.orderIngredientsBy as IngredientSortPolicy;
+
+        return newState;
       })
       .addCase(createUser.pending, state => {
         state.isLoading = true;
