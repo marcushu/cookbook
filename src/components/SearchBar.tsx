@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import SearchButtonSmall from "../buttons/SearchButtonSmall";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
-  selectFindVegan, selectFindVegetarian, setFindMealSettings, setSearchTearm
+  selectFindVegan, selectFindVegetarian, setFindMealSettings, setOwner, setSearchTearm
 } from "../redux/searchResultState";
 
 
@@ -36,7 +36,9 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   const startSearch = () => {
     // set this in state to allow consistent search from elsewhere
     dispatch(setSearchTearm(recipeToFind));
-
+    // clear out the owner for universal search..only needed when logged in
+    dispatch(setOwner(""));
+    
     dispatch(search());
 
     searchbarRef?.current?.scrollIntoView({ behavior: "smooth" });

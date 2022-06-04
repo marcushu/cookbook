@@ -6,7 +6,7 @@ import SearchSwitch from '../buttons/SearchSwitch';
 import splashImage from '../images/curveWimage.png';
 import splashImgSm from '../images/phoneBG.png';
 import RecipeCount from './RecipeCount';
-import SearchBarComplete from './SearchBarComplete';
+import SearchBar from './SearchBar';
 
 interface MyPageWelcomProps {
   userName: String
@@ -88,7 +88,7 @@ const MyPageWelcome: FunctionComponent<MyPageWelcomProps> = ({ userName, recipeC
         </Box>
       </ImagePanel>
       <Box>
-        <SearchBarComplete />
+        <SearchBar />
       </Box>
       <Box p={2}>
         <SearchSwitch />
