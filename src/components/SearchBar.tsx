@@ -1,6 +1,7 @@
 import { FormControlLabel, FormGroup, Grid, styled, Switch, TextField } from "@mui/material";
 import React, { useState, LegacyRef, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
+import SearchButtonSmall from "../buttons/SearchButtonSmall";
 import {
   search, selectFindBreakfast, selectFindDinner, selectFindGF, selectFindLunch,
   selectFindVegan, selectFindVegetarian, setFindMealSettings, setSearchTearm
@@ -30,27 +31,33 @@ const SearchBar = React.forwardRef((props, buttonRef: LegacyRef<HTMLButtonElemen
   const searchbarRef = useRef<HTMLDivElement>(null)
 
 
-  // This will be called from parent.
+  // This will be either called locally or from parent.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const startSearch = () => {
     // set this in state to allow consistent search from elsewhere
     dispatch(setSearchTearm(recipeToFind));
 
     dispatch(search());
-    
+
     searchbarRef?.current?.scrollIntoView({ behavior: "smooth" });
   }
 
 
   return (
     <MainContainer container ref={searchbarRef}>
-      <Grid item px={1} pb={1} xs={12} sm={4}>
+      <Grid
+        item
+        px={1}
+        pb={1}
+        xs={12}
+        sm={4}
+        sx={{ display: 'flex', alignItems: 'flex-end' }}>
+        <SearchButtonSmall searchFunction={startSearch} />
         <TextField
           focused
           variant='standard'
           fullWidth={true}
           id="searchText"
-          label="find something"
           inputProps={{ style: { color: '#e9fcff', fontWeight: 'lighter', fontSize: '20px' } }}
           value={recipeToFind}
           onChange={e => setRecipeToFind(e.target.value)} />
