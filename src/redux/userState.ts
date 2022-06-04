@@ -13,6 +13,18 @@ const initialState: UserState = {
   isLoading: false
 }
 
+/**
+ * Load user's state from local stroage (in case of tab reload), or, absent that, 
+ * load an empty user.
+ * @returns user's state
+ */
+ const getInitialState = () => {
+  if(sessionStorage.getItem('userInfo')) {
+    return JSON.parse(sessionStorage.getItem('userInfo')!);
+  } else {
+    return initialState;
+  }
+}
 
 // thunks
 export const fetchUser = createAsyncThunk('user/fetchUser', fetchUserInfo);
@@ -22,15 +34,17 @@ export const deleteFavorite = createAsyncThunk('user/deleteFavorite', deleteFavo
 export const addToShoppingList = createAsyncThunk('user/addToShoppingList', addIngredient);
 export const deleteFromShoppingList = createAsyncThunk('user/deleteFromShoppingList', deleteIngredient);
 
-
+//TODO: everything that alters state should save the new state to to session storage
 export const userState = createSlice({
   name: 'user',
-  initialState,
+  initialState: getInitialState(),
   reducers: {
     setIngredientOrder: (state, action: PayloadAction<UserState["orderIngredientsBy"]>) => {
       state.orderIngredientsBy = action.payload
     },
     unsetUser: state => {
+      sessionStorage.clear();
+
       return initialState;
     },
     addRecipe: (state, action: PayloadAction<Recipe>) => {
@@ -51,7 +65,8 @@ export const userState = createSlice({
           newState.shoppingList = [...newState.shoppingList, ...ingredientObjects];
         });
 
-        //TODO: save to session storage;
+        sessionStorage.setItem('userInfo', JSON.stringify(newState));
+
         return newState;
       })
       .addCase(fetchUser.pending, state => {
@@ -62,6 +77,8 @@ export const userState = createSlice({
 
         newState.isLoading = false;
         newState.orderIngredientsBy = action.payload.orderIngredientsBy as IngredientSortPolicy;
+
+        sessionStorage.setItem('userInfo', JSON.stringify(newState));
 
         return newState;
       })
@@ -77,11 +94,13 @@ export const userState = createSlice({
 
         // add ingredients to shopping list.
         state.shoppingList = [...state.shoppingList, ...ingredientObjects];
+
+        sessionStorage.setItem('userInfo', JSON.stringify(state));
       })
       .addCase(addFavorite.pending, state => {
         state.isLoading = true;
       })
-      .addCase(deleteFavorite.fulfilled, (state, action) => {
+      .addCase(deleteFavorite.fulfilled, (state: UserState, action) => {
         const recipeToDelete = action.payload;
 
         const cleanFavoritesList = state.favorites.filter( el => !(el.name === recipeToDelete.name && el.instructions  === recipeToDelete.instructions ));
@@ -102,7 +121,7 @@ export const userState = createSlice({
       .addCase(addToShoppingList.pending, state => {
         state.isLoading = true;
       })
-      .addCase(deleteFromShoppingList.fulfilled, (state, action) => {
+      .addCase(deleteFromShoppingList.fulfilled, (state: UserState, action) => {
         state.isLoading = false
         const { ingredient } = action.payload.ingredient
         

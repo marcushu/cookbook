@@ -69,7 +69,7 @@ const TextBox = styled(Box)(({ theme }) => ({
 const RecipeCard: FunctionComponent<RecipeCardProps> = ({ recipe }) => {
   const { name, imageUrl, owner, description } = recipe;
   const userName = useAppSelector(selectUserName);
-  const favorites = useAppSelector(selectFavorites);
+  const favorites = useAppSelector(selectFavorites) as Recipe[];
   const [showFullRecipe, setShowFullRecipe] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showNotice, setShowNotice] = useState(false);
