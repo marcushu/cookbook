@@ -13,14 +13,16 @@ const initialState: UserState = {
   isLoading: false
 }
 
+const LOCALUSER = 'userInfo' // local storage key
+
 /**
  * Load user's state from local stroage (in case of tab reload), or, absent that, 
  * load an empty user.
  * @returns user's state
  */
  const getInitialState = () => {
-  if(sessionStorage.getItem('userInfo')) {
-    return JSON.parse(sessionStorage.getItem('userInfo')!);
+  if(sessionStorage.getItem(LOCALUSER)) {
+    return JSON.parse(sessionStorage.getItem(LOCALUSER)!);
   } else {
     return initialState;
   }
@@ -34,7 +36,7 @@ export const deleteFavorite = createAsyncThunk('user/deleteFavorite', deleteFavo
 export const addToShoppingList = createAsyncThunk('user/addToShoppingList', addIngredient);
 export const deleteFromShoppingList = createAsyncThunk('user/deleteFromShoppingList', deleteIngredient);
 
-//TODO: everything that alters state should save the new state to to session storage
+
 export const userState = createSlice({
   name: 'user',
   initialState: getInitialState(),
@@ -48,7 +50,9 @@ export const userState = createSlice({
       return initialState;
     },
     addRecipe: (state, action: PayloadAction<Recipe>) => {
-      state.recipes.push(action.payload)
+      state.recipes.push(action.payload);
+
+      sessionStorage.setItem(LOCALUSER, JSON.stringify(state));
     }
   },
   extraReducers: builder => {
@@ -65,7 +69,7 @@ export const userState = createSlice({
           newState.shoppingList = [...newState.shoppingList, ...ingredientObjects];
         });
 
-        sessionStorage.setItem('userInfo', JSON.stringify(newState));
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(newState));
 
         return newState;
       })
@@ -78,7 +82,7 @@ export const userState = createSlice({
         newState.isLoading = false;
         newState.orderIngredientsBy = action.payload.orderIngredientsBy as IngredientSortPolicy;
 
-        sessionStorage.setItem('userInfo', JSON.stringify(newState));
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(newState));
 
         return newState;
       })
@@ -91,11 +95,10 @@ export const userState = createSlice({
         
         state.isLoading = false;
         state.favorites.push(newFavorite)
-
         // add ingredients to shopping list.
         state.shoppingList = [...state.shoppingList, ...ingredientObjects];
 
-        sessionStorage.setItem('userInfo', JSON.stringify(state));
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(state));
       })
       .addCase(addFavorite.pending, state => {
         state.isLoading = true;
@@ -110,6 +113,7 @@ export const userState = createSlice({
         state.favorites = cleanFavoritesList;
         state.shoppingList = cleanedShoppingList;
 
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(state));
       })
       .addCase(deleteFavorite.pending, state => {
         state.isLoading = true;
@@ -117,6 +121,8 @@ export const userState = createSlice({
       .addCase(addToShoppingList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.shoppingList.unshift(action.payload);
+
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(state));
       })
       .addCase(addToShoppingList.pending, state => {
         state.isLoading = true;
@@ -128,6 +134,8 @@ export const userState = createSlice({
         const cleanedShoppingList = state.shoppingList.filter( el => !(el.ingredient === ingredient && el.recipe === ''));
         
         state.shoppingList = cleanedShoppingList;
+
+        sessionStorage.setItem(LOCALUSER, JSON.stringify(state));
       })
       .addCase(deleteFromShoppingList.pending, state => {
         state.isLoading = true;
