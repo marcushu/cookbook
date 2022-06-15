@@ -59,10 +59,11 @@ export const userState = createSlice({
     builder
       .addCase(fetchUser.fulfilled, (state, action) => {
         let newState = {...action.payload};
-
+        newState.shoppingList.reverse(); // newest on top
+        
         newState.isLoading = false;
 
-        // add ingredients to shopping list
+        // add ingredients from favorite recipes to shopping list
         action.payload.favorites.forEach(recipe => {
           const ingredientObjects = recipe.ingredients.map( item => ({ ingredient: item, recipe: recipe.name }));
           

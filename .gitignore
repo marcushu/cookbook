@@ -22,6 +22,8 @@ firebase.json
 .env.test.local
 .env.production.local
 
+/cypress/videos
+
 .vscode
 myREADME
 
