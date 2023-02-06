@@ -10,7 +10,7 @@ import SearchBar from './SearchBar';
 
 interface MyPageWelcomProps {
   userName: String
-  recipeCount: Number
+  recipeCount: number
 }
 
 const MainContent = styled(Box)({

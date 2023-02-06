@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import { FunctionComponent } from "react";
 
 interface RecipeCountProps {
-  numRecipes: Number
+  numRecipes: number
   recipeOrFave: string
 }
 
