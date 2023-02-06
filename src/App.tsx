@@ -1,3 +1,4 @@
+import { Backdrop, CircularProgress } from '@mui/material';
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
@@ -10,8 +11,18 @@ const CreateRecipe = React.lazy(() => import('./pages/CreateRecipe'));
 const SignIn = React.lazy(() => import('./pages/SignIn'));
 
 function App() {
+  const showSpinner = () => {
+    return (
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
+    )
+  }
+
   return (
-    <Suspense fallback={<h1>Loading...</h1>} >
+    <Suspense fallback={showSpinner()}>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/mypage' element={<MyPage />} />
