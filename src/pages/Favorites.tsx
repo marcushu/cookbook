@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress, styled, Typography } from "@mui/material";
+import { Backdrop, CircularProgress, styled, Typography, Box } from "@mui/material";
 import { FunctionComponent } from "react";
 import { useAppSelector } from "../app/hooks";
 import HomeBtn from "../buttons/HomeBtn";
@@ -6,7 +6,6 @@ import ShoppingListBtn from "../buttons/ShoppingListBtn";
 import Header from "../components/Header";
 import RecipeList from "../components/RecipeList";
 import { selectFavorites, selectNumOfFavorites, selectUserName } from "../redux/userState";
-import { Box } from "@mui/material/node_modules/@mui/system";
 import { selectLoading } from "../redux/searchResultState";
 import splashImage from '../images/curveWimage.png';
 import splashImgSm from '../images/phoneBG.png';
